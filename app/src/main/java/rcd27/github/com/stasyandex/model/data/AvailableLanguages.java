@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+//TODO заимплементить интерфейс List<T>
 public class AvailableLanguages {
     @SerializedName("dirs")
     private List<String> directions;
@@ -27,5 +28,10 @@ public class AvailableLanguages {
 
     public void setLanguages(Langs languages) {
         this.languages = languages;
+    }
+
+    public boolean isEmpty() {
+        //TODO поменять на languages.isEmpty()
+        return directions.isEmpty() && languages == null;
     }
 }

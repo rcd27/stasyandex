@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiModule {
@@ -41,6 +42,7 @@ public class ApiModule {
                 .baseUrl(BASE_URL)
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build().create(ApiInterface.class);
     }
 }

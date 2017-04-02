@@ -1,5 +1,9 @@
 package rcd27.github.com.stasyandex.model.data;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Langs {
     private String af;
     private String am;
@@ -811,4 +815,6 @@ public class Langs {
     public void setZh(String zh) {
         this.zh = zh;
     }
+
+    //TODO сделать так, чтобы отображать можно было блин
 }
