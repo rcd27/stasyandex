@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">StasYanDex</string>
+    <string name="getDirs">Get dirs!</string>
+    <string name="default_lang_ru">ru</string>
+</resources>
