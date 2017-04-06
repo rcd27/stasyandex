@@ -3,4 +3,9 @@
     <string name="getDirs">Get dirs!</string>
     <string name="default_lang_ru">ru</string>
     <string name="textField_hint">Текст писать тут</string>
+    <string name="fake_sound_button">fake sound button</string>
+    <string name="fake_mic_button">fake mic button</string>
+    <string name="switches_to_translation_api">Switches to translation API</string>
+    <string name="switches_to_history_fragment">Switches to History fragment</string>
+    <string name="fake_preferencies_button">Fake Preferencies button</string>
 </resources>
