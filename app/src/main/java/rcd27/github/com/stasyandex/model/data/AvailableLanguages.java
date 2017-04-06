@@ -3,6 +3,7 @@ package rcd27.github.com.stasyandex.model.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 //TODO заимплементить интерфейс List<T>
@@ -33,5 +34,10 @@ public class AvailableLanguages {
     public boolean isEmpty() {
         //TODO поменять на languages.isEmpty()
         return directions.isEmpty() && languages == null;
+    }
+
+    @Override
+    public String toString() {
+        return MessageFormat.format("Directions: {0}, Languages: {1}", directions, languages);
     }
 }
