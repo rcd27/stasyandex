@@ -3,11 +3,10 @@ package rcd27.github.com.stasyandex.view.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -15,14 +14,12 @@ import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 
 public class CommandButtonsFragment extends BaseFragment {
-    @Bind(R.id.ib_command_translate)
-    ImageButton translateButton;
+    @Bind(R.id.command_translate)
 
-    @Bind(R.id.ib_command_favourite)
-    ImageButton favouritesButton;
+    Button translateButton;
 
-    @Bind(R.id.ib_command_preferencies)
-    ImageButton preferencesButton;
+    @Bind(R.id.command_favourite)
+    Button favouritesButton;
 
     @Nullable
     @Override
