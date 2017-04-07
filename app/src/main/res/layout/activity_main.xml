@@ -1,84 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="325dp"
-        android:layout_height="74dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="@string/textField_hint"
-        android:inputType="text"
-        android:textAlignment="gravity"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/ib_mic"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
-        android:contentDescription="@string/fake_mic_button"
-        app:layout_constraintRight_toRightOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="@+id/editText"
-        app:srcCompat="@drawable/ic_mic_black_24dp" />
-
-    <ImageButton
-        android:id="@+id/ib_volume"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="4dp"
-        android:contentDescription="@string/fake_sound_button"
-        app:layout_constraintRight_toRightOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/ib_mic"
-        app:srcCompat="@drawable/ic_volume_up_black_24dp" />
-
-    <ImageButton
-        android:id="@+id/ib_language"
-        android:layout_width="wrap_content"
+    <fragment
+        android:id="@+id/commands_button_fragment"
+        android:name="rcd27.github.com.stasyandex.view.fragments.CommandButtonsFragment"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:contentDescription="@string/switches_to_translation_api"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:srcCompat="@drawable/ic_language_black_24dp" />
+        android:layout_gravity="bottom"
+        tools:layout="@layout/command_buttons_layout">
+    </fragment>
 
-    <ImageButton
-        android:id="@+id/ib_favourite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:contentDescription="@string/switches_to_history_fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintLeft_toLeftOf="@+id/ib_language"
-        app:layout_constraintRight_toRightOf="@+id/ib_preferencies"
-        app:srcCompat="@drawable/ic_star_black_24dp" />
-
-    <ImageButton
-        android:id="@+id/ib_preferencies"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:contentDescription="@string/fake_preferencies_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toRightOf="@+id/ib_favourite"
-        app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/ic_settings_black_24dp" />
-
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>
