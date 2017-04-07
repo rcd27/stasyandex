@@ -46,6 +46,10 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     //TODO тут какой-то кастомный ActivityCallback. Для чего?
 
+    public static TranslationFragment newInstance() {
+        return new TranslationFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

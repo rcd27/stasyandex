@@ -12,6 +12,7 @@
     <string name="button_preferences">Настройки</string>
     <string name="button_history">История</string>
     <string name="button_translate">Перевод</string>
+    <string name="cd_search_ico">Не поверишь: значок поиска</string>
 
     <string-array name="fake_list_data">
         <item>acquiring</item>

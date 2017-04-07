@@ -7,5 +7,4 @@ public interface CommandButtonsView extends View {
 
     public void startFavouritesFragment();
 
-    public void startPreferencesFragment();
 }
