@@ -4,9 +4,9 @@ package rcd27.github.com.stasyandex;
 public enum Constant {
     METHOD_INVOCATION("Method invocation: ");
 
-    private final String valuue;
+    public final String value;
 
-    Constant(String valuue) {
-        this.valuue = valuue;
+    Constant(String value) {
+        this.value = value;
     }
 }

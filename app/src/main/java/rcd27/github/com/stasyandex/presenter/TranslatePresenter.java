@@ -10,6 +10,8 @@ import java.util.List;
 import rcd27.github.com.stasyandex.model.data.Translation;
 import rcd27.github.com.stasyandex.view.fragments.TranslationView;
 
+import static rcd27.github.com.stasyandex.Constant.METHOD_INVOCATION;
+
 public class TranslatePresenter extends BasePresenter {
 
     private final String TAG = this.getClass().getSimpleName();
@@ -27,7 +29,7 @@ public class TranslatePresenter extends BasePresenter {
     }
 
     public void onGetTranslation() {
-        Log.i(TAG, "onGetTranslation()");
+        Log.i(TAG, METHOD_INVOCATION.value + "onGetTranslation()");
         //TODO тут вся логика по получению перевода, подписке и пр.
         //TODO присвоить origin'u значение
     }
@@ -52,7 +54,7 @@ public class TranslatePresenter extends BasePresenter {
         }
     }
 
-    public String getOriginWord(){
+    public String getOriginWord() {
         return originWord;
     }
 }

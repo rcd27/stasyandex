@@ -53,7 +53,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         tranclationRecyclerView.setLayoutManager(llm);
-        adapter = new TranslationListAdapter(new ArrayList<Translation>(), presenter);
+        adapter = new TranslationListAdapter(new ArrayList<>(), presenter);
         tranclationRecyclerView.setAdapter(adapter);
 
         getTranslationButton.setOnClickListener(v -> presenter.onGetTranslation());
@@ -80,13 +80,13 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @Override
     public void showTranslation(List<Translation> translationsToShow) {
-        Log.i(TAG, METHOD_INVOCATION + "showTranslation()");
+        Log.i(TAG, METHOD_INVOCATION.value + "showTranslation()");
         adapter.setTranslationList(translationsToShow);
     }
 
     @Override
     protected BasePresenter getPresenter() {
-        Log.i(TAG, METHOD_INVOCATION + "getPresenter()");
+        Log.i(TAG, METHOD_INVOCATION.value + "getPresenter()");
         return presenter;
     }
 
