@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.view.fragments.FavouritesFragment;
-import rcd27.github.com.stasyandex.view.fragments.TranslateFragment;
+import rcd27.github.com.stasyandex.view.fragments.TranslationFragment;
 
 public class MainActivity extends FragmentActivity {
 
@@ -22,7 +22,7 @@ public class MainActivity extends FragmentActivity {
             }
         }
 
-        TranslateFragment translateFragment = new TranslateFragment();
+        TranslationFragment translateFragment = new TranslationFragment();
         translateFragment.setArguments(getIntent().getExtras());
 
         FavouritesFragment favouritesFragment = new FavouritesFragment();

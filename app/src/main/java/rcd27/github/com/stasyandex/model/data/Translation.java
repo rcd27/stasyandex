@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Translation {
+    //TODO сделать DTO и VO объекты
     @SerializedName("code")
     private int code;
     @SerializedName("lang")

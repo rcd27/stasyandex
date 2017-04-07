@@ -42,4 +42,23 @@
         app:layout_constraintTop_toBottomOf="@+id/ib_mic"
         app:srcCompat="@drawable/ic_volume_up_black_24dp" />
 
+    <Button
+        android:id="@+id/bt_getTranslation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/get_translation"
+        app:layout_constraintRight_toRightOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_goneMarginEnd="0dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        app:layout_constraintLeft_toLeftOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_goneMarginStart="0dp" />
+
 </android.support.constraint.ConstraintLayout>

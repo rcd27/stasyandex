@@ -8,4 +8,12 @@
     <string name="switches_to_translation_api">Switches to translation API</string>
     <string name="switches_to_history_fragment">Switches to History fragment</string>
     <string name="fake_preferencies_button">Fake Preferencies button</string>
+    <string name="get_translation">Перевести</string>
+
+    <string-array name="fake_list_data">
+        <item>acquiring</item>
+        <item>honor</item>
+        <item>dabudidabuda</item>
+        <item>fake blabla</item>
+    </string-array>
 </resources>

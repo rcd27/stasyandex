@@ -12,8 +12,9 @@ import android.widget.ImageButton;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
+import rcd27.github.com.stasyandex.presenter.BasePresenter;
 
-public class CommandButtonsFragment extends Fragment {
+public class CommandButtonsFragment extends BaseFragment {
     @Bind(R.id.ib_command_translate)
     ImageButton translateButton;
 
@@ -37,5 +38,10 @@ public class CommandButtonsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(getActivity());
+    }
+
+    @Override
+    protected BasePresenter getPresenter() {
+        return null;
     }
 }
