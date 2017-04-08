@@ -10,7 +10,7 @@ import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.view.fragments.FavouritesFragment;
 import rcd27.github.com.stasyandex.view.fragments.TranslationFragment;
 
-//TODO MAIN: перейти на модель DTO-VO. VO должны отвечать вьюшкам.
+//TODO MAIN: прикрутить API словаря.
 //TODO MAIN: реализовать AvailableLanguages в меню окна перевода.
 public class MainActivity extends AppCompatActivity implements ActivityCallback {
 
