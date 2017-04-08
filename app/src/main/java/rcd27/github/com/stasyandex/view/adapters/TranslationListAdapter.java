@@ -10,20 +10,20 @@ public class TranslationListAdapter extends BaseAdapter<TranslationDTO> {
 
     private TranslatePresenter presenter;
 
-    public TranslationListAdapter(List<TranslationDTO> list, TranslatePresenter presenter) {
+    public TranslationListAdapter(List<String> list, TranslatePresenter presenter) {
         super(list);
         this.presenter = presenter;
     }
 
-        public void setTranslationList(List<TranslationDTO> list) {
+        public void setTranslationList(List<String> list) {
         this.list = list;
         notifyDataSetChanged();
     }
 
     @Override
     public void onBindViewHolder(BaseAdapter.ViewHolder holder, int position) {
-        TranslationDTO translationDTO = list.get(position);
+        String translation = list.get(position);
         holder.originText.setText(presenter.getOriginWord());
-        holder.translationText.setText(translationDTO.getTranslationResult().toString());
+        holder.translationText.setText(translation);
     }
 }

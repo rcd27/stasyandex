@@ -7,16 +7,21 @@ package rcd27.github.com.stasyandex.presenter.visualobjects;
  */
 
 import java.io.Serializable;
+import java.util.List;
 
 //TODO в туториале прикручен интерфейс Serializable. Зачем?
-public class Translation implements Serializable{
-    private final String translationResult;
+public class Translation implements Serializable {
+    private final List<String> translationResult;
 
-    public Translation(String translationResult) {
+    public Translation(List<String> translationResult) {
         this.translationResult = translationResult;
     }
 
-    public String getTranslationResult() {
+    public List<String> getTranslationResult() {
         return translationResult;
+    }
+
+    public boolean isEmpty() {
+        return translationResult.isEmpty();
     }
 }

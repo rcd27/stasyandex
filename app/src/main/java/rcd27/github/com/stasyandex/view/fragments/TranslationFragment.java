@@ -83,9 +83,14 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     }
 
     @Override
-    public void showTranslation(List<TranslationDTO> translationsToShow) {
+    public void showTranslation(List<String> translationsToShow) {
         Log.i(TAG, METHOD_INVOCATION.value + "showTranslation()");
         adapter.setTranslationList(translationsToShow);
+    }
+
+    @Override
+    public void showEmpty() {
+        //TODO
     }
 
     @Override

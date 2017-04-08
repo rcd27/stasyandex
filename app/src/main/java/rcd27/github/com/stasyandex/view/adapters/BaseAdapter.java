@@ -15,13 +15,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
 
     private final String TAG = getClass().getSimpleName();
 
-    protected List<T> list;
+    protected List<String> list;
 
-    public BaseAdapter(List<T> list) {
+    public BaseAdapter(List<String> list) {
         this.list = list;
     }
 
-    public List<T> getList() {
+    public List<String> getList() {
         return list;
     }
 
