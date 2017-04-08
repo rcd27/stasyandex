@@ -1,7 +1,7 @@
 package rcd27.github.com.stasyandex.presenter.mappers;
 
 
-import rcd27.github.com.stasyandex.model.dto.TranslationDTO;
+import rcd27.github.com.stasyandex.model.dto.translate.TranslationDTO;
 import rcd27.github.com.stasyandex.presenter.visualobjects.Translation;
 import rx.Observable;
 import rx.functions.Func1;

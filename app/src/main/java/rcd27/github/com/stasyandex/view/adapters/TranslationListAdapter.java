@@ -3,7 +3,7 @@ package rcd27.github.com.stasyandex.view.adapters;
 
 import java.util.List;
 
-import rcd27.github.com.stasyandex.model.dto.TranslationDTO;
+import rcd27.github.com.stasyandex.model.dto.translate.TranslationDTO;
 import rcd27.github.com.stasyandex.presenter.TranslatePresenter;
 
 @Deprecated

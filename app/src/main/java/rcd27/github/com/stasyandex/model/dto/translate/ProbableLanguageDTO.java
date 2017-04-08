@@ -1,4 +1,4 @@
-package rcd27.github.com.stasyandex.model.dto;
+package rcd27.github.com.stasyandex.model.dto.translate;
 
 import com.google.gson.annotations.SerializedName;
 
