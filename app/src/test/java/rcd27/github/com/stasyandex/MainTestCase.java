@@ -1,8 +1,6 @@
 package rcd27.github.com.stasyandex;
 
 
-import com.google.gson.Gson;
-
 import org.junit.Test;
 
 import rcd27.github.com.stasyandex.model.api.ApiModule;
