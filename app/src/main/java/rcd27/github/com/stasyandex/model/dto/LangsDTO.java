@@ -1,10 +1,11 @@
-package rcd27.github.com.stasyandex.model.data;
+package rcd27.github.com.stasyandex.model.dto;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
+/*
+Не очень понятно нафиг этот объект вообще нужен и что с ним делать.
+Используется в AvailableLanguagesDTO
+ */
 
-public class Langs {
+public class LangsDTO {
     private String af;
     private String am;
     private String ar;

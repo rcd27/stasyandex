@@ -1,4 +1,4 @@
-package rcd27.github.com.stasyandex.model.data;
+package rcd27.github.com.stasyandex.model.dto;
 
 
 import com.google.gson.annotations.SerializedName;
@@ -6,14 +6,21 @@ import com.google.gson.annotations.SerializedName;
 import java.text.MessageFormat;
 import java.util.List;
 
-//TODO заимплементить интерфейс List<T>
-public class AvailableLanguages {
+/*
+DTO объект для всех доступных языках перевода.
+Задача: получать его один раз при запуске приложения.
+Мапить в объект для визуализации.
+ */
+
+public class AvailableLanguagesDTO {
+
     @SerializedName("dirs")
     private List<String> directions;
 
+    //TODO изучить вопрос перевода этого дерьма в нормальный List<String>,чем он по сути и является.
     @SerializedName("langs")
     private
-    Langs languages;
+    LangsDTO languages;
 
     public List<String> getDirections() {
         return directions;
@@ -23,11 +30,11 @@ public class AvailableLanguages {
         this.directions = directions;
     }
 
-    public Langs getLanguages() {
+    public LangsDTO getLanguages() {
         return languages;
     }
 
-    public void setLanguages(Langs languages) {
+    public void setLanguages(LangsDTO languages) {
         this.languages = languages;
     }
 

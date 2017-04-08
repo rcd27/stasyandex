@@ -7,7 +7,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import rcd27.github.com.stasyandex.model.data.Translation;
+import rcd27.github.com.stasyandex.model.dto.TranslationDTO;
 import rcd27.github.com.stasyandex.view.fragments.TranslationView;
 
 import static rcd27.github.com.stasyandex.Constant.METHOD_INVOCATION;
@@ -20,7 +20,7 @@ public class TranslatePresenter extends BasePresenter {
 
     private TranslationView view;
 
-    private List<Translation> translationList;
+    private List<TranslationDTO> translationDTOList;
 
     private String originWord = "Origin ёптыть";
 
@@ -36,21 +36,21 @@ public class TranslatePresenter extends BasePresenter {
 
     public void onCreate(Bundle savedInstanceState) {
         if (null != savedInstanceState) {
-            translationList = (List<Translation>) savedInstanceState.getSerializable(BUNDLE_TRANSLATE_KEY);
+            translationDTOList = (List<TranslationDTO>) savedInstanceState.getSerializable(BUNDLE_TRANSLATE_KEY);
         }
 
         if (!translationListIsEmpty()) {
-            view.showTranslation(translationList);
+            view.showTranslation(translationDTOList);
         }
     }
 
     private boolean translationListIsEmpty() {
-        return translationList == null || translationList.isEmpty();
+        return translationDTOList == null || translationDTOList.isEmpty();
     }
 
     public void onSaveInstanceState(Bundle outState) {
         if (!translationListIsEmpty()) {
-            outState.putSerializable(BUNDLE_TRANSLATE_KEY, new ArrayList<>(translationList));
+            outState.putSerializable(BUNDLE_TRANSLATE_KEY, new ArrayList<>(translationDTOList));
         }
     }
 

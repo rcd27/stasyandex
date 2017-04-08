@@ -1,10 +1,13 @@
-package rcd27.github.com.stasyandex.model.data;
+package rcd27.github.com.stasyandex.model.dto;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.text.MessageFormat;
 
-public class ProbableLanguage {
+/*
+Получаемый DTO, Ответ API на команду detect.
+ */
+public class ProbableLanguageDTO {
     @SerializedName("code")
     private int code;
     @SerializedName("lang")

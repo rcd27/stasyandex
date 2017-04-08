@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
-import rcd27.github.com.stasyandex.model.data.Translation;
+import rcd27.github.com.stasyandex.model.dto.TranslationDTO;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.presenter.TranslatePresenter;
 import rcd27.github.com.stasyandex.view.adapters.TranslationListAdapter;
@@ -84,7 +83,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     }
 
     @Override
-    public void showTranslation(List<Translation> translationsToShow) {
+    public void showTranslation(List<TranslationDTO> translationsToShow) {
         Log.i(TAG, METHOD_INVOCATION.value + "showTranslation()");
         adapter.setTranslationList(translationsToShow);
     }
