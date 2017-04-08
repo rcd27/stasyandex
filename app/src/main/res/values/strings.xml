@@ -2,7 +2,7 @@
     <string name="app_name">StasYanDex</string>
     <string name="getDirs">Get dirs!</string>
     <string name="default_lang_ru">ru</string>
-    <string name="textField_hint">Текст писать тут</string>
+    <string name="textField_hint">Что переводим?</string>
     <string name="fake_sound_button">fake sound button</string>
     <string name="fake_mic_button">fake mic button</string>
     <string name="switches_to_translation_api">Switches to translationDTO API</string>
@@ -13,11 +13,6 @@
     <string name="button_history">История</string>
     <string name="button_translate">Перевод</string>
     <string name="cd_search_ico">Не поверишь: значок поиска</string>
+    <string name="ib_cross_description">Шобы текст стират</string>
 
-    <string-array name="fake_list_data">
-        <item>acquiring</item>
-        <item>honor</item>
-        <item>dabudidabuda</item>
-        <item>fake blabla</item>
-    </string-array>
 </resources>

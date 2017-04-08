@@ -33,11 +33,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
         return new ViewHolder(v);
     }
 
-//    @Override
-//    public void onBindViewHolder(ViewHolder holder, int position) {
-//        Log.i(TAG, "Empty onBindViewHolder() invoked");
-//    }
-
     @Override
     public int getItemCount() {
         return list.size();

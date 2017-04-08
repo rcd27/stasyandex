@@ -3,28 +3,21 @@ package rcd27.github.com.stasyandex.view.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
-import rcd27.github.com.stasyandex.model.dto.TranslationDTO;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.presenter.TranslatePresenter;
 import rcd27.github.com.stasyandex.view.adapters.TranslationListAdapter;
-
-import static rcd27.github.com.stasyandex.Constant.METHOD_INVOCATION;
 
 public class TranslationFragment extends BaseFragment implements TranslationView {
 
@@ -36,8 +29,12 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     @Bind(R.id.bt_getTranslation)
     Button getTranslationButton;
 
-    @Bind(R.id.recycler_view)
-    RecyclerView tranclationRecyclerView;
+    @Bind(R.id.tv_translation_result)
+    TextView translationResultTextView;
+
+    //ПЛАВНО ПЕРЕХОДИМ К TEXTVIEW
+//    @Bind(R.id.recycler_view)
+//    RecyclerView tranclationRecyclerView;
 
     private TranslationListAdapter adapter;
 
@@ -55,10 +52,12 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         View view = inflater.inflate(R.layout.translate_layout, container, false);
         ButterKnife.bind(this, view);
 
+        /*
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         tranclationRecyclerView.setLayoutManager(llm);
         adapter = new TranslationListAdapter(new ArrayList<>(), presenter);
         tranclationRecyclerView.setAdapter(adapter);
+        */
 
         getTranslationButton.setOnClickListener(v -> presenter.onGetTranslation());
 
@@ -68,7 +67,9 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     }
 
     private void makeToast(String text) {
+        /*
         Snackbar.make(tranclationRecyclerView, text, Snackbar.LENGTH_LONG).show();
+        */
     }
 
     @Override
@@ -84,18 +85,19 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @Override
     public void showTranslation(List<String> translationsToShow) {
-        Log.i(TAG, METHOD_INVOCATION.value + "showTranslation()");
+        /*
         adapter.setTranslationList(translationsToShow);
+        */
+        translationResultTextView.setText(translationsToShow.toString());
     }
 
     @Override
     public void showEmpty() {
-        //TODO
+        translationResultTextView.setText("");
     }
 
     @Override
     protected BasePresenter getPresenter() {
-        Log.i(TAG, METHOD_INVOCATION.value + "getPresenter()");
         return presenter;
     }
 

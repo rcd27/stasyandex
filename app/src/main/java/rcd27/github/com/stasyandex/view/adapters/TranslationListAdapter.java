@@ -6,6 +6,7 @@ import java.util.List;
 import rcd27.github.com.stasyandex.model.dto.TranslationDTO;
 import rcd27.github.com.stasyandex.presenter.TranslatePresenter;
 
+@Deprecated
 public class TranslationListAdapter extends BaseAdapter<TranslationDTO> {
 
     private TranslatePresenter presenter;
