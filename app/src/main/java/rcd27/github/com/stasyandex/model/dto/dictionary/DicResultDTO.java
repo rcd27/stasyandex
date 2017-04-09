@@ -14,6 +14,7 @@ public class DicResultDTO {
     public Object nullhead;
 
     /*Массив словарных статей*/
+    //TODO то есть из них надо ещё достать Tr
     @SerializedName("def")
     @Expose
     public List<Def> def = null;

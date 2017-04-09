@@ -10,7 +10,7 @@ import rcd27.github.com.stasyandex.presenter.visualobjects.DictionaryItem;
 import rx.Observable;
 import rx.functions.Func1;
 
-public class DictionaryMapper implements Func1<List<Tr>, List<DictionaryItem>> {
+public class DictionaryItemMapper implements Func1<List<Tr>, List<DictionaryItem>> {
 
     @Override
     public List<DictionaryItem> call(List<Tr> trs) {
