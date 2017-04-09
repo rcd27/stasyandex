@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_dictionary_item_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/tv_dictionary_item_text_syn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_dictionary_item_number"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorAccent"
+        tools:text="hi, hello, hallo, salutation" />
+
+    <TextView
+        android:id="@+id/tv_dictionary_item_mean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_dictionary_item_text_syn"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dictionary_item_text_syn"
+        tools:text="(приветствие)" />
+</android.support.constraint.ConstraintLayout>
