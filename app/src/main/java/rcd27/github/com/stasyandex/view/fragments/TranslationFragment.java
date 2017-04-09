@@ -68,7 +68,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     private void makeToast(String text) {
         /*
-        Snackbar.make(tranclationRecyclerView, text, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(tranclationRecyclerView, word, Snackbar.LENGTH_LONG).show();
         */
     }
 

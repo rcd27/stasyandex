@@ -11,6 +11,6 @@ public interface DictionaryAPI {
     //https://tech.yandex.ru/dictionary/doc/dg/reference/lookup-docpage/
     @GET("api/v1/dicservice.json/lookup")
     Observable<DicResultDTO> getDicResultFor(@Query("lang") String language,
-                                             @Query("text") String text,
+                                             @Query("word") String text,
                                              @Query("ui") String inLanguage);
 }

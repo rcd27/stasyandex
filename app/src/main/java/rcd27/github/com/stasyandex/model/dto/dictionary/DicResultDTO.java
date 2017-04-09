@@ -10,12 +10,20 @@ import java.util.List;
 public class DicResultDTO {
     /*Заголовок результата - не используется*/
     @SerializedName("head")
-    @Expose
-    public Head head;
+    @Expose(deserialize = false)
+    public Object nullhead;
 
     /*Массив словарных статей*/
     @SerializedName("def")
     @Expose
     public List<Def> def = null;
+
+    public List<Def> getDef() {
+        return def;
+    }
+
+    public void setDef(List<Def> def) {
+        this.def = def;
+    }
 }
 

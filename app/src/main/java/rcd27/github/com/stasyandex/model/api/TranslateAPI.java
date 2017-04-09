@@ -13,9 +13,9 @@ public interface TranslateAPI {
     Observable<AvailableLanguagesDTO> getAvailableLangs(@Query("ui") String forLanguage);
 
     @GET("api/v1.5/tr.json/detect")
-    Observable<ProbableLanguageDTO> getProbableLanguage(@Query("text") String text);
+    Observable<ProbableLanguageDTO> getProbableLanguage(@Query("word") String text);
 
     @GET("api/v1.5/tr.json/translate")
-    Observable<TranslationDTO> getTranslation(@Query("text") String textToTranslate,
+    Observable<TranslationDTO> getTranslation(@Query("word") String textToTranslate,
                                               @Query("lang") String translationDirection);
 }

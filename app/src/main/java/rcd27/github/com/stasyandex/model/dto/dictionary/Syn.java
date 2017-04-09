@@ -11,6 +11,6 @@ public class Syn {
     public String text;
 
     @SerializedName("pos")
-    @Expose
+    @Expose(deserialize = false)
     public String pos;
 }

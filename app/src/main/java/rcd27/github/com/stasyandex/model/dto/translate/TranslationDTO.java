@@ -15,7 +15,7 @@ public class TranslationDTO {
     private int code;
     @SerializedName("lang")
     private String direction;
-    @SerializedName("text")
+    @SerializedName("word")
     private List<String> translationResult = new ArrayList<>();
 
     public int getCode() {

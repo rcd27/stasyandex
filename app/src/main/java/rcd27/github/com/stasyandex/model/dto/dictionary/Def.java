@@ -12,6 +12,7 @@ public class Def {
     public String text;
 
     /*Часть речи, может отсутствовать*/
+    //TODO освежить в памяти, что там про null в JSON'e
     @SerializedName("pos")
     @Expose
     public String pos;
@@ -24,4 +25,36 @@ public class Def {
     @SerializedName("tr")
     @Expose
     public List<Tr> tr = null;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getPos() {
+        return pos;
+    }
+
+    public void setPos(String pos) {
+        this.pos = pos;
+    }
+
+    public String getAnm() {
+        return anm;
+    }
+
+    public void setAnm(String anm) {
+        this.anm = anm;
+    }
+
+    public List<Tr> getTr() {
+        return tr;
+    }
+
+    public void setTr(List<Tr> tr) {
+        this.tr = tr;
+    }
 }

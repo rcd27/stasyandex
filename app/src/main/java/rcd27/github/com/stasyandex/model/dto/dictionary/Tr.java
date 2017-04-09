@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/*Перевод*/
+/*Элемент для отображения в RecyclerView*/
 public class Tr {
     @SerializedName("text")
     @Expose
