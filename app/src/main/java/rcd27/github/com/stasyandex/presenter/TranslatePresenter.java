@@ -57,7 +57,6 @@ public class TranslatePresenter extends BasePresenter {
                     public void onNext(Translation response) {
                         if (null != response && !response.isEmpty()) {
                             translation = response;
-                            //TODO переделка логики View
                             view.showTranslation(translation.getTranslationResult());
                         } else {
                             view.showEmpty();
