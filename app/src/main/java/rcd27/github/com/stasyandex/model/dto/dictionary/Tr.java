@@ -12,6 +12,7 @@ public class Tr {
     public String text;
 
     /*Часть речи, может отсутствовать*/
+    //FIXME подумать на тему null при отсутствующем поле в JSON
     @SerializedName("pos")
     @Expose
     public String pos;
@@ -24,4 +25,36 @@ public class Tr {
     @SerializedName("mean")
     @Expose
     public List<Mean> mean = null;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getPos() {
+        return pos;
+    }
+
+    public void setPos(String pos) {
+        this.pos = pos;
+    }
+
+    public List<Syn> getSyn() {
+        return syn;
+    }
+
+    public void setSyn(List<Syn> syn) {
+        this.syn = syn;
+    }
+
+    public List<Mean> getMean() {
+        return mean;
+    }
+
+    public void setMean(List<Mean> mean) {
+        this.mean = mean;
+    }
 }

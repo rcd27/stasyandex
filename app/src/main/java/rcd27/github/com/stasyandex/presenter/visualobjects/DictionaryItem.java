@@ -11,10 +11,10 @@ public class DictionaryItem {
     private String text;
     private List<String> syn;
     private String pos;
-    private String mean;
+    private List<String> mean;
 
-    public DictionaryItem(String textSyn, List<String> syn, String pos, String mean) {
-        this.text = textSyn;
+    public DictionaryItem(String text, List<String> syn, String pos, List<String> mean) {
+        this.text = text;
         this.syn = syn;
         this.pos = pos;
         this.mean = mean;
