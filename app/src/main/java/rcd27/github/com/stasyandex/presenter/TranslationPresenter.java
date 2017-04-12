@@ -1,7 +1,6 @@
 package rcd27.github.com.stasyandex.presenter;
 
 
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -38,7 +37,6 @@ public class TranslationPresenter extends BasePresenter {
             view.showEmpty();
             return;
         }
-
         showFakeVO();
     }
 
@@ -75,13 +73,5 @@ public class TranslationPresenter extends BasePresenter {
                     }
                 });
         addSubscriprtion(subscription);
-    }
-
-    public void onCreate(Bundle savedInstanceState) {
-        //empty
-    }
-
-    public void onSaveInstanceState(Bundle outState) {
-        //empty
     }
 }
