@@ -3,9 +3,9 @@ package rcd27.github.com.stasyandex;
 
 import org.junit.Test;
 
-import rcd27.github.com.stasyandex.model.api.ApiModule;
-import rcd27.github.com.stasyandex.model.api.DictionaryAPI;
-import rcd27.github.com.stasyandex.model.dto.dictionary.DicResultDTO;
+import rcd27.github.com.stasyandex.fragments.dictionary.model.DictionaryAPI;
+import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.DicResultDTO;
+import rcd27.github.com.stasyandex.model.ApiModule;
 import rx.Observable;
 
 public class MainTestCase {
