@@ -9,8 +9,7 @@ package rcd27.github.com.stasyandex.fragments.translation.presenter.vo;
 import java.io.Serializable;
 import java.util.List;
 
-//TODO в туториале прикручен интерфейс Serializable. Зачем?
-public class Translation implements Serializable {
+public class Translation {
     private final List<String> translationResult;
 
     public Translation(List<String> translationResult) {

@@ -30,7 +30,7 @@ public class FavouritesFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO тут подгружать данные из БД
+        //TODO тут подгружать данные из БД. UPD: ну не в вьюшке, наверное, а в презентере, да?
     }
 
     @Nullable

@@ -817,5 +817,4 @@ public class LangsDTO {
         this.zh = zh;
     }
 
-    //TODO сделать так, чтобы отображать можно было блин
 }
