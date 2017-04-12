@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_translation_result"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dictionary_pos"
         app:layout_goneMarginStart="0dp" />
 
 </LinearLayout>

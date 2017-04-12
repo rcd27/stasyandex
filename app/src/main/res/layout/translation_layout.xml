@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/translation_editText"
         android:layout_width="325dp"
         android:layout_height="74dp"
         android:layout_marginLeft="16dp"
@@ -30,7 +30,7 @@
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/translation_editText" />
 
     <ImageButton
         android:id="@+id/ib_mic"
@@ -40,8 +40,8 @@
         android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
         android:contentDescription="@string/fake_mic_button"
-        app:layout_constraintRight_toRightOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="@+id/editText"
+        app:layout_constraintRight_toRightOf="@+id/translation_editText"
+        app:layout_constraintTop_toTopOf="@+id/translation_editText"
         app:srcCompat="@drawable/ic_mic_black_24dp" />
 
     <ImageButton
@@ -52,7 +52,7 @@
         android:layout_marginRight="0dp"
         android:layout_marginTop="4dp"
         android:contentDescription="@string/fake_sound_button"
-        app:layout_constraintRight_toRightOf="@+id/editText"
+        app:layout_constraintRight_toRightOf="@+id/translation_editText"
         app:layout_constraintTop_toBottomOf="@+id/ib_mic"
         app:srcCompat="@drawable/ic_volume_up_black_24dp" />
 
@@ -64,8 +64,8 @@
         android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
         android:text="@string/get_translation"
-        app:layout_constraintRight_toRightOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintRight_toRightOf="@+id/translation_editText"
+        app:layout_constraintTop_toBottomOf="@+id/translation_editText"
         app:layout_goneMarginEnd="0dp" />
 
     <TextView
@@ -83,16 +83,16 @@
         app:layout_constraintTop_toBottomOf="@+id/bt_getTranslation"
         tools:text="hello ept" />
 
-    <include
-        layout="@layout/dictionary_layout"
-        android:layout_width="300dp"
-        android:layout_height="250dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintHorizontal_bias="0.181"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_translation_result" />
+    <!--<include-->
+        <!--layout="@layout/dictionary_layout"-->
+        <!--android:layout_width="300dp"-->
+        <!--android:layout_height="250dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:layout_marginTop="4dp"-->
+        <!--app:layout_constraintHorizontal_bias="0.181"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/tv_translation_result" />-->
 
 </android.support.constraint.ConstraintLayout>

@@ -6,7 +6,7 @@ import java.util.List;
 public interface TranslationView extends View {
 
     /*Что переводим. Текст из поля ввода*/
-    String getTranslationFor();
+    String getTextFromEditText();
 
     /*Отображаем результат перевода*/
     void showTranslation(List<String> translationsToShow);

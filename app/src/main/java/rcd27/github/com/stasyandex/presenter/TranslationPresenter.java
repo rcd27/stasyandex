@@ -13,7 +13,7 @@ import rx.Subscription;
 
 import static rcd27.github.com.stasyandex.Constant.METHOD_INVOCATION;
 
-public class TranslatePresenter extends BasePresenter {
+public class TranslationPresenter extends BasePresenter {
 
     private final String TAG = this.getClass().getSimpleName();
 
@@ -22,15 +22,16 @@ public class TranslatePresenter extends BasePresenter {
     private TranslationMapper translationMapper = new TranslationMapper();
     private Translation translation;
 
-    public TranslatePresenter(TranslationView view) {
+    public TranslationPresenter(TranslationView view) {
         this.view = view;
     }
 
     public void onGetTranslation() {
         Log.i(TAG, METHOD_INVOCATION.value + "onGetTranslation()");
-        String textToTranslate = view.getTranslationFor();
+        String textToTranslate = view.getTextFromEditText();
+        Log.i(TAG, "text to translate: " + textToTranslate);
         if (TextUtils.isEmpty(textToTranslate)) {
-            //TODO сделать всплывающее окно о пустом запросе
+            view.showError("Введите текст для перевода.");
             return;
         }
 
@@ -52,8 +53,10 @@ public class TranslatePresenter extends BasePresenter {
                         if (null != response && !response.isEmpty()) {
                             translation = response;
                             view.showTranslation(translation.getTranslationResult());
+                            Log.i("TranslationPresenter:", "response from server is OK");
                         } else {
                             view.showEmpty();
+                            Log.w("TranslationPresenter:", "response from server is INVALID");
                         }
                     }
                 });
