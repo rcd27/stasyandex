@@ -24,7 +24,6 @@ public class TranslationListAdapter extends BaseAdapter<TranslationDTO> {
     @Override
     public void onBindViewHolder(BaseAdapter.ViewHolder holder, int position) {
         String translation = list.get(position);
-        holder.originText.setText(presenter.getOriginWord());
         holder.translationText.setText(translation);
     }
 }

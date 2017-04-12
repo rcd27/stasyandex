@@ -21,8 +21,6 @@ import rcd27.github.com.stasyandex.view.adapters.TranslationListAdapter;
 
 public class TranslationFragment extends BaseFragment implements TranslationView {
 
-    private final String TAG = getClass().getSimpleName();
-
     @Bind(R.id.editText)
     EditText editText;
 
@@ -31,12 +29,6 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @Bind(R.id.tv_translation_result)
     TextView translationResultTextView;
-
-    //ПЛАВНО ПЕРЕХОДИМ К TEXTVIEW
-//    @Bind(R.id.recycler_view)
-//    RecyclerView tranclationRecyclerView;
-
-    private TranslationListAdapter adapter;
 
     private TranslatePresenter presenter = new TranslatePresenter(this);
 

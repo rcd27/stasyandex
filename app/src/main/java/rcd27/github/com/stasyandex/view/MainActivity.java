@@ -10,7 +10,10 @@ import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.view.fragments.FavouritesFragment;
 import rcd27.github.com.stasyandex.view.fragments.TranslationFragment;
 
+//TODO MAIN: восстановить работоспособность переводчика. Пытается отобразитьв RecyclerView, а у меня теперь просто TextView
 //TODO MAIN: прикрутить API словаря.
+//  •для начала отобразить в списке просто vo
+//  •сделать качественный маппинг DTO→VO
 //TODO MAIN: реализовать AvailableLanguages в меню окна перевода.
 public class MainActivity extends AppCompatActivity implements ActivityCallback {
 

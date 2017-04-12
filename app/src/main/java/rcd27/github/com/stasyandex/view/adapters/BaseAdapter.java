@@ -39,12 +39,10 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView originText;
         TextView translationText;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            originText = (TextView) itemView.findViewById(R.id.trlt_origin_text);
             translationText = (TextView) itemView.findViewById(R.id.trlt_translation);
         }
     }

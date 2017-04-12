@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
-import java.util.ArrayList;
-
 import rcd27.github.com.stasyandex.presenter.mappers.TranslationMapper;
 import rcd27.github.com.stasyandex.presenter.visualobjects.Translation;
 import rcd27.github.com.stasyandex.view.fragments.TranslationView;
@@ -19,14 +17,10 @@ public class TranslatePresenter extends BasePresenter {
 
     private final String TAG = this.getClass().getSimpleName();
 
-    private static final String BUNDLE_TRANSLATE_KEY = "BUNDLE_TRANSLATE_KEY";
-
     private TranslationView view;
 
     private TranslationMapper translationMapper = new TranslationMapper();
     private Translation translation;
-
-    private String originWord = "Origin ёптыть";
 
     public TranslatePresenter(TranslationView view) {
         this.view = view;
@@ -67,22 +61,10 @@ public class TranslatePresenter extends BasePresenter {
     }
 
     public void onCreate(Bundle savedInstanceState) {
-        if (null != savedInstanceState) {
-            translation = (Translation) savedInstanceState.getSerializable(BUNDLE_TRANSLATE_KEY);
-        }
-
-        if (null != translation && !translation.isEmpty()) {
-//            view.showTranslation(translation);
-        }
+        //empty
     }
 
     public void onSaveInstanceState(Bundle outState) {
-        if (!translation.isEmpty()) {
-            outState.putSerializable(BUNDLE_TRANSLATE_KEY, new ArrayList<>(translation.getTranslationResult()));
-        }
-    }
-
-    public String getOriginWord() {
-        return originWord;
+        //empty
     }
 }
