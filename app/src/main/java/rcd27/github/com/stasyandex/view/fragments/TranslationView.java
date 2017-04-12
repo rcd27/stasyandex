@@ -1,7 +1,7 @@
 package rcd27.github.com.stasyandex.view.fragments;
 
 
-import java.util.List;
+import rcd27.github.com.stasyandex.presenter.visualobjects.Translation;
 
 public interface TranslationView extends View {
 
@@ -9,7 +9,7 @@ public interface TranslationView extends View {
     String getTextFromEditText();
 
     /*Отображаем результат перевода*/
-    void showTranslation(List<String> translationsToShow);
+    void showTranslation(Translation translation);
 
     /*Показать пустой результат/очистка поля результата перевода*/
     void showEmpty();

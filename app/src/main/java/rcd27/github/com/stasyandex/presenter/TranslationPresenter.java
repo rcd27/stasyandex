@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.util.Arrays;
+import java.util.List;
+
 import rcd27.github.com.stasyandex.presenter.mappers.TranslationMapper;
 import rcd27.github.com.stasyandex.presenter.visualobjects.Translation;
 import rcd27.github.com.stasyandex.view.fragments.TranslationView;
@@ -30,11 +33,22 @@ public class TranslationPresenter extends BasePresenter {
         Log.i(TAG, METHOD_INVOCATION.value + "onGetTranslation()");
         String textToTranslate = view.getTextFromEditText();
         Log.i(TAG, "text to translate: " + textToTranslate);
-        if (TextUtils.isEmpty(textToTranslate)) {
+        if (TextUtils.isEmpty(textToTranslate) || textToTranslate.isEmpty()) {
             view.showError("Введите текст для перевода.");
+            view.showEmpty();
             return;
         }
 
+        showFakeVO();
+    }
+
+    private void showFakeVO() {
+        List<String> fakeResult = Arrays.asList("Фэйковый перевод тут, ага.");
+        translation = new Translation(fakeResult);
+        view.showTranslation(translation);
+    }
+
+    private void getTranslationWithSubscription(String textToTranslate) {
         Subscription subscription = responseData.getTranslation(textToTranslate, "en")
                 .map(translationMapper)
                 .subscribe(new Observer<Translation>() {
@@ -52,7 +66,7 @@ public class TranslationPresenter extends BasePresenter {
                     public void onNext(Translation response) {
                         if (null != response && !response.isEmpty()) {
                             translation = response;
-                            view.showTranslation(translation.getTranslationResult());
+                            view.showTranslation(translation);
                             Log.i(TAG, "response from server is OK");
                         } else {
                             view.showEmpty();

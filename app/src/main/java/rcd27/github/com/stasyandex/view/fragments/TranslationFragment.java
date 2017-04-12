@@ -11,13 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.presenter.TranslationPresenter;
+import rcd27.github.com.stasyandex.presenter.visualobjects.Translation;
 
 public class TranslationFragment extends BaseFragment implements TranslationView {
 
@@ -66,8 +65,10 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     }
 
     @Override
-    public void showTranslation(List<String> translationsToShow) {
-        translationResultTextView.setText(translationsToShow.toString());
+    public void showTranslation(Translation translationToShow) {
+        //TODO FIXME ну надо красиво сделать, ну ты понимаешь.
+        // Если размер массива >1, то вывести в строку через запятую.
+        translationResultTextView.setText(translationToShow.getTranslationResult().toString());
     }
 
     @Override
