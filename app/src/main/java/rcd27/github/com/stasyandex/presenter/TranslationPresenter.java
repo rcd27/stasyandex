@@ -40,12 +40,12 @@ public class TranslationPresenter extends BasePresenter {
                 .subscribe(new Observer<Translation>() {
                     @Override
                     public void onCompleted() {
-                        //empty
+                        Log.i(TAG, "subscription: onCompleted()");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        //empty
+                        Log.w(TAG, "subscriprion: onError()");
                     }
 
                     @Override
@@ -53,10 +53,10 @@ public class TranslationPresenter extends BasePresenter {
                         if (null != response && !response.isEmpty()) {
                             translation = response;
                             view.showTranslation(translation.getTranslationResult());
-                            Log.i("TranslationPresenter:", "response from server is OK");
+                            Log.i(TAG, "response from server is OK");
                         } else {
                             view.showEmpty();
-                            Log.w("TranslationPresenter:", "response from server is INVALID");
+                            Log.w(TAG, "response from server is INVALID");
                         }
                     }
                 });
