@@ -6,29 +6,46 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!--TODO дописать макет, чтобы элементы не заезжали друг на друга-->
-    <TextView
-        android:id="@+id/tv_dictionary_word"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
-        tools:text="здарова" />
-
-    <TextView
-        android:id="@+id/tv_dictionary_pos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
-        tools:text="сущ" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/dictionary_recycler_view"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dictionary_pos"
-        app:layout_goneMarginStart="0dp" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_dictionary_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            android:text="здарова"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="здарова" />
+
+        <TextView
+            android:id="@+id/tv_dictionary_pos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="4dp"
+            android:text="сущ"
+            android:textAppearance="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_dictionary_word"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dictionary_word"
+            tools:text="сущ" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dictionary_recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dictionary_pos"
+            app:layout_goneMarginStart="0dp" />
+    </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
