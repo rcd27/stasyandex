@@ -17,8 +17,6 @@ import rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo.DictionaryI
 
 public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.ViewHolder> {
 
-    private final String TAG = getClass().getSimpleName();
-
     private List<DictionaryItem> list;
 
     private DictionaryPresenter presenter;
@@ -36,7 +34,7 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
     public DictionaryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.dictionary_item_layout, parent, false);
+                .inflate(R.layout.dictionary_recyclerview_item_layout, parent, false);
         return new ViewHolder(v);
     }
 

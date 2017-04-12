@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.*;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,10 +16,10 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
-import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.fragments.dictionary.presenter.DictionaryPresenter;
 import rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo.DictionaryDefinition;
 import rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo.DictionaryItem;
+import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.view.BaseFragment;
 
 public class DictionaryFragment extends BaseFragment implements DictionaryView {
@@ -43,14 +44,16 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dictionary_layout, container, false);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         definitionItemsRecyclerView.setLayoutManager(llm);
         dictionaryAdapter = new DictionaryAdapter(new ArrayList<>(), presenter);
         definitionItemsRecyclerView.setAdapter(dictionaryAdapter);
 
-        //TODO тут что-то ещё
+        /*IN WORK AREA*/
+
+        /*============*/
         return view;
     }
 

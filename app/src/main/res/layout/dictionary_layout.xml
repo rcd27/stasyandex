@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <!--TODO дописать макет, чтобы элементы не заезжали друг на друга-->
     <TextView
         android:id="@+id/tv_dictionary_word"
         android:layout_width="match_parent"
@@ -18,10 +19,8 @@
         android:id="@+id/tv_dictionary_pos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:textAppearance="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
         tools:text="сущ" />
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/dictionary_recycler_view"
@@ -32,4 +31,4 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_dictionary_pos"
         app:layout_goneMarginStart="0dp" />
 
-</LinearLayout>
+</FrameLayout>

@@ -9,10 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import rcd27.github.com.stasyandex.fragments.favourites.view.FavouritesFragment;
 import rcd27.github.com.stasyandex.fragments.translation.view.TranslationFragment;
 
-//TODO MAIN: мб перефасовать всё по-нормальному?
 //TODO MAIN: восстановить работоспособность переводчика. Ошибка в Subscription.
 //TODO MAIN: прикрутить API словаря.
-//  •для начала отобразить в списке просто фэйковый vo
+//  •для начала отобразить в списке просто фэйковый vo ←
 //  •сделать качественный маппинг DTO→VO
 //TODO MAIN: реализовать AvailableLanguages в меню окна перевода.
 public class MainActivity extends AppCompatActivity implements ActivityCallback {
