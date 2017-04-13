@@ -9,17 +9,28 @@ import android.support.v7.app.AppCompatActivity;
 import rcd27.github.com.stasyandex.fragments.favourites.view.FavouritesFragment;
 import rcd27.github.com.stasyandex.fragments.translation.view.TranslationFragment;
 
-// 13.04.2017
+// 14.04.2017
 //TODO MAIN: прикрутить API словаря.
 //  •сделать качественный маппинг DTO→VO
 
-// 14.04.2017
+// 15.04.2017
 //TODO MAIN: реализовать AvailableLanguages в меню окна перевода.
 public class MainActivity extends AppCompatActivity implements ActivityCallback {
 
 //  Использовать Observable для обращения к БД
 //  Исползовать Observable для чтения текста из EditText. Прикрутить задержку ~500мс.
 //  Юзер ввёл текст - 500мс - отправился запрос на сервак.
+
+    //Общий план работ:
+    // •Прикрутить выбор языка
+    // •Выбранный язык должен влиять на всю логику перевода/словаря
+    // •Выбранное направление должно влиять на логику словаря
+    // •Все успешные переводы (придумать критерий) сохранять в историю
+    // •Добавить флажок "Избранное"
+    // •Добавить закладки История/Избранное (суть - сортировка истории по флажку "Избранное")
+    // •Запрос на сервер отсылается 500мс после неактивности в поле ввода
+    // •Клавиатура должна убираться после успешного запроса
+    // •Запрос к словарю и к переводчику должны идти одновременно
 
     private static String TAG = "TAG";
 

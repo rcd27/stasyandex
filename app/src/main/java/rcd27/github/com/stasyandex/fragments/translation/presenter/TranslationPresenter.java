@@ -7,16 +7,11 @@ import android.util.Log;
 import java.util.Arrays;
 import java.util.List;
 
-import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.DicResultDTO;
-import rcd27.github.com.stasyandex.fragments.translation.model.dto.TranslationDTO;
 import rcd27.github.com.stasyandex.fragments.translation.presenter.vo.Translation;
 import rcd27.github.com.stasyandex.fragments.translation.view.TranslationView;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
-import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
-
-import static rcd27.github.com.stasyandex.Constant.METHOD_INVOCATION;
 
 public class TranslationPresenter extends BasePresenter {
 
@@ -37,7 +32,7 @@ public class TranslationPresenter extends BasePresenter {
             view.showEmptyResut();
             return;
         }
-        addSubscriprtion(getSubscriptionForTranslated(text));
+        addSubscription(getSubscriptionForTranslated(text));
     }
 
     //TODO Написать тест. Смотри в закладках, там девчонка на конфе всё рассказала.

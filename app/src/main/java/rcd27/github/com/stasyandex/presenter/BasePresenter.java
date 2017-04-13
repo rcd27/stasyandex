@@ -19,7 +19,7 @@ public abstract class BasePresenter implements Presenter{
     /*Составная подписка*/
     private CompositeSubscription compositeSubscription = new CompositeSubscription();
 
-    protected void addSubscriprtion(Subscription subscription) {
+    protected void addSubscription(Subscription subscription) {
         compositeSubscription.add(subscription);
     }
 
