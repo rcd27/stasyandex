@@ -8,6 +8,12 @@ import java.util.List;
  */
 public class DictionaryItem {
 
+    /*
+    [hi](text), [hello, hallo, salutation](syn)
+    [сущ](pos)
+    [(приетствие)](mean)
+
+     */
     private String text;
     private List<String> syn;
     private String pos;

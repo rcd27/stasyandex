@@ -3,7 +3,6 @@ package rcd27.github.com.stasyandex.fragments.dictionary.model.dto;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-//FIXME это похоже на мельчайший атом сущности словаря
 /*Синоним*/
 public class Syn {
     @SerializedName("text")

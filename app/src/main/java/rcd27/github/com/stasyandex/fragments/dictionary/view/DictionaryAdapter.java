@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -30,8 +31,12 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
         return list;
     }
 
+    public void makeEmpty() {
+        list = new ArrayList<>();
+    }
+
     @Override
-    public DictionaryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.dictionary_recyclerview_item_layout, parent, false);
@@ -41,7 +46,8 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
     /*Присваивание текст-вьюшкам значений из листа*/
     @Override
     public void onBindViewHolder(DictionaryAdapter.ViewHolder holder, int position) {
-        holder.itemNumber.setText(position);
+        //TODO в гугловском туториале есть про то, как пронумеровать.
+//        holder.itemNumber.setText(position);
         holder.textSyn.setText(list.get(position).getTextSyn());
         holder.mean.setText(list.get(position).getMean());
     }
@@ -66,7 +72,7 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
 
         ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

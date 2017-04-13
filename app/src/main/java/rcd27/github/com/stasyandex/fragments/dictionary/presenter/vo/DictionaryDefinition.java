@@ -2,6 +2,9 @@ package rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo;
 
 
 public class DictionaryDefinition {
+
+    /*привет сущ)*/
+
     private String text;
     private String pos;
 

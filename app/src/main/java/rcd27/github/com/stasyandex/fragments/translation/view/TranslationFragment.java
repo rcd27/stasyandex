@@ -41,7 +41,9 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.translation_layout, container, false);
         ButterKnife.bind(this, view);
 

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -36,13 +37,19 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     @Bind(R.id.dictionary_recycler_view)
     RecyclerView definitionItemsRecyclerView;
 
+    /*временная кнопка для получения словаря*/
+    @Bind(R.id.bt_get_dictionary)
+    Button getDictionaryButton;
+
     private DictionaryAdapter dictionaryAdapter;
 
     private DictionaryPresenter presenter = new DictionaryPresenter(this);
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dictionary_layout, container, false);
         ButterKnife.bind(this, view);
 
@@ -52,11 +59,12 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
         definitionItemsRecyclerView.setAdapter(dictionaryAdapter);
 
         /*IN WORK AREA*/
-
+        getDictionaryButton.setOnClickListener(v -> presenter.onGetDictionaryResponse());
         /*============*/
         return view;
     }
 
+    //TODO изучить вопрос: КАК ПРАВИЛЬНО ПЕРЕДАВАТЬ ИНФУ ОТ ОДНОГО ФРАГМЕНТА ДРУГОМУ.
     @Override
     public String getDictionaryFor() {
         return null;
@@ -64,7 +72,9 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
 
     @Override
     public void showDictionaryDefiniton(List<DictionaryDefinition> definitions) {
-
+        DictionaryDefinition takeFirst = definitions.get(0);
+        dictionaryOriginWord.setText(takeFirst.getText());
+        dictionaryOriginWordPos.setText(takeFirst.getPos());
     }
 
     @Override
@@ -74,11 +84,13 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
 
     @Override
     public void showEmpty() {
-
+        dictionaryOriginWord.setText("");
+        dictionaryOriginWordPos.setText("");
+        dictionaryAdapter.makeEmpty();
     }
 
     @Override
     protected BasePresenter getPresenter() {
-        return null;
+        return presenter;
     }
 }

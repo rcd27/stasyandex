@@ -17,7 +17,7 @@ import static rcd27.github.com.stasyandex.Constant.METHOD_INVOCATION;
 
 public class TranslationPresenter extends BasePresenter {
 
-    private final String TAG = this.getClass().getSimpleName();
+    private final String TAG = getClass().getSimpleName();
 
     private TranslationView view;
     private TranslationMapper translationMapper = new TranslationMapper();
@@ -28,9 +28,7 @@ public class TranslationPresenter extends BasePresenter {
     }
 
     public void onGetTranslation() {
-        Log.i(TAG, METHOD_INVOCATION.value + "onGetTranslation()");
         String text = view.getTextFromEditText();
-        Log.i(TAG, "text to translate: " + text);
         if (TextUtils.isEmpty(text) || text.isEmpty()) {
             view.showError("Введите текст для перевода.");
             view.showEmptyResut();
