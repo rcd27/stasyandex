@@ -67,14 +67,13 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     //TODO изучить вопрос: КАК ПРАВИЛЬНО ПЕРЕДАВАТЬ ИНФУ ОТ ОДНОГО ФРАГМЕНТА ДРУГОМУ.
     @Override
     public String getDictionaryFor() {
-        return null;
+        return "привет";
     }
 
     @Override
-    public void showDictionaryDefiniton(List<DictionaryDefinition> definitions) {
-        DictionaryDefinition takeFirst = definitions.get(0);
-        dictionaryOriginWord.setText(takeFirst.getText());
-        dictionaryOriginWordPos.setText(takeFirst.getPos());
+    public void showDictionaryDefiniton(DictionaryDefinition definition) {
+        dictionaryOriginWord.setText(definition.getText());
+        dictionaryOriginWordPos.setText(definition.getPos());
     }
 
     @Override

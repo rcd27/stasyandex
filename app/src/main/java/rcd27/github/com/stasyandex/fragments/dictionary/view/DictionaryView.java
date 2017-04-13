@@ -15,7 +15,7 @@ public interface DictionaryView {
     //TODO вообще-то API подразумевает возврат нескольких Def статей. Отображаем только одну?
     /*Отображаем определение слова: оригинал
     *                               часть речи*/
-    void showDictionaryDefiniton(List<DictionaryDefinition> definitions);
+    void showDictionaryDefiniton(DictionaryDefinition definition);
 
     /*Отображаем список элементов, полученных из API*/
     void showDictionaryDictionaryItems(List<DictionaryItem> items);

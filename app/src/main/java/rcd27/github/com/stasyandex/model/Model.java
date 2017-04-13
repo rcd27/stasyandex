@@ -13,6 +13,10 @@ public interface Model {
     Observable<ProbableLanguageDTO> getProbableLanguage(String forText);
     Observable<TranslationDTO> getTranslation(String forText, String direction);
 
-    /*Яндекс.Словарь*/
+    /*Яндекс.Словар
+    @forLanguage - "ru-en"
+    @text - "привет"
+    @forUi - "ru"
+     */
     Observable<DicResultDTO> getDicResult(String forLanguage, String text, String forUi);
 }

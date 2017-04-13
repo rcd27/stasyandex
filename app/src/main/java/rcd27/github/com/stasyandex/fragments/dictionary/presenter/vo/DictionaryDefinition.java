@@ -1,9 +1,9 @@
 package rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo;
 
 
-public class DictionaryDefinition {
+import java.text.MessageFormat;
 
-    /*привет сущ)*/
+public class DictionaryDefinition {
 
     private String text;
     private String pos;
@@ -17,15 +17,12 @@ public class DictionaryDefinition {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public String getPos() {
         return pos;
     }
 
-    public void setPos(String pos) {
-        this.pos = pos;
+    @Override
+    public String toString() {
+        return MessageFormat.format("Text: {0}, Pos: {1}", getText(), getPos());
     }
 }

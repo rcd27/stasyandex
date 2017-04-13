@@ -6,13 +6,15 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.DicResultDTO;
 import rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo.DictionaryDefinition;
 import rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo.DictionaryItem;
 import rcd27.github.com.stasyandex.fragments.dictionary.view.DictionaryView;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
+import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class DictionaryPresenter extends BasePresenter {
 
@@ -26,37 +28,23 @@ public class DictionaryPresenter extends BasePresenter {
 
     public void onGetDictionaryResponse() {
         String text = view.getDictionaryFor();
-        //проверки на пустой текст не будет - передаваться сюда должен из TranslationPresenter
-//        addSubscriprtion(getSubscribtionForDictionary(text));
-        showFakeVO();
+        addSubscriprtion(getSubscribtionForDictionary(text));
     }
 
+    //TODO хорошо, допустим это работает. Но это мрак с повторяющимся кодом! см.ModelImpl
     private Subscription getSubscribtionForDictionary(String text) {
-        return responseData.getDicResult("ru", text, "ru")
-                //ясен красен надо мапперами всё затыкать там, чтобы красиво в итоге было
-                .subscribe(new Observer<DicResultDTO>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.i(TAG, "subscription: onCompleted()");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.i(TAG, "subscription: onError()");
-                    }
-
-                    @Override
-                    public void onNext(DicResultDTO dicResultDTO) {
-                        Log.i(TAG, "subscription: onNext()");
-                    }
-                });
+        return responseData.getDicResult("ru-en", text, "ru")
+                .flatMap(dicRes -> Observable.from(dicRes.getDef()))
+                //TODO вот тут вполне можно вшить Observable.zip
+                .flatMap(dicDef -> Observable.just(new DictionaryDefinition(dicDef.getText(), dicDef.getPos())))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(dicDef -> view.showDictionaryDefiniton(dicDef));
     }
 
     private void showFakeVO() {
         DictionaryDefinition fakeDef = new DictionaryDefinition("привет", "сущ");
-        List<DictionaryDefinition> fakeDefList = new ArrayList<>();
-        fakeDefList.add(fakeDef);
-        view.showDictionaryDefiniton(fakeDefList);
+        view.showDictionaryDefiniton(fakeDef);
 
         List<String> fakeSynListItemOne = new ArrayList<>();
         fakeSynListItemOne.add("hello");
