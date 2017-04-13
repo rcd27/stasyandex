@@ -13,7 +13,10 @@ import rx.subscriptions.CompositeSubscription;
 
 public abstract class BasePresenter implements Presenter{
 
+    /*Ответ сервера*/
     protected Model responseData = new ModelImpl();
+
+    /*Составная подписка*/
     private CompositeSubscription compositeSubscription = new CompositeSubscription();
 
     protected void addSubscriprtion(Subscription subscription) {

@@ -33,7 +33,7 @@ public class TranslationPresenter extends BasePresenter {
         Log.i(TAG, "text to translate: " + text);
         if (TextUtils.isEmpty(text) || text.isEmpty()) {
             view.showError("Введите текст для перевода.");
-            view.showEmpty();
+            view.showEmptyResut();
             return;
         }
         addSubscriprtion(getSubscriptionForTranslated(text));
@@ -41,7 +41,7 @@ public class TranslationPresenter extends BasePresenter {
 
     //TODO Написать тест. Смотри в закладках, там девчонка на конфе всё рассказала.
     private Subscription getSubscriptionForTranslated(String text) {
-        return responseData.getTranslation(text, "en")
+        return responseData.getTranslation(text, "ru-en")
                 .map(translationMapper)
                 .subscribe(new Observer<Translation>() {
                     @Override
@@ -61,7 +61,7 @@ public class TranslationPresenter extends BasePresenter {
                             view.showTranslation(translation);
                             Log.i(TAG, "response from server is OK");
                         } else {
-                            view.showEmpty();
+                            view.showEmptyResut();
                             Log.w(TAG, "response from server is null or empty");
                         }
                     }

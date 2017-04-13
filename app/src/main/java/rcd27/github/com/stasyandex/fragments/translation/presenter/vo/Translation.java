@@ -15,10 +15,6 @@ public class Translation {
         this.translationResult = translationResult;
     }
 
-    public List<String> getTranslationResult() {
-        return translationResult;
-    }
-
     public boolean isEmpty() {
         return translationResult.isEmpty();
     }

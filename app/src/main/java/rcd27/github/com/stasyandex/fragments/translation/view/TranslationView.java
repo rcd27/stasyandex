@@ -13,5 +13,5 @@ public interface TranslationView extends BaseView {
     void showTranslation(Translation translation);
 
     /*Показать пустой результат/очистка поля результата перевода*/
-    void showEmpty();
+    void showEmptyResut();
 }
