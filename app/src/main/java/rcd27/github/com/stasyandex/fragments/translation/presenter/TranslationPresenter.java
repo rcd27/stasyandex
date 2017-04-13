@@ -7,9 +7,12 @@ import android.util.Log;
 import java.util.Arrays;
 import java.util.List;
 
+import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.DicResultDTO;
+import rcd27.github.com.stasyandex.fragments.translation.model.dto.TranslationDTO;
 import rcd27.github.com.stasyandex.fragments.translation.presenter.vo.Translation;
 import rcd27.github.com.stasyandex.fragments.translation.view.TranslationView;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
+import rx.Observable;
 import rx.Observer;
 import rx.Subscription;
 
@@ -39,6 +42,11 @@ public class TranslationPresenter extends BasePresenter {
 
     //TODO Написать тест. Смотри в закладках, там девчонка на конфе всё рассказала.
     private Subscription getSubscriptionForTranslated(String text) {
+        //TODO комбинировать запрос в переводчик и в словарь.
+        //https://habrahabr.ru/post/265997/
+        //Observable.zip() - нужный мне приём в данном случае.
+        //Объединяет в себе оба запроса и в переводчик и в словарь. ОЧЕНЬ КРУТО.
+
         return responseData.getTranslation(text, "ru-en")
                 .map(translationMapper)
                 .subscribe(new Observer<Translation>() {

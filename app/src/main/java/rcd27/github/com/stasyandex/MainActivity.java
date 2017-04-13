@@ -18,6 +18,8 @@ import rcd27.github.com.stasyandex.fragments.translation.view.TranslationFragmen
 public class MainActivity extends AppCompatActivity implements ActivityCallback {
 
 //  Использовать Observable для обращения к БД
+//  Исползовать Observable для чтения текста из EditText. Прикрутить задержку ~500мс.
+//  Юзер ввёл текст - 500мс - отправился запрос на сервак.
 
     private static String TAG = "TAG";
 
