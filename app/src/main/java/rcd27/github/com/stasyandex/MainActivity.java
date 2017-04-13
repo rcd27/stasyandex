@@ -11,7 +11,6 @@ import rcd27.github.com.stasyandex.fragments.translation.view.TranslationFragmen
 
 // 13.04.2017
 //TODO MAIN: прикрутить API словаря.
-//  •для начала отобразить в списке просто фэйковый vo ←
 //  •сделать качественный маппинг DTO→VO
 
 // 14.04.2017

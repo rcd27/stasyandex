@@ -8,6 +8,8 @@ package rcd27.github.com.stasyandex.fragments.translation.presenter.vo;
 
 import java.util.List;
 
+import rcd27.github.com.stasyandex.StasyandexTextUtils;
+
 public class Translation {
     private final List<String> translationResult;
 
@@ -20,18 +22,6 @@ public class Translation {
     }
 
     public String show() {
-        if (translationResult.size() == 1) {
-            return translationResult.get(0);
-        } else {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < translationResult.size(); i++) {
-                if (i == translationResult.size() - 1) {
-                    sb.append(translationResult.get(i));
-                } else {
-                    sb.append(translationResult.get(i)).append(", ");
-                }
-            }
-            return sb.toString();
-        }
+        return StasyandexTextUtils.commaRawFromList(translationResult);
     }
 }

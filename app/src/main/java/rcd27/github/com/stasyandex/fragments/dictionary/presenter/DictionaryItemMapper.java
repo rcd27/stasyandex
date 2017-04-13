@@ -20,7 +20,6 @@ public class DictionaryItemMapper implements Func1<List<Tr>, List<DictionaryItem
         return Observable.from(trs)
                 .map(tr -> new DictionaryItem(tr.getText(),
                         synToString.call(tr.getSyn()),
-                        tr.getPos(),
                         meanToString.call(tr.getMean())))
                 .toList()
                 .toBlocking()

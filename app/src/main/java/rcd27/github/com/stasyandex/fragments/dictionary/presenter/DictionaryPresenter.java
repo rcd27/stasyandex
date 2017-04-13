@@ -65,14 +65,14 @@ public class DictionaryPresenter extends BasePresenter {
         List<String> fakeMeanList = new ArrayList<>();
         fakeMeanList.add("приветствие");
         DictionaryItem fakeItemOne = new DictionaryItem("hi",
-                fakeSynListItemOne, "сущ", fakeMeanList);
+                fakeSynListItemOne, fakeMeanList);
 
         List<String> fakeSynListItemTwo = new ArrayList<>();
         List<String> fakeMeanListTwo = new ArrayList<>();
         fakeMeanListTwo.add("ну");
         fakeMeanListTwo.add("проверка запятой");
         DictionaryItem fakeItemTwo = new DictionaryItem("hey",
-                fakeSynListItemTwo, "сущ", fakeMeanListTwo);
+                fakeSynListItemTwo, fakeMeanListTwo);
 
         List<DictionaryItem> fakeItemList = new ArrayList<>();
         fakeItemList.add(fakeItemOne);
