@@ -6,6 +6,11 @@ import rcd27.github.com.stasyandex.model.ModelImpl;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
+/*
+Базовый перзентер, включает в себя добавление subscription'а к составному subscription'у, очистку
+последнего при onStop().
+ */
+
 public abstract class BasePresenter implements Presenter{
 
     protected Model responseData = new ModelImpl();

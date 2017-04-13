@@ -5,12 +5,12 @@ import android.support.v4.app.Fragment;
 
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 
-public abstract class BaseFragment extends Fragment {
-    /*
-    Базовый фрагмент. Нужно для того, чтобы презентеры
-    отписывались от Observable при остановке приложения.
-     */
+/*
+Базовый фрагмент. Нужно для того, чтобы презентеры
+отписывались от Observable при остановке приложения.
+ */
 
+public abstract class BaseFragment extends Fragment {
     protected abstract BasePresenter getPresenter();
 
     @Override

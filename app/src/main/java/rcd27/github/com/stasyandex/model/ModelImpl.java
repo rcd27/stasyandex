@@ -2,8 +2,8 @@ package rcd27.github.com.stasyandex.model;
 
 
 import rcd27.github.com.stasyandex.fragments.dictionary.model.DictionaryAPI;
-import rcd27.github.com.stasyandex.fragments.translation.model.TranslateAPI;
 import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.DicResultDTO;
+import rcd27.github.com.stasyandex.fragments.translation.model.TranslateAPI;
 import rcd27.github.com.stasyandex.fragments.translation.model.dto.AvailableLanguagesDTO;
 import rcd27.github.com.stasyandex.fragments.translation.model.dto.ProbableLanguageDTO;
 import rcd27.github.com.stasyandex.fragments.translation.model.dto.TranslationDTO;
@@ -21,7 +21,6 @@ public class ModelImpl implements Model {
     private TranslateAPI translateAPI = ApiModule.getTranslateApi();
     private DictionaryAPI dictionaryAPI = ApiModule.getDictionaryApi();
 
-    //TODO интересно, чё это.
     public ModelImpl() {
         schedulersTransformer = o -> ((Observable) o)
                 .subscribeOn(Schedulers.io())

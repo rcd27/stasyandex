@@ -68,15 +68,12 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @Override
     public String getTextFromEditText() {
-        System.out.println("editText.getText().toString() = " + editText.getText().toString());
         return editText.getText().toString();
     }
 
     @Override
-    public void showTranslation(Translation translationToShow) {
-        //TODO FIXME ну надо красиво сделать, ну ты понимаешь.
-        // Если размер массива >1, то вывести в строку через запятую.
-        translationResultTextView.setText(translationToShow.getTranslationResult().toString());
+    public void showTranslation(Translation resultTranslation) {
+        translationResultTextView.setText(resultTranslation.show());
     }
 
     @Override

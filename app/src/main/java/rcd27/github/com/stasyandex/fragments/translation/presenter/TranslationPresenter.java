@@ -7,9 +7,9 @@ import android.util.Log;
 import java.util.Arrays;
 import java.util.List;
 
-import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.fragments.translation.presenter.vo.Translation;
 import rcd27.github.com.stasyandex.fragments.translation.view.TranslationView;
+import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rx.Observer;
 import rx.Subscription;
 
@@ -20,7 +20,6 @@ public class TranslationPresenter extends BasePresenter {
     private final String TAG = this.getClass().getSimpleName();
 
     private TranslationView view;
-
     private TranslationMapper translationMapper = new TranslationMapper();
     private Translation translation;
 
@@ -30,24 +29,19 @@ public class TranslationPresenter extends BasePresenter {
 
     public void onGetTranslation() {
         Log.i(TAG, METHOD_INVOCATION.value + "onGetTranslation()");
-        String textToTranslate = view.getTextFromEditText();
-        Log.i(TAG, "text to translate: " + textToTranslate);
-        if (TextUtils.isEmpty(textToTranslate) || textToTranslate.isEmpty()) {
+        String text = view.getTextFromEditText();
+        Log.i(TAG, "text to translate: " + text);
+        if (TextUtils.isEmpty(text) || text.isEmpty()) {
             view.showError("Введите текст для перевода.");
             view.showEmpty();
             return;
         }
-        showFakeVO();
+        addSubscriprtion(getSubscriptionForTranslated(text));
     }
 
-    private void showFakeVO() {
-        List<String> fakeResult = Arrays.asList("Фэйковый перевод тут, ага.");
-        translation = new Translation(fakeResult);
-        view.showTranslation(translation);
-    }
-
-    private void getTranslationWithSubscription(String textToTranslate) {
-        Subscription subscription = responseData.getTranslation(textToTranslate, "en")
+    //TODO Написать тест. Смотри в закладках, там девчонка на конфе всё рассказала.
+    private Subscription getSubscriptionForTranslated(String text) {
+        return responseData.getTranslation(text, "en")
                 .map(translationMapper)
                 .subscribe(new Observer<Translation>() {
                     @Override
@@ -68,10 +62,15 @@ public class TranslationPresenter extends BasePresenter {
                             Log.i(TAG, "response from server is OK");
                         } else {
                             view.showEmpty();
-                            Log.w(TAG, "response from server is INVALID");
+                            Log.w(TAG, "response from server is null or empty");
                         }
                     }
                 });
-        addSubscriprtion(subscription);
+    }
+
+    private void showFakeVO() {
+        List<String> fakeResult = Arrays.asList("Фэйковый перевод тут, ага.");
+        translation = new Translation(fakeResult);
+        view.showTranslation(translation);
     }
 }

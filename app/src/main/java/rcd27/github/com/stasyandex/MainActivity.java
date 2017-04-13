@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
         replaceFragment(FavouritesFragment.newInstance(), true);
     }
 
+    /*Фрагмент с словарём встроен в переводчик.*/
     @Override
     public void startTranslationFragment() {
         replaceFragment(TranslationFragment.newInstance(), true);
