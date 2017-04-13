@@ -17,6 +17,8 @@ import rcd27.github.com.stasyandex.fragments.translation.view.TranslationFragmen
 //TODO MAIN: реализовать AvailableLanguages в меню окна перевода.
 public class MainActivity extends AppCompatActivity implements ActivityCallback {
 
+//  Использовать Observable для обращения к БД
+
     private static String TAG = "TAG";
 
     private FragmentManager fragmentManager;

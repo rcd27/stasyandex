@@ -5,6 +5,11 @@ configurations.all{
     resolutionStrategy.preferProjectModules()
 }
 
+retrolambda{
+    javaVersion JavaVersion.VERSION_1_6
+    incremental true
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
