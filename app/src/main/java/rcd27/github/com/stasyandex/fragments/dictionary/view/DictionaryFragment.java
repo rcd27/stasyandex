@@ -59,13 +59,6 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
         return view;
     }
 
-
-    @Override
-    public String getStringForDictionary() {
-        //TODO а нужон ли он здесь...
-        return null;
-    }
-
     @Override
     public void showDef(Def def) {
         showDictionaryDefiniton(new DictionaryDefinition(def.getText(), def.getPos()));

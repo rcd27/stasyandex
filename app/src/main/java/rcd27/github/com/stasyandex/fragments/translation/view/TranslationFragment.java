@@ -71,7 +71,10 @@ public class TranslationFragment extends BaseFragment implements TranslationView
                 .beginTransaction();
         transaction.add(R.id.dictionary_fragment_container, dictionaryFragment).commit();
 
-        getTranslationButton.setOnClickListener(v -> presenter.onGetTranslation());
+        getTranslationButton.setOnClickListener(v -> {
+            presenter.onGetTranslation();
+            listener.onTranslateButtonClicked(getTextFromEditText());
+        });
 
         return view;
     }

@@ -5,19 +5,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import rcd27.github.com.stasyandex.fragments.dictionary.view.DictionaryFragment;
 import rcd27.github.com.stasyandex.fragments.favourites.view.FavouritesFragment;
 import rcd27.github.com.stasyandex.fragments.translation.view.TranslationFragment;
 
 // 14.04.2017
-//TODO MAIN: прикрутить API словаря.
-//  •пора прикручивать мокиту, я так думаю
-//  •сделать качественный маппинг DTO→VO
+//TODO Найти этот блин динамически созданный фрагмент!
 
-// 15.04.2017
-//TODO MAIN: реализовать AvailableLanguages в меню окна перевода.
 public class MainActivity extends AppCompatActivity implements ActivityCallback,
-TranslationFragment.Listener{
+        TranslationFragment.Listener {
 
 //  Использовать Observable для обращения к БД
 //  Исползовать Observable для чтения текста из EditText. Прикрутить задержку ~500мс.
@@ -84,5 +82,12 @@ TranslationFragment.Listener{
     @Override
     public void onTranslateButtonClicked(String textFromEditText) {
         //TODO ТУТ НАДО НАЙТИ ФРАГМЕНТ СЛОВАРЯ И БАХНУТЬ В НЕГО textFromEditText
+        DictionaryFragment dicFrag = (DictionaryFragment) fragmentManager
+                .findFragmentById(R.id.ftw_dictionary_layout_container);
+        if (null != dicFrag) {
+            Log.i(TAG, "I'VE fouND IT DAMN!");
+        } else {
+            Log.w(TAG, "WHERE ARE YOU STUPID FRAGMENT!?");
+        }
     }
 }

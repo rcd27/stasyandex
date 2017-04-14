@@ -9,9 +9,6 @@ import rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo.DictionaryD
 
 public interface DictionaryView {
 
-    /*Аналогично интерфейсу переводчика. Берём текст из...*/
-    String getStringForDictionary();
-
     void showDef(Def def);
 
     void showEmpty();
