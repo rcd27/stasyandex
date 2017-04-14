@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,10 +37,6 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     @Bind(R.id.dictionary_recycler_view)
     RecyclerView definitionItemsRecyclerView;
 
-    /*временная кнопка для получения словаря*/
-    @Bind(R.id.bt_get_dictionary)
-    Button getDictionaryButton;
-
     private DictionaryAdapter dictionaryAdapter;
 
     private DictionaryPresenter presenter = new DictionaryPresenter(this);
@@ -59,29 +54,14 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
         dictionaryAdapter = new DictionaryAdapter(new ArrayList<>(), presenter);
         definitionItemsRecyclerView.setAdapter(dictionaryAdapter);
 
-        /*IN WORK AREA*/
-        getDictionaryButton.setOnClickListener(v -> presenter.onGetDictionaryResponse());
-        /*============*/
         return view;
     }
 
-    //!TODO изучить вопрос: КАК ПРАВИЛЬНО ПЕРЕДАВАТЬ ИНФУ ОТ ОДНОГО ФРАГМЕНТА ДРУГОМУ.
-    @Override
-    public String getDictionaryFor() {
-        return "вот";
-    }
 
     @Override
-    public void showDictionaryDefiniton(DictionaryDefinition definition) {
-        dictionaryOriginWord.setText(definition.getText());
-        dictionaryOriginWordPos.setText(definition.getPos());
-    }
-
-    @Override
-    public void showDictionaryDictionaryItems(List<Tr> items) {
-        //TODO обыграть
-        assert null != items;
-        dictionaryAdapter.setDictionaryItemList(items);
+    public String getStringForDictionary() {
+        //TODO а нужон ли он здесь...
+        return null;
     }
 
     @Override
@@ -95,6 +75,17 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     public void showDef(Def def) {
         showDictionaryDefiniton(new DictionaryDefinition(def.getText(), def.getPos()));
         showDictionaryDictionaryItems(def.getTr());
+    }
+
+    public void showDictionaryDefiniton(DictionaryDefinition definition) {
+        dictionaryOriginWord.setText(definition.getText());
+        dictionaryOriginWordPos.setText(definition.getPos());
+    }
+
+    public void showDictionaryDictionaryItems(List<Tr> items) {
+        //TODO обыграть
+        assert null != items;
+        dictionaryAdapter.setDictionaryItemList(items);
     }
 
     @Override

@@ -22,8 +22,7 @@ public class DictionaryPresenter extends BasePresenter {
         this.view = view;
     }
 
-    public void onGetDictionaryResponse() {
-        String text = view.getDictionaryFor();
+    public void onGetDictionaryResponse(String text) {
         addSubscription(getSubscriptionForDictionaryDefention(text));
     }
 
