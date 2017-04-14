@@ -1,11 +1,13 @@
 package rcd27.github.com.stasyandex.fragments.translation.view;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,8 @@ import rcd27.github.com.stasyandex.view.BaseFragment;
 
 public class TranslationFragment extends BaseFragment implements TranslationView {
 
+    private final String TAG = getClass().getSimpleName();
+
     @Bind(R.id.translation_editText)
     EditText editText;
 
@@ -35,8 +39,22 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     private TranslationPresenter presenter = new TranslationPresenter(this);
 
+    private Listener listener;
+
     public static TranslationFragment newInstance() {
         return new TranslationFragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            listener = (Listener) context;
+            Log.i(TAG, "onAttach: listener attached!");
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() +
+                    " must implement Listener");
+        }
     }
 
     @Nullable
@@ -91,5 +109,9 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+    }
+
+    public interface Listener {
+        public void onTranslateButtonClicked(String textFromEditText);
     }
 }

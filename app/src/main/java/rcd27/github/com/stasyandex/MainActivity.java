@@ -16,7 +16,8 @@ import rcd27.github.com.stasyandex.fragments.translation.view.TranslationFragmen
 
 // 15.04.2017
 //TODO MAIN: реализовать AvailableLanguages в меню окна перевода.
-public class MainActivity extends AppCompatActivity implements ActivityCallback {
+public class MainActivity extends AppCompatActivity implements ActivityCallback,
+TranslationFragment.Listener{
 
 //  Использовать Observable для обращения к БД
 //  Исползовать Observable для чтения текста из EditText. Прикрутить задержку ~500мс.
@@ -78,5 +79,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback 
     @Override
     public void startTranslationFragment() {
         replaceFragment(TranslationFragment.newInstance(), true);
+    }
+
+    @Override
+    public void onTranslateButtonClicked(String textFromEditText) {
+        //TODO ТУТ НАДО НАЙТИ ФРАГМЕНТ СЛОВАРЯ И БАХНУТЬ В НЕГО textFromEditText
     }
 }

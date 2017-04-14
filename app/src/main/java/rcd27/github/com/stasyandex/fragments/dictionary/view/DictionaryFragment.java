@@ -25,6 +25,8 @@ import rcd27.github.com.stasyandex.view.BaseFragment;
 
 public class DictionaryFragment extends BaseFragment implements DictionaryView {
 
+    private final String TAG = getClass().getSimpleName();
+
     /*Здесь отображается слово, с которого был произведён перевод*/
     @Bind(R.id.tv_dictionary_word)
     TextView dictionaryOriginWord;
@@ -65,13 +67,6 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     }
 
     @Override
-    public void showEmpty() {
-        dictionaryOriginWord.setText("");
-        dictionaryOriginWordPos.setText("");
-        dictionaryAdapter.makeEmpty();
-    }
-
-    @Override
     public void showDef(Def def) {
         showDictionaryDefiniton(new DictionaryDefinition(def.getText(), def.getPos()));
         showDictionaryDictionaryItems(def.getTr());
@@ -86,6 +81,13 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
         //TODO обыграть
         assert null != items;
         dictionaryAdapter.setDictionaryItemList(items);
+    }
+
+    @Override
+    public void showEmpty() {
+        dictionaryOriginWord.setText("");
+        dictionaryOriginWordPos.setText("");
+        dictionaryAdapter.makeEmpty();
     }
 
     @Override
