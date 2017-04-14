@@ -17,9 +17,10 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
+import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.Def;
+import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.Tr;
 import rcd27.github.com.stasyandex.fragments.dictionary.presenter.DictionaryPresenter;
 import rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo.DictionaryDefinition;
-import rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo.DictionaryItem;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.view.BaseFragment;
 
@@ -64,10 +65,10 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
         return view;
     }
 
-    //TODO изучить вопрос: КАК ПРАВИЛЬНО ПЕРЕДАВАТЬ ИНФУ ОТ ОДНОГО ФРАГМЕНТА ДРУГОМУ.
+    //!TODO изучить вопрос: КАК ПРАВИЛЬНО ПЕРЕДАВАТЬ ИНФУ ОТ ОДНОГО ФРАГМЕНТА ДРУГОМУ.
     @Override
     public String getDictionaryFor() {
-        return "привет";
+        return "вот";
     }
 
     @Override
@@ -77,7 +78,9 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     }
 
     @Override
-    public void showDictionaryDictionaryItems(List<DictionaryItem> items) {
+    public void showDictionaryDictionaryItems(List<Tr> items) {
+        //TODO обыграть
+        assert null != items;
         dictionaryAdapter.setDictionaryItemList(items);
     }
 
@@ -86,6 +89,12 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
         dictionaryOriginWord.setText("");
         dictionaryOriginWordPos.setText("");
         dictionaryAdapter.makeEmpty();
+    }
+
+    @Override
+    public void showDef(Def def) {
+        showDictionaryDefiniton(new DictionaryDefinition(def.getText(), def.getPos()));
+        showDictionaryDictionaryItems(def.getTr());
     }
 
     @Override

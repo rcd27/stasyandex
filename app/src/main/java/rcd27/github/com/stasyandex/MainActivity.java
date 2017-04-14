@@ -11,6 +11,7 @@ import rcd27.github.com.stasyandex.fragments.translation.view.TranslationFragmen
 
 // 14.04.2017
 //TODO MAIN: прикрутить API словаря.
+//  •пора прикручивать мокиту, я так думаю
 //  •сделать качественный маппинг DTO→VO
 
 // 15.04.2017

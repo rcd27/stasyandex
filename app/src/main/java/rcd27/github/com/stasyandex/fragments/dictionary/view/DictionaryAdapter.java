@@ -13,21 +13,24 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
+import rcd27.github.com.stasyandex.StasyandexTextUtils;
+import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.Mean;
+import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.Syn;
+import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.Tr;
 import rcd27.github.com.stasyandex.fragments.dictionary.presenter.DictionaryPresenter;
-import rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo.DictionaryItem;
 
 public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.ViewHolder> {
 
-    private List<DictionaryItem> list;
+    private List<Tr> list;
 
     private DictionaryPresenter presenter;
 
-    public DictionaryAdapter(List<DictionaryItem> list, DictionaryPresenter presenter) {
+    public DictionaryAdapter(List<Tr> list, DictionaryPresenter presenter) {
         this.list = list;
         this.presenter = presenter;
     }
 
-    public List<DictionaryItem> getList() {
+    public List<Tr> getList() {
         return list;
     }
 
@@ -46,13 +49,21 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
     /*Присваивание текст-вьюшкам значений из листа*/
     @Override
     public void onBindViewHolder(DictionaryAdapter.ViewHolder holder, int position) {
-        //TODO в гугловском туториале есть про то, как пронумеровать.
-//        holder.itemNumber.setText(position);
-        holder.textSyn.setText(list.get(position).firstLine());
-        holder.mean.setText(list.get(position).meaning());
+        List<Syn> syns = list.get(position).getSyn();
+        List<Mean> means = list.get(position).getMean();
+
+        //TODO посмотреть как в гугловском курсе нумеруются элементы RecyclerView.
+
+        if (null != syns) {
+            holder.textSyn.setText(StasyandexTextUtils.commaRawFromSynList(syns));
+        }
+
+        if (null != means) {
+            holder.mean.setText(StasyandexTextUtils.commaRawFromMeanList(means));
+        }
     }
 
-    public void setDictionaryItemList(List<DictionaryItem> dictionaryItemList) {
+    public void setDictionaryItemList(List<Tr> dictionaryItemList) {
         this.list = dictionaryItemList;
         notifyDataSetChanged();
     }

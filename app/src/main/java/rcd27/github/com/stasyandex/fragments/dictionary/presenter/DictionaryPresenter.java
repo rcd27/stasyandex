@@ -1,10 +1,13 @@
 package rcd27.github.com.stasyandex.fragments.dictionary.presenter;
 
 
-import rcd27.github.com.stasyandex.fragments.dictionary.presenter.vo.DictionaryDefinition;
+import android.util.Log;
+
+import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.Def;
 import rcd27.github.com.stasyandex.fragments.dictionary.view.DictionaryView;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rx.Observable;
+import rx.Observer;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -24,14 +27,30 @@ public class DictionaryPresenter extends BasePresenter {
         addSubscription(getSubscriptionForDictionaryDefention(text));
     }
 
-    //TODO хорошо, допустим это работает. Но это мрак с повторяющимся кодом! см.ModelImpl
+    //оставляю идею смапить всё по-красивому до лучших времён. Отображаться будет DTO
     private Subscription getSubscriptionForDictionaryDefention(String text) {
         return responseData.getDicResult("ru-en", text, "ru")
-                .flatMap(dicRes -> Observable.from(dicRes.getDef()))
-                //TODO вот тут вполне можно вшить Observable.zip
-                .flatMap(dicDef -> Observable.just(new DictionaryDefinition(dicDef.getText(), dicDef.getPos())))
+                .flatMap(response -> Observable.from(response.getDef()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(dicDef -> view.showDictionaryDefiniton(dicDef));
+                .toSingle()
+                .subscribe(new Observer<Def>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.i(TAG, "subscription: onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        Log.w(TAG, "subscription: onError()");
+                    }
+
+                    @Override
+                    public void onNext(Def def) {
+                        view.showDef(def);
+                        Log.i(TAG, "subscription: onNext()");
+                    }
+                });
     }
 }

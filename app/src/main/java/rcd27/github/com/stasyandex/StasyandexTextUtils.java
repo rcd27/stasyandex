@@ -1,7 +1,11 @@
 package rcd27.github.com.stasyandex;
 
 
+import java.util.ArrayList;
 import java.util.List;
+
+import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.Mean;
+import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.Syn;
 
 public class StasyandexTextUtils {
     public static String commaRawFromList(List<String> fromList) {
@@ -18,5 +22,22 @@ public class StasyandexTextUtils {
             }
             return sb.toString();
         }
+    }
+
+    //TODO запилить твой любимый дженерик.
+    public static String commaRawFromSynList(List<Syn> syns) {
+        List<String> synStrings = new ArrayList<>();
+        for (Syn syn : syns) {
+            synStrings.add(syn.getText());
+        }
+        return commaRawFromList(synStrings);
+    }
+
+    public static String commaRawFromMeanList(List<Mean> fromList) {
+        List<String> resultList = new ArrayList<>();
+        for (Mean mean : fromList) {
+            resultList.add(mean.getText());
+        }
+        return commaRawFromList(resultList);
     }
 }
