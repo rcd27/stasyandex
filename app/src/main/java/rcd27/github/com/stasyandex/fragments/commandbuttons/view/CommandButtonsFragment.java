@@ -12,11 +12,10 @@ import android.widget.Button;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import rcd27.github.com.stasyandex.Constant;
-import rcd27.github.com.stasyandex.R;
-import rcd27.github.com.stasyandex.presenter.BasePresenter;
-import rcd27.github.com.stasyandex.fragments.commandbuttons.presenter.CommandButtonsPresenter;
 import rcd27.github.com.stasyandex.ActivityCallback;
+import rcd27.github.com.stasyandex.R;
+import rcd27.github.com.stasyandex.fragments.commandbuttons.presenter.CommandButtonsPresenter;
+import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.view.BaseFragment;
 
 public class CommandButtonsFragment extends BaseFragment implements CommandButtonsView {
@@ -75,13 +74,11 @@ public class CommandButtonsFragment extends BaseFragment implements CommandButto
 
     @Override
     public void startTranslateFragment() {
-        Log.i(TAG, Constant.METHOD_INVOCATION.value + "startTranslateFragment");
         activityCallback.startTranslationFragment();
     }
 
     @Override
     public void startFavouritesFragment() {
-        Log.i(TAG, Constant.METHOD_INVOCATION.value + "startFavouritesFragment");
         activityCallback.startFavouritesFragment();
     }
 }

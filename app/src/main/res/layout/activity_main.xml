@@ -7,13 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
-        android:id="@+id/commands_button_fragment"
-        android:name="rcd27.github.com.stasyandex.fragments.commandbuttons.view.CommandButtonsFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        tools:layout="@layout/command_buttons_layout">
-    </fragment>
+    <!--<fragment-->
+        <!--android:id="@+id/commands_button_fragment"-->
+        <!--android:name="rcd27.github.com.stasyandex.fragments.commandbuttons.view.CommandButtonsFragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom"-->
+        <!--tools:layout="@layout/command_buttons_layout">-->
+    <!--</fragment>-->
 
 </FrameLayout>
