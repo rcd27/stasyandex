@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback,
     public void onTranslateButtonClicked(String textFromEditText) {
         //TODO ТУТ НАДО НАЙТИ ФРАГМЕНТ СЛОВАРЯ И БАХНУТЬ В НЕГО textFromEditText
         DictionaryFragment dicFrag = (DictionaryFragment) fragmentManager
-                .findFragmentById(R.id.ftw_dictionary_layout_container);
+                .findFragmentById(R.id.dictionary_fragment_container);
         if (null != dicFrag) {
             Log.i(TAG, "I'VE fouND IT DAMN!");
         } else {

@@ -68,10 +68,4 @@ public class TranslationPresenter extends BasePresenter {
                     }
                 });
     }
-
-    private void showFakeVO() {
-        List<String> fakeResult = Arrays.asList("Фэйковый перевод тут, ага.");
-        translation = new Translation(fakeResult);
-        view.showTranslation(translation);
-    }
 }

@@ -1,10 +1,6 @@
 package rcd27.github.com.stasyandex.model;
 
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import rcd27.github.com.stasyandex.Const;
 import rcd27.github.com.stasyandex.fragments.dictionary.model.DictionaryAPI;
 import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.DicResultDTO;
 import rcd27.github.com.stasyandex.fragments.translation.model.TranslateAPI;
@@ -12,7 +8,8 @@ import rcd27.github.com.stasyandex.fragments.translation.model.dto.AvailableLang
 import rcd27.github.com.stasyandex.fragments.translation.model.dto.ProbableLanguageDTO;
 import rcd27.github.com.stasyandex.fragments.translation.model.dto.TranslationDTO;
 import rx.Observable;
-import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /*
 Объединяет в себе логику получения JSON ответа с сервера, перевод его в DTO объекты.
@@ -21,26 +18,15 @@ import rx.Scheduler;
 public class ModelImpl implements Model {
 
     private final Observable.Transformer schedulersTransformer;
-
-    @Inject
     TranslateAPI translateAPI = ApiModule.getTranslateApi();
-
-    @Inject
     DictionaryAPI dictionaryAPI = ApiModule.getDictionaryApi();
 
-    @Inject
-    @Named(Const.UI_THREAD)
-    Scheduler uiThread;
-
-    @Inject
-    @Named(Const.IO_THREAD)
-    Scheduler ioThread;
 
     public ModelImpl() {
         schedulersTransformer = o -> ((Observable) o)
-                .subscribeOn(ioThread)
-                .observeOn(uiThread)
-                .unsubscribeOn(ioThread);
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .unsubscribeOn(Schedulers.io());
     }
 
     //TODO разобраться с этими observeOn, subscribeOn
