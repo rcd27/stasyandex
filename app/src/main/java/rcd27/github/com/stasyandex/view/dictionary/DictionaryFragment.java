@@ -20,7 +20,6 @@ import rcd27.github.com.stasyandex.model.dictionary.dto.DefinitionDTO;
 import rcd27.github.com.stasyandex.model.dictionary.dto.DicTranslationDTO;
 import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryPresenter;
 import rcd27.github.com.stasyandex.presenter.visualobject.DictionaryDefinition;
-import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.view.BaseFragment;
 
 public class DictionaryFragment extends BaseFragment implements DictionaryView {
@@ -71,9 +70,11 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     }
 
     public void showDictionaryDictionaryItems(List<DicTranslationDTO> items) {
-        //TODO обыграть
-        assert null != items;
-        dictionaryAdapter.setDictionaryItemList(items);
+        if (null != items && !items.isEmpty()) {
+            dictionaryAdapter.setDictionaryItemList(items);
+        } else {
+            showEmpty();
+        }
     }
 
     @Override
@@ -84,7 +85,7 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     }
 
     @Override
-    protected BasePresenter getPresenter() {
+    public DictionaryPresenter getPresenter() {
         return presenter;
     }
 }
