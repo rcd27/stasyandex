@@ -49,7 +49,6 @@ public class ApiModule {
                 .build().create(DictionaryAPI.class);
     }
 
-    //FIXME что-то там с этим интерсептером - посмотреть. Кажется он @Deprecated
     private static class CustomInterceptor implements Interceptor {
         private final String apiKey;
 

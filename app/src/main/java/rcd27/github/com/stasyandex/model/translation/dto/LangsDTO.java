@@ -1,4 +1,4 @@
-package rcd27.github.com.stasyandex.model.translation;
+package rcd27.github.com.stasyandex.model.translation.dto;
 
 /*
 Не очень понятно нафиг этот объект вообще нужен и что с ним делать.

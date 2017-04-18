@@ -9,6 +9,7 @@ import rcd27.github.com.stasyandex.presenter.visualobject.Translation;
 import rcd27.github.com.stasyandex.view.translation.TranslationView;
 import rx.Observer;
 import rx.Subscription;
+import rx.plugins.RxJavaPlugins;
 
 public class TranslationPresenter extends BasePresenter {
 
@@ -50,6 +51,8 @@ public class TranslationPresenter extends BasePresenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.w(TAG, "subscriprion: onError()");
+                        RxJavaPlugins.getInstance().getErrorHandler().handleError(e);
+                        e.printStackTrace();
                     }
 
                     @Override

@@ -1,11 +1,11 @@
-package rcd27.github.com.stasyandex.model.dictionary;
+package rcd27.github.com.stasyandex.model.dictionary.dto;
 
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Tr {
+public class DicTranslationDTO {
     @SerializedName("text")
     @Expose
     public String text;
@@ -17,13 +17,13 @@ public class Tr {
     public String pos;
 
     /*Массив синонимов*/
-    @SerializedName("syn")
+    @SerializedName("synonymDTO")
     @Expose
-    public List<Syn> syn = null;
+    public List<SynonymDTO> synonymDTO = null;
 
-    @SerializedName("mean")
+    @SerializedName("meaninigDTO")
     @Expose
-    public List<Mean> mean = null;
+    public List<MeaninigDTO> meaninigDTO = null;
 
     public String getText() {
         return text;
@@ -41,19 +41,19 @@ public class Tr {
         this.pos = pos;
     }
 
-    public List<Syn> getSyn() {
-        return syn;
+    public List<SynonymDTO> getSynonymDTO() {
+        return synonymDTO;
     }
 
-    public void setSyn(List<Syn> syn) {
-        this.syn = syn;
+    public void setSynonymDTO(List<SynonymDTO> synonymDTO) {
+        this.synonymDTO = synonymDTO;
     }
 
-    public List<Mean> getMean() {
-        return mean;
+    public List<MeaninigDTO> getMeaninigDTO() {
+        return meaninigDTO;
     }
 
-    public void setMean(List<Mean> mean) {
-        this.mean = mean;
+    public void setMeaninigDTO(List<MeaninigDTO> meaninigDTO) {
+        this.meaninigDTO = meaninigDTO;
     }
 }

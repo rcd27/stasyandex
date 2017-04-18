@@ -3,7 +3,7 @@ package rcd27.github.com.stasyandex.presenter.dictionary;
 
 import android.util.Log;
 
-import rcd27.github.com.stasyandex.model.dictionary.Def;
+import rcd27.github.com.stasyandex.model.dictionary.dto.DefinitionDTO;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.view.dictionary.DictionaryView;
 import rx.Observable;
@@ -29,11 +29,11 @@ public class DictionaryPresenter extends BasePresenter {
     //оставляю идею смапить всё по-красивому до лучших времён. Отображаться будет DTO
     private Subscription getSubscriptionForDictionaryDefention(String text) {
         return responseData.getDicResult("ru-en", text, "ru")
-                .flatMap(response -> Observable.from(response.getDef()))
+                .flatMap(response -> Observable.from(response.getDefinitionDTO()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .toSingle()
-                .subscribe(new Observer<Def>() {
+                .subscribe(new Observer<DefinitionDTO>() {
                     @Override
                     public void onCompleted() {
                         Log.i(TAG, "subscription: onCompleted");
@@ -46,8 +46,8 @@ public class DictionaryPresenter extends BasePresenter {
                     }
 
                     @Override
-                    public void onNext(Def def) {
-                        view.showDef(def);
+                    public void onNext(DefinitionDTO definitionDTO) {
+                        view.showDef(definitionDTO);
                         Log.i(TAG, "subscription: onNext()");
                     }
                 });

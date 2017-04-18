@@ -1,7 +1,7 @@
 package rcd27.github.com.stasyandex.model.dictionary;
 
 
-import rcd27.github.com.stasyandex.model.dictionary.DicResultDTO;
+import rcd27.github.com.stasyandex.model.dictionary.dto.DicResultDTO;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;

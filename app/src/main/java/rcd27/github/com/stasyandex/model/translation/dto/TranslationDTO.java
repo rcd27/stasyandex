@@ -1,4 +1,4 @@
-package rcd27.github.com.stasyandex.model.translation;
+package rcd27.github.com.stasyandex.model.translation.dto;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -13,8 +13,10 @@ translationResult оформлен листом, но в нём замечен �
 public class TranslationDTO {
     @SerializedName("code")
     private int code;
+
     @SerializedName("lang")
     private String direction;
+
     @SerializedName("text")
     private List<String> translationResult = new ArrayList<>();
 

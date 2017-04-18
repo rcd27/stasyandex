@@ -1,4 +1,4 @@
-package rcd27.github.com.stasyandex.model.dictionary;
+package rcd27.github.com.stasyandex.model.dictionary.dto;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /*Словарная статья*/
-public class Def {
+public class DefinitionDTO {
     @SerializedName("text")
     @Expose
     public String text;
@@ -22,9 +22,9 @@ public class Def {
     public String anm;
 
     /*Массив переводов*/
-    @SerializedName("tr")
+    @SerializedName("dicTranslationDTO")
     @Expose
-    public List<Tr> tr = null;
+    public List<DicTranslationDTO> dicTranslationDTO = null;
 
     public String getText() {
         return text;
@@ -50,11 +50,11 @@ public class Def {
         this.anm = anm;
     }
 
-    public List<Tr> getTr() {
-        return tr;
+    public List<DicTranslationDTO> getDicTranslationDTO() {
+        return dicTranslationDTO;
     }
 
-    public void setTr(List<Tr> tr) {
-        this.tr = tr;
+    public void setDicTranslationDTO(List<DicTranslationDTO> dicTranslationDTO) {
+        this.dicTranslationDTO = dicTranslationDTO;
     }
 }

@@ -14,23 +14,23 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.TextUtil;
-import rcd27.github.com.stasyandex.model.dictionary.Mean;
-import rcd27.github.com.stasyandex.model.dictionary.Syn;
-import rcd27.github.com.stasyandex.model.dictionary.Tr;
+import rcd27.github.com.stasyandex.model.dictionary.dto.DicTranslationDTO;
+import rcd27.github.com.stasyandex.model.dictionary.dto.MeaninigDTO;
+import rcd27.github.com.stasyandex.model.dictionary.dto.SynonymDTO;
 import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryPresenter;
 
 public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.ViewHolder> {
 
-    private List<Tr> list;
+    private List<DicTranslationDTO> list;
 
     private DictionaryPresenter presenter;
 
-    public DictionaryAdapter(List<Tr> list, DictionaryPresenter presenter) {
+    public DictionaryAdapter(List<DicTranslationDTO> list, DictionaryPresenter presenter) {
         this.list = list;
         this.presenter = presenter;
     }
 
-    public List<Tr> getList() {
+    public List<DicTranslationDTO> getList() {
         return list;
     }
 
@@ -49,21 +49,21 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
     /*Присваивание текст-вьюшкам значений из листа*/
     @Override
     public void onBindViewHolder(DictionaryAdapter.ViewHolder holder, int position) {
-        List<Syn> syns = list.get(position).getSyn();
-        List<Mean> means = list.get(position).getMean();
+        List<SynonymDTO> synonymDTOs = list.get(position).getSynonymDTO();
+        List<MeaninigDTO> meaninigDTOs = list.get(position).getMeaninigDTO();
 
         //TODO посмотреть как в гугловском курсе нумеруются элементы RecyclerView.
 
-        if (null != syns) {
-            holder.textSyn.setText(TextUtil.commaRawFromSynList(syns));
+        if (null != synonymDTOs) {
+            holder.textSyn.setText(TextUtil.commaRawFromSynList(synonymDTOs));
         }
 
-        if (null != means) {
-            holder.mean.setText(TextUtil.commaRawFromMeanList(means));
+        if (null != meaninigDTOs) {
+            holder.mean.setText(TextUtil.commaRawFromMeanList(meaninigDTOs));
         }
     }
 
-    public void setDictionaryItemList(List<Tr> dictionaryItemList) {
+    public void setDictionaryItemList(List<DicTranslationDTO> dictionaryItemList) {
         this.list = dictionaryItemList;
         notifyDataSetChanged();
     }
