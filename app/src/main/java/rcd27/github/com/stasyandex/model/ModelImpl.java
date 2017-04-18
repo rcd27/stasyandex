@@ -1,12 +1,12 @@
 package rcd27.github.com.stasyandex.model;
 
 
-import rcd27.github.com.stasyandex.fragments.dictionary.model.DictionaryAPI;
-import rcd27.github.com.stasyandex.fragments.dictionary.model.dto.DicResultDTO;
-import rcd27.github.com.stasyandex.fragments.translation.model.TranslateAPI;
-import rcd27.github.com.stasyandex.fragments.translation.model.dto.AvailableLanguagesDTO;
-import rcd27.github.com.stasyandex.fragments.translation.model.dto.ProbableLanguageDTO;
-import rcd27.github.com.stasyandex.fragments.translation.model.dto.TranslationDTO;
+import rcd27.github.com.stasyandex.model.dictionary.DicResultDTO;
+import rcd27.github.com.stasyandex.model.dictionary.DictionaryAPI;
+import rcd27.github.com.stasyandex.model.translation.AvailableLanguagesDTO;
+import rcd27.github.com.stasyandex.model.translation.ProbableLanguageDTO;
+import rcd27.github.com.stasyandex.model.translation.TranslateAPI;
+import rcd27.github.com.stasyandex.model.translation.TranslationDTO;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

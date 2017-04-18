@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import rcd27.github.com.stasyandex.fragments.translation.presenter.vo.Translation;
+import rcd27.github.com.stasyandex.presenter.visualobject.Translation;
 
 import static org.junit.Assert.assertEquals;
 

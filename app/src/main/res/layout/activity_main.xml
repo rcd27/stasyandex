@@ -9,7 +9,7 @@
 
     <!--<fragment-->
         <!--android:id="@+id/commands_button_fragment"-->
-        <!--android:name="rcd27.github.com.stasyandex.fragments.commandbuttons.view.CommandButtonsFragment"-->
+        <!--android:name="rcd27.github.com.stasyandex.view.commandbuttons.CommandButtonsFragment"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:layout_gravity="bottom"-->

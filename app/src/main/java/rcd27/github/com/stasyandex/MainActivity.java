@@ -7,15 +7,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import rcd27.github.com.stasyandex.fragments.dictionary.view.DictionaryFragment;
-import rcd27.github.com.stasyandex.fragments.favourites.view.FavouritesFragment;
-import rcd27.github.com.stasyandex.fragments.translation.view.TranslationFragment;
+import rcd27.github.com.stasyandex.view.dictionary.DictionaryFragment;
+import rcd27.github.com.stasyandex.view.translation.TranslationFragment;
 
 // 14.04.2017
 //TODO Найти этот блин динамически созданный фрагмент!
 
-public class MainActivity extends AppCompatActivity implements ActivityCallback,
-        TranslationFragment.Listener {
+public class MainActivity extends AppCompatActivity implements TranslationFragment.Listener {
 
 //  Использовать Observable для обращения к БД
 //  Исползовать Observable для чтения текста из EditText. Прикрутить задержку ~500мс.
@@ -69,21 +67,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCallback,
     }
 
     @Override
-    public void startFavouritesFragment() {
-        replaceFragment(FavouritesFragment.newInstance(), true);
-    }
-
-    /*Фрагмент с словарём встроен в переводчик.*/
-    @Override
-    public void startTranslationFragment() {
-        replaceFragment(TranslationFragment.newInstance(), true);
-    }
-
-    @Override
     public void onTranslateButtonClicked(String textFromEditText) {
         //TODO ТУТ НАДО НАЙТИ ФРАГМЕНТ СЛОВАРЯ И БАХНУТЬ В НЕГО textFromEditText
         DictionaryFragment dicFrag = (DictionaryFragment) fragmentManager
-                .findFragmentById(R.id.dictionary_fragment_container);
+                .findFragmentById(R.id.dictionary_containter);
         if (null != dicFrag) {
             Log.i(TAG, "I'VE fouND IT DAMN!");
         } else {

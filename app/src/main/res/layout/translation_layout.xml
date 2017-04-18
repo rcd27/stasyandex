@@ -83,12 +83,16 @@
         app:layout_constraintTop_toBottomOf="@+id/bt_getTranslation"
         tools:text="hello ept" />
 
-    <!--TODO FIXME выяснить, почему работает только с FrameLayout-->
-    <FrameLayout
-        android:id="@+id/dictionary_fragment_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/tv_translation_result"
-        app:layout_constraintTop_toBottomOf="@id/tv_translation_result" />
+    <fragment
+        android:id="@+id/dictionary_containter"
+        android:name="rcd27.github.com.stasyandex.view.dictionary.DictionaryFragment"
+        android:layout_width="300dp"
+        android:layout_height="220dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_translation_result"
+        app:layout_constraintTop_toBottomOf="@+id/tv_translation_result"
+        tools:layout="@layout/dictionary_layout" />
 
 </android.support.constraint.ConstraintLayout>
