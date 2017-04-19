@@ -13,12 +13,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
+import rcd27.github.com.stasyandex.di.DaggerTranslationComponent;
+import rcd27.github.com.stasyandex.di.TranslationComponent;
+import rcd27.github.com.stasyandex.di.TranslationModule;
+import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.presenter.translation.TranslationPresenter;
 import rcd27.github.com.stasyandex.presenter.visualobject.Translation;
-import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.view.BaseFragment;
 
 public class TranslationFragment extends BaseFragment implements TranslationView {
@@ -34,13 +39,12 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     @Bind(R.id.tv_translation_result)
     TextView translationResultTextView;
 
-    private TranslationPresenter presenter = new TranslationPresenter(this);
+    @Inject
+    TranslationPresenter presenter;
 
     private Listener listener;
 
-    public static TranslationFragment newInstance() {
-        return new TranslationFragment();
-    }
+    private TranslationComponent component;
 
     @Override
     public void onAttach(Context context) {
@@ -52,6 +56,17 @@ public class TranslationFragment extends BaseFragment implements TranslationView
             throw new ClassCastException(context.toString() +
                     " must implement Listener");
         }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (null == component) {
+            component = DaggerTranslationComponent.builder()
+                    .translationModule(new TranslationModule(this))
+                    .build();
+        }
+        component.inject(this);
     }
 
     @Nullable
@@ -66,7 +81,6 @@ public class TranslationFragment extends BaseFragment implements TranslationView
             presenter.onGetTranslation();
             listener.onTranslateButtonClicked(getTextFromEditText());
         });
-
         return view;
     }
 

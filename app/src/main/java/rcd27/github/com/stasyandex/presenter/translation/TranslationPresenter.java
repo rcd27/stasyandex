@@ -4,6 +4,8 @@ package rcd27.github.com.stasyandex.presenter.translation;
 import android.text.TextUtils;
 import android.util.Log;
 
+import javax.inject.Inject;
+
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.presenter.visualobject.Translation;
 import rcd27.github.com.stasyandex.view.translation.TranslationView;
@@ -19,7 +21,12 @@ public class TranslationPresenter extends BasePresenter {
     private TranslationMapper translationMapper = new TranslationMapper();
     private Translation translation;
 
+    @Inject
+    public TranslationPresenter() {
+    }
+
     public TranslationPresenter(TranslationView view) {
+        super();
         this.view = view;
     }
 

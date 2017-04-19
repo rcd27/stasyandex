@@ -6,6 +6,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import rcd27.github.com.stasyandex.model.dictionary.dto.DefinitionDTO;
 import rcd27.github.com.stasyandex.model.dictionary.dto.DicTranslationDTO;
 import rcd27.github.com.stasyandex.model.dictionary.dto.MeaninigDTO;
@@ -24,7 +26,12 @@ public class DictionaryPresenter extends BasePresenter {
 
     private DictionaryView view;
 
+    @Inject
+    public DictionaryPresenter() {
+    }
+
     public DictionaryPresenter(DictionaryView view) {
+        super();
         this.view = view;
     }
 
