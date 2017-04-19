@@ -13,14 +13,18 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
-import rcd27.github.com.stasyandex.model.dictionary.Def;
-import rcd27.github.com.stasyandex.model.dictionary.Tr;
+import rcd27.github.com.stasyandex.di.DaggerDictionaryComponent;
+import rcd27.github.com.stasyandex.di.DictionaryComponent;
+import rcd27.github.com.stasyandex.di.DictionaryModule;
+import rcd27.github.com.stasyandex.model.dictionary.dto.DefinitionDTO;
+import rcd27.github.com.stasyandex.model.dictionary.dto.DicTranslationDTO;
 import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryPresenter;
 import rcd27.github.com.stasyandex.presenter.visualobject.DictionaryDefinition;
-import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.view.BaseFragment;
 
 public class DictionaryFragment extends BaseFragment implements DictionaryView {
@@ -41,7 +45,21 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
 
     private DictionaryAdapter dictionaryAdapter;
 
-    private DictionaryPresenter presenter = new DictionaryPresenter(this);
+    @Inject
+    DictionaryPresenter presenter;
+
+    private DictionaryComponent component;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (null == component) {
+            component = DaggerDictionaryComponent.builder()
+                    .dictionaryModule(new DictionaryModule(this))
+                    .build();
+        }
+        component.inject(this);
+    }
 
     @Nullable
     @Override
@@ -60,9 +78,9 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     }
 
     @Override
-    public void showDef(Def def) {
-        showDictionaryDefiniton(new DictionaryDefinition(def.getText(), def.getPos()));
-        showDictionaryDictionaryItems(def.getTr());
+    public void showDef(DefinitionDTO definitionDTO) {
+        showDictionaryDefiniton(new DictionaryDefinition(definitionDTO.getText(), definitionDTO.getPos()));
+        showDictionaryDictionaryItems(definitionDTO.getDicTranslationDTO());
     }
 
     public void showDictionaryDefiniton(DictionaryDefinition definition) {
@@ -70,10 +88,12 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
         dictionaryOriginWordPos.setText(definition.getPos());
     }
 
-    public void showDictionaryDictionaryItems(List<Tr> items) {
-        //TODO обыграть
-        assert null != items;
-        dictionaryAdapter.setDictionaryItemList(items);
+    public void showDictionaryDictionaryItems(List<DicTranslationDTO> items) {
+        if (null != items && !items.isEmpty()) {
+            dictionaryAdapter.setDictionaryItemList(items);
+        } else {
+            showEmpty();
+        }
     }
 
     @Override
@@ -84,7 +104,7 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     }
 
     @Override
-    protected BasePresenter getPresenter() {
+    public DictionaryPresenter getPresenter() {
         return presenter;
     }
 }

@@ -1,4 +1,4 @@
-package rcd27.github.com.stasyandex.model.dictionary;
+package rcd27.github.com.stasyandex.model.dictionary.dto;
 
 
 import com.google.gson.annotations.Expose;
@@ -14,17 +14,17 @@ public class DicResultDTO {
     public Object nullhead;
 
     /*Массив словарных статей*/
-    //TODO то есть из них надо ещё достать Tr
-    @SerializedName("def")
+    //TODO то есть из них надо ещё достать DicTranslationDTO
+    @SerializedName("definitionDTO")
     @Expose
-    public List<Def> def = null;
+    public List<DefinitionDTO> definitionDTO = null;
 
-    public List<Def> getDef() {
-        return def;
+    public List<DefinitionDTO> getDefinitionDTO() {
+        return definitionDTO;
     }
 
-    public void setDef(List<Def> def) {
-        this.def = def;
+    public void setDefinitionDTO(List<DefinitionDTO> definitionDTO) {
+        this.definitionDTO = definitionDTO;
     }
 }
 

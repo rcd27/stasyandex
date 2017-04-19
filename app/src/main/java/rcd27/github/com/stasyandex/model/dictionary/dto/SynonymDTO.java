@@ -1,13 +1,17 @@
-package rcd27.github.com.stasyandex.model.dictionary;
+package rcd27.github.com.stasyandex.model.dictionary.dto;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/*Значение*/
-public class Mean {
+/*Синоним*/
+public class SynonymDTO {
     @SerializedName("text")
     @Expose
     private String text;
+
+    @SerializedName("pos")
+    @Expose(deserialize = false)
+    public String pos;
 
     public String getText() {
         return text;

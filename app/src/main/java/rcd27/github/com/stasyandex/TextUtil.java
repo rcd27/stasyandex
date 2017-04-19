@@ -4,8 +4,8 @@ package rcd27.github.com.stasyandex;
 import java.util.ArrayList;
 import java.util.List;
 
-import rcd27.github.com.stasyandex.model.dictionary.Mean;
-import rcd27.github.com.stasyandex.model.dictionary.Syn;
+import rcd27.github.com.stasyandex.model.dictionary.dto.MeaninigDTO;
+import rcd27.github.com.stasyandex.model.dictionary.dto.SynonymDTO;
 
 public class TextUtil {
     public static String commaRawFromList(List<String> fromList) {
@@ -25,18 +25,18 @@ public class TextUtil {
     }
 
     //TODO запилить твой любимый дженерик.
-    public static String commaRawFromSynList(List<Syn> syns) {
+    public static String commaRawFromSynList(List<SynonymDTO> synonymDTOs) {
         List<String> synStrings = new ArrayList<>();
-        for (Syn syn : syns) {
-            synStrings.add(syn.getText());
+        for (SynonymDTO synonymDTO : synonymDTOs) {
+            synStrings.add(synonymDTO.getText());
         }
         return commaRawFromList(synStrings);
     }
 
-    public static String commaRawFromMeanList(List<Mean> fromList) {
+    public static String commaRawFromMeanList(List<MeaninigDTO> fromList) {
         List<String> resultList = new ArrayList<>();
-        for (Mean mean : fromList) {
-            resultList.add(mean.getText());
+        for (MeaninigDTO meaninigDTO : fromList) {
+            resultList.add(meaninigDTO.getText());
         }
         return commaRawFromList(resultList);
     }

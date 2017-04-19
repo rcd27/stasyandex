@@ -1,15 +1,19 @@
 package rcd27.github.com.stasyandex.model;
 
 
-import rcd27.github.com.stasyandex.model.dictionary.DicResultDTO;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import rcd27.github.com.stasyandex.di.DaggerAppComponent;
+import rcd27.github.com.stasyandex.di.ModelModule;
 import rcd27.github.com.stasyandex.model.dictionary.DictionaryAPI;
-import rcd27.github.com.stasyandex.model.translation.AvailableLanguagesDTO;
-import rcd27.github.com.stasyandex.model.translation.ProbableLanguageDTO;
-import rcd27.github.com.stasyandex.model.translation.TranslateAPI;
-import rcd27.github.com.stasyandex.model.translation.TranslationDTO;
+import rcd27.github.com.stasyandex.model.dictionary.dto.DicResultDTO;
+import rcd27.github.com.stasyandex.model.translation.TranslationAPI;
+import rcd27.github.com.stasyandex.model.translation.dto.AvailableLanguagesDTO;
+import rcd27.github.com.stasyandex.model.translation.dto.ProbableLanguageDTO;
+import rcd27.github.com.stasyandex.model.translation.dto.TranslationDTO;
 import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import rx.Scheduler;
 
 /*
 Объединяет в себе логику получения JSON ответа с сервера, перевод его в DTO объекты.
@@ -18,33 +22,45 @@ import rx.schedulers.Schedulers;
 public class ModelImpl implements Model {
 
     private final Observable.Transformer schedulersTransformer;
-    TranslateAPI translateAPI = ApiModule.getTranslateApi();
-    DictionaryAPI dictionaryAPI = ApiModule.getDictionaryApi();
 
+    @Inject
+    TranslationAPI translationAPI;
+
+    @Inject
+    DictionaryAPI dictionaryAPI;
+
+    @Inject
+    @Named(Const.UI_THREAD)
+    Scheduler uiThread;
+
+    @Inject
+    @Named(Const.IO_THREAD)
+    Scheduler ioThread;
 
     public ModelImpl() {
+        DaggerAppComponent.builder().modelModule(new ModelModule())
+                .build().inject(this);
         schedulersTransformer = o -> ((Observable) o)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .unsubscribeOn(Schedulers.io());
+                .subscribeOn(ioThread)
+                .observeOn(uiThread)
+                .unsubscribeOn(ioThread);
     }
 
-    //TODO разобраться с этими observeOn, subscribeOn
     @Override
     public Observable<AvailableLanguagesDTO> getAvailableLanguages(String forLanguage) {
-        return translateAPI.getAvailableLangs(forLanguage)
+        return translationAPI.getAvailableLangs(forLanguage)
                 .compose(applySchedulers());
     }
 
     @Override
     public Observable<ProbableLanguageDTO> getProbableLanguage(String forText) {
-        return translateAPI.getProbableLanguage(forText)
+        return translationAPI.getProbableLanguage(forText)
                 .compose(applySchedulers());
     }
 
     @Override
     public Observable<TranslationDTO> getTranslation(String forText, String direction) {
-        return translateAPI.getTranslation(forText, direction)
+        return translationAPI.getTranslation(forText, direction)
                 .compose(applySchedulers());
     }
 

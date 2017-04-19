@@ -4,11 +4,14 @@ package rcd27.github.com.stasyandex.presenter.translation;
 import android.text.TextUtils;
 import android.util.Log;
 
+import javax.inject.Inject;
+
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.presenter.visualobject.Translation;
 import rcd27.github.com.stasyandex.view.translation.TranslationView;
 import rx.Observer;
 import rx.Subscription;
+import rx.plugins.RxJavaPlugins;
 
 public class TranslationPresenter extends BasePresenter {
 
@@ -18,7 +21,12 @@ public class TranslationPresenter extends BasePresenter {
     private TranslationMapper translationMapper = new TranslationMapper();
     private Translation translation;
 
+    @Inject
+    public TranslationPresenter() {
+    }
+
     public TranslationPresenter(TranslationView view) {
+        super();
         this.view = view;
     }
 
@@ -50,6 +58,8 @@ public class TranslationPresenter extends BasePresenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.w(TAG, "subscriprion: onError()");
+                        RxJavaPlugins.getInstance().getErrorHandler().handleError(e);
+                        e.printStackTrace();
                     }
 
                     @Override

@@ -5,94 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/translation_editText"
-        android:layout_width="325dp"
-        android:layout_height="74dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="@string/textField_hint"
-        android:inputType="text"
-        android:textAlignment="gravity"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="здарова" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="0dp"
-        android:contentDescription="@string/ib_cross_description"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/translation_editText"
-        app:srcCompat="@drawable/ic_clear_black_24dp" />
+        android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/ib_mic"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
-        android:contentDescription="@string/fake_mic_button"
-        app:layout_constraintRight_toRightOf="@+id/translation_editText"
-        app:layout_constraintTop_toTopOf="@+id/translation_editText"
-        app:srcCompat="@drawable/ic_mic_black_24dp" />
+        <EditText
+            android:id="@+id/translation_editText"
+            android:layout_width="283dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/textField_hint"
+            android:inputType="text"
+            android:textAlignment="gravity"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteY="6dp"
+            tools:text="здарова" />
 
-    <ImageButton
-        android:id="@+id/ib_volume"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="4dp"
-        android:contentDescription="@string/fake_sound_button"
-        app:layout_constraintRight_toRightOf="@+id/translation_editText"
-        app:layout_constraintTop_toBottomOf="@+id/ib_mic"
-        app:srcCompat="@drawable/ic_volume_up_black_24dp" />
-
-    <Button
-        android:id="@+id/bt_getTranslation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
-        android:text="@string/get_translation"
-        app:layout_constraintRight_toRightOf="@+id/translation_editText"
-        app:layout_constraintTop_toBottomOf="@+id/translation_editText"
-        app:layout_goneMarginEnd="0dp" />
+        <Button
+            android:id="@+id/bt_getTranslation"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/get_translation"
+            app:layout_constraintBottom_toBottomOf="@+id/translation_editText"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/translation_editText"
+            app:layout_goneMarginEnd="0dp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_translation_result"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textStyle="normal"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_getTranslation"
-        tools:text="hello ept" />
-
-    <fragment
-        android:id="@+id/dictionary_containter"
-        android:name="rcd27.github.com.stasyandex.view.dictionary.DictionaryFragment"
-        android:layout_width="300dp"
-        android:layout_height="220dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_translation_result"
-        app:layout_constraintTop_toBottomOf="@+id/tv_translation_result"
-        tools:layout="@layout/dictionary_layout" />
+        app:layout_constraintLeft_toLeftOf="@+id/linear_container"
+        app:layout_constraintRight_toRightOf="@+id/linear_container"
+        app:layout_constraintTop_toBottomOf="@+id/linear_container"
+        tools:text="hello" />
 
 </android.support.constraint.ConstraintLayout>
