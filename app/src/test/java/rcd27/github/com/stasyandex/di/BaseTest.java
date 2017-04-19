@@ -20,4 +20,5 @@ public class BaseTest {
 //        component = (TestComponent)
         //TODO ПРОДОЛЖАТЬ ОТСЮДА, ЭТО ПОЛНАЯ ЧУШЬ ПОВТОРЯТЬ ВСЁ КАК ТАМ
     }
+    //
 }
