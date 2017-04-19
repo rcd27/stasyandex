@@ -13,9 +13,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
+import rcd27.github.com.stasyandex.di.DaggerDictionaryComponent;
+import rcd27.github.com.stasyandex.di.DictionaryComponent;
+import rcd27.github.com.stasyandex.di.DictionaryModule;
 import rcd27.github.com.stasyandex.model.dictionary.dto.DefinitionDTO;
 import rcd27.github.com.stasyandex.model.dictionary.dto.DicTranslationDTO;
 import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryPresenter;
@@ -40,7 +45,21 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
 
     private DictionaryAdapter dictionaryAdapter;
 
-    private DictionaryPresenter presenter = new DictionaryPresenter(this);
+    @Inject
+    DictionaryPresenter presenter;
+
+    private DictionaryComponent component;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (null == component) {
+            component = DaggerDictionaryComponent.builder()
+                    .dictionaryModule(new DictionaryModule(this))
+                    .build();
+        }
+        component.inject(this);
+    }
 
     @Nullable
     @Override

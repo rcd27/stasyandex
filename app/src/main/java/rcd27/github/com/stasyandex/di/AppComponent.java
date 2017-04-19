@@ -9,7 +9,7 @@ import rcd27.github.com.stasyandex.view.dictionary.DictionaryFragment;
 import rcd27.github.com.stasyandex.view.translation.TranslationFragment;
 
 @ApplicationScope
-@Component(modules = {ModelModule.class, PresenterModule.class, ViewModule.class})
+@Component(modules = {ModelModule.class, PresenterModule.class})
 public interface AppComponent {
 
     void inject(ModelImpl dataFromApi);

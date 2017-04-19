@@ -44,6 +44,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     private TranslateButtonListener listener;
 
+    //TODO StartAndroid: объясняетя как такого избежать.
     private TranslationComponent component;
 
     @Override
