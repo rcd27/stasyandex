@@ -1,14 +1,58 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
-
-configurations.all{
-    resolutionStrategy.preferProjectModules()
-}
+apply plugin: 'jacoco'
 
 retrolambda{
     javaVersion JavaVersion.VERSION_1_6
     incremental true
+}
+
+jacoco{
+    toolVersion = "0.7.9"
+}
+
+def coverageSourceDirs = [
+        '../app/src/main/java'
+]
+
+task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest"){
+    group = "Reporting"
+
+    description = "Generate JaCoCo coverage reports"
+
+    classDirectories = fileTree(
+        dir: '../app/build/intermediates/classes/debug',
+        excludes: ['**/R.class',
+                   '**/R$*.class',
+                   '**/*$ViewInjector*.*',
+                   '**/*$ViewBinder*.*',   //DI
+                   '**/*_MembersInjector*.*',  //DI
+                   '**/*_Factory*.*',  //DI
+                   '**/stasyandex/model/dictionary/dto/*.*', //dictionary dto model
+                   '**/stasyandex/model/translation/dto/*.*', //translation dto model
+                   '**/stasyandex/presenter/visualoject/*.*', //vo model
+                   '**/stasyandex/di/**',
+                   '**/BuildConfig.*',
+                   '**/Manifest*.*',
+                   '**/Lambda$*.class',
+                   '**/Lambda.class',
+                   '**/*Lambda.class',
+                   '**/*Lambda*.class']
+    )
+
+    additionalSourceDirs = files(coverageSourceDirs)
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = files('../app/build/jacoco/testDebugUnitTest.exec')
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+configurations.all{
+    resolutionStrategy.preferProjectModules()
 }
 
 android {
