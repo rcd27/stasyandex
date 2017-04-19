@@ -16,6 +16,7 @@ public class PresenterModule {
     }
 
     @Provides
+    @ApplicationScope
     CompositeSubscription provideCompositeSubscription() {
         return new CompositeSubscription();
     }

@@ -1,8 +1,11 @@
 package rcd27.github.com.stasyandex.presenter;
 
 
+import javax.inject.Inject;
+
+import rcd27.github.com.stasyandex.di.DaggerAppComponent;
+import rcd27.github.com.stasyandex.di.PresenterModule;
 import rcd27.github.com.stasyandex.model.Model;
-import rcd27.github.com.stasyandex.model.ModelImpl;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
@@ -11,13 +14,21 @@ import rx.subscriptions.CompositeSubscription;
 последнего при onStop().
  */
 
-public abstract class BasePresenter implements Presenter{
+public abstract class BasePresenter implements Presenter {
 
     /*Ответ сервера*/
-    protected Model responseData = new ModelImpl();
+    @Inject
+    protected Model responseData;
 
     /*Составная подписка*/
-    private CompositeSubscription compositeSubscription = new CompositeSubscription();
+    @Inject
+    CompositeSubscription compositeSubscription;
+
+    public BasePresenter() {
+        DaggerAppComponent.builder()
+                .presenterModule(new PresenterModule())
+                .build().inject(this);
+    }
 
     protected void addSubscription(Subscription subscription) {
         compositeSubscription.add(subscription);
