@@ -102,9 +102,14 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:appcompat-v7:25.2.0'
 
+    //Test
+    compile 'org.mockito:mockito-core:2.7.22'
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
+    testCompile 'com.squareup.okhttp3:mockwebserver:3.6.0'
+    testCompile 'org.robolectric:robolectric:3.3.2'
 }
