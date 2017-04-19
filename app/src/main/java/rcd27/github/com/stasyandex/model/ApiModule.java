@@ -8,29 +8,28 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import rcd27.github.com.stasyandex.model.dictionary.DictionaryAPI;
 import rcd27.github.com.stasyandex.model.translation.TranslationAPI;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static okhttp3.logging.HttpLoggingInterceptor.Level;
+
 public class ApiModule {
-    private static final String TRANSLATE_URL = "https://translate.yandex.net/";
-    private static final String TRANSLATE_API_KEY
-            = "trnsl.1.1.20170329T205120Z.3a93ae67f64429e6" +
-            ".6d650fe0829ed1f0a269d9e3f850da537b87cc4b";
-
-    private static final String DICTIONARY_URL = "https://dictionary.yandex.net/";
-    private static final String DICTIONARY_API_KEY = "dict.1.1.20170408T212234Z." +
-            "478c26abd6ca258f.8ada3c887a5c6a9c35bcfe919dab24faf9ffb732";
-
     //TODO избавиться от этого позорного дублирования кода.
     public static TranslationAPI getTranslationApi() {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient().newBuilder();
-        httpClientBuilder.addInterceptor(new CustomInterceptor(TRANSLATE_API_KEY));
+        /*OUT OF ORDER****/
+        HttpLoggingInterceptor networkLogger = new HttpLoggingInterceptor();
+        networkLogger.setLevel(Level.BASIC);
+        /*---------------*/
+        httpClientBuilder.addInterceptor(new CustomInterceptor(Const.TRANSLATE_API_KEY));
+        httpClientBuilder.addInterceptor(networkLogger);
 
         return new Retrofit.Builder()
-                .baseUrl(TRANSLATE_URL)
+                .baseUrl(Const.TRANSLATE_URL)
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -39,10 +38,10 @@ public class ApiModule {
 
     public static DictionaryAPI getDictionaryApi() {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient().newBuilder();
-        httpClientBuilder.addInterceptor(new CustomInterceptor(DICTIONARY_API_KEY));
+        httpClientBuilder.addInterceptor(new CustomInterceptor(Const.DICTIONARY_API_KEY));
 
         return new Retrofit.Builder()
-                .baseUrl(DICTIONARY_URL)
+                .baseUrl(Const.DICTIONARY_URL)
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

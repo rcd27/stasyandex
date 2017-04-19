@@ -4,7 +4,7 @@ import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
-import rcd27.github.com.stasyandex.Const;
+import rcd27.github.com.stasyandex.model.Const;
 import rcd27.github.com.stasyandex.model.ApiModule;
 import rcd27.github.com.stasyandex.model.dictionary.DictionaryAPI;
 import rcd27.github.com.stasyandex.model.translation.TranslationAPI;

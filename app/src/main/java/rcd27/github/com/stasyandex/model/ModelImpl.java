@@ -4,7 +4,6 @@ package rcd27.github.com.stasyandex.model;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import rcd27.github.com.stasyandex.Const;
 import rcd27.github.com.stasyandex.di.DaggerAppComponent;
 import rcd27.github.com.stasyandex.di.ModelModule;
 import rcd27.github.com.stasyandex.model.dictionary.DictionaryAPI;

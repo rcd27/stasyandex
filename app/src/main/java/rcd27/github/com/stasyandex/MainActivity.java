@@ -7,9 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import rcd27.github.com.stasyandex.view.dictionary.DictionaryFragment;
 import rcd27.github.com.stasyandex.view.translation.TranslationFragment;
 
-// 14.04.2017
-//TODO Найти этот блин динамически созданный фрагмент!
-
 public class MainActivity extends AppCompatActivity implements TranslationFragment.TranslateButtonListener {
 
 //  Использовать Observable для обращения к БД
