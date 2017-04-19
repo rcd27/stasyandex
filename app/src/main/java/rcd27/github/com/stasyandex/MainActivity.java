@@ -1,20 +1,16 @@
 package rcd27.github.com.stasyandex;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import rcd27.github.com.stasyandex.presenter.visualobject.DictionaryDefinition;
 import rcd27.github.com.stasyandex.view.dictionary.DictionaryFragment;
 import rcd27.github.com.stasyandex.view.translation.TranslationFragment;
 
 // 14.04.2017
 //TODO Найти этот блин динамически созданный фрагмент!
 
-public class MainActivity extends AppCompatActivity implements TranslationFragment.Listener {
+public class MainActivity extends AppCompatActivity implements TranslationFragment.TranslateButtonListener {
 
 //  Использовать Observable для обращения к БД
 //  Исползовать Observable для чтения текста из EditText. Прикрутить задержку ~500мс.

@@ -42,7 +42,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     @Inject
     TranslationPresenter presenter;
 
-    private Listener listener;
+    private TranslateButtonListener listener;
 
     private TranslationComponent component;
 
@@ -50,11 +50,11 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            listener = (Listener) context;
+            listener = (TranslateButtonListener) context;
             Log.i(TAG, "onAttach: listener attached!");
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() +
-                    " must implement Listener");
+                    " must implement TranslateButtonListener");
         }
     }
 
@@ -63,7 +63,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         super.onCreate(savedInstanceState);
         if (null == component) {
             component = DaggerTranslationComponent.builder()
-                    .translationModule(new TranslationModule(this))
+                    .translationModule(new TranslationModule(this, listener))
                     .build();
         }
         component.inject(this);
@@ -119,7 +119,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         super.onSaveInstanceState(outState);
     }
 
-    public interface Listener {
-        public void onTranslateButtonClicked(String textFromEditText);
+    public interface TranslateButtonListener {
+        void onTranslateButtonClicked(String textFromEditText);
     }
 }
