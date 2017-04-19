@@ -9,7 +9,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import rcd27.github.com.stasyandex.model.dictionary.DictionaryAPI;
-import rcd27.github.com.stasyandex.model.translation.TranslateAPI;
+import rcd27.github.com.stasyandex.model.translation.TranslationAPI;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -25,7 +25,7 @@ public class ApiModule {
             "478c26abd6ca258f.8ada3c887a5c6a9c35bcfe919dab24faf9ffb732";
 
     //TODO избавиться от этого позорного дублирования кода.
-    public static TranslateAPI getTranslateApi() {
+    public static TranslationAPI getTranslationApi() {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient().newBuilder();
         httpClientBuilder.addInterceptor(new CustomInterceptor(TRANSLATE_API_KEY));
 
@@ -34,7 +34,7 @@ public class ApiModule {
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build().create(TranslateAPI.class);
+                .build().create(TranslationAPI.class);
     }
 
     public static DictionaryAPI getDictionaryApi() {

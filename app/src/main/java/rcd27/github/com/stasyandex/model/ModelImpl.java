@@ -5,7 +5,7 @@ import rcd27.github.com.stasyandex.model.dictionary.dto.DicResultDTO;
 import rcd27.github.com.stasyandex.model.dictionary.DictionaryAPI;
 import rcd27.github.com.stasyandex.model.translation.dto.AvailableLanguagesDTO;
 import rcd27.github.com.stasyandex.model.translation.dto.ProbableLanguageDTO;
-import rcd27.github.com.stasyandex.model.translation.TranslateAPI;
+import rcd27.github.com.stasyandex.model.translation.TranslationAPI;
 import rcd27.github.com.stasyandex.model.translation.dto.TranslationDTO;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -18,7 +18,7 @@ import rx.schedulers.Schedulers;
 public class ModelImpl implements Model {
 
     private final Observable.Transformer schedulersTransformer;
-    TranslateAPI translateAPI = ApiModule.getTranslateApi();
+    TranslationAPI translationAPI = ApiModule.getTranslationApi();
     DictionaryAPI dictionaryAPI = ApiModule.getDictionaryApi();
 
 
@@ -32,19 +32,19 @@ public class ModelImpl implements Model {
     //TODO разобраться с этими observeOn, subscribeOn
     @Override
     public Observable<AvailableLanguagesDTO> getAvailableLanguages(String forLanguage) {
-        return translateAPI.getAvailableLangs(forLanguage)
+        return translationAPI.getAvailableLangs(forLanguage)
                 .compose(applySchedulers());
     }
 
     @Override
     public Observable<ProbableLanguageDTO> getProbableLanguage(String forText) {
-        return translateAPI.getProbableLanguage(forText)
+        return translationAPI.getProbableLanguage(forText)
                 .compose(applySchedulers());
     }
 
     @Override
     public Observable<TranslationDTO> getTranslation(String forText, String direction) {
-        return translateAPI.getTranslation(forText, direction)
+        return translationAPI.getTranslation(forText, direction)
                 .compose(applySchedulers());
     }
 
