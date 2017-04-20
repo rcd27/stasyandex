@@ -1,6 +1,7 @@
 package rcd27.github.com.stasyandex.presenter.translation;
 
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -11,6 +12,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import rcd27.github.com.stasyandex.model.Const;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.presenter.visualobject.Translation;
 import rcd27.github.com.stasyandex.view.translation.TranslationView;
@@ -26,10 +28,10 @@ public class TranslationPresenter extends BasePresenter {
     private TranslationMapper translationMapper = new TranslationMapper();
     private Translation translation;
 
-    //  мапа для языков en→Английски
-    Map<String, String> languagesMap = new HashMap<>();
+    //  мапа для языков en→Английски. Берётся из сети / с базы.
+    private Map<String, String> languagesMap = new HashMap<>();
 
-    // список направления переводов. Берётся из сети. Перенос в модель?
+    // список направления переводов. Берётся из сети. Перенос в модель? Типа "ru-en"
     private List<String> directions = new ArrayList<>();
 
     @Inject
@@ -39,6 +41,10 @@ public class TranslationPresenter extends BasePresenter {
     public TranslationPresenter(TranslationView view) {
         super();
         this.view = view;
+        languagesMap.put("ru", "Русский");
+        languagesMap.put("en", "Английский");
+        languagesMap.put("az", "Азербайджанский");
+        languagesMap.put("se", "Сербский");
     }
 
     public void onGetTranslation() {
@@ -52,13 +58,8 @@ public class TranslationPresenter extends BasePresenter {
         addSubscription(getSubscriptionForTranslated(text));
     }
 
-    //TODO Написать тест. Смотри в закладках, там девчонка на конфе всё рассказала.
+    //TODO прикручивать направление перевода начну отсюда пожалуй
     private Subscription getSubscriptionForTranslated(String text) {
-        //TODO комбинировать запрос в переводчик и в словарь.
-        //https://habrahabr.ru/post/265997/
-        //Observable.zip() - нужный мне приём в данном случае.
-        //Объединяет в себе оба запроса и в переводчик и в словарь. ОЧЕНЬ КРУТО.
-
         return responseData.getTranslation(text, "ru-en")
                 .map(translationMapper)
                 .subscribe(new Observer<Translation>() {
@@ -86,5 +87,29 @@ public class TranslationPresenter extends BasePresenter {
                         }
                     }
                 });
+    }
+
+    public void onChooseLanguage(int direction) {
+        view.chooseLanguage(new ArrayList<>(languagesMap.values()), direction);
+        Log.w(TAG, languagesMap.values().toString());
+    }
+
+    public void handleIntentForSelectedLanguages(Intent intent) {
+        if (intent.hasExtra("direction") && intent.hasExtra("selectedLanguage")) {
+            int direction = intent.getIntExtra("direction", 0);
+            String selectedLanguage = intent.getStringExtra("selectedLanguage");
+
+            if (languagesMap.containsValue(selectedLanguage)) {
+                switch (direction) {
+                    case Const.DIRECTION_FROM:
+                        view.showLanguageFrom(selectedLanguage);
+                        break;
+                    case Const.DIRECTION_TO:
+                        view.showLanguageTo(selectedLanguage);
+                        break;
+                }
+            }
+        }
+
     }
 }

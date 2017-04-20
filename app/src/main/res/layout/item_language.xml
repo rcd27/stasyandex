@@ -5,5 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:padding="8dp"
+    android:textColor="@color/textBlack"
     android:textSize="18sp"
     tools:text="Русский" />

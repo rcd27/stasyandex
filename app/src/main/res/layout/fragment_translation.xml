@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/languageFrom"
+            android:id="@+id/tv_languageFrom"
             android:layout_width="0dp"
             android:layout_height="@dimen/item_height_standart"
             android:layout_gravity="start"
@@ -39,7 +39,7 @@
             app:srcCompat="@drawable/ic_change_arrows_black_24dp" />
 
         <TextView
-            android:id="@+id/languageTo"
+            android:id="@+id/tv_languageTo"
             android:layout_width="0dp"
             android:layout_height="@dimen/item_height_standart"
             android:layout_gravity="end"

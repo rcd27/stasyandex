@@ -24,8 +24,8 @@ public class LanguagesActivity extends AppCompatActivity {
     @Bind(R.id.ib_closeAvailableLanguages)
     ImageButton closeButton;
 
-    @Bind(R.id.languagesList)
-    ListView languagesList;
+    @Bind(R.id.languagesListView)
+    ListView languagesListView;
 
     @Bind(R.id.tv_available_languages_title)
     TextView tvTitle;
@@ -50,10 +50,11 @@ public class LanguagesActivity extends AppCompatActivity {
             Collections.sort(availableLanguagesList);
         }
 
-        languagesList.setOnItemClickListener((parent, view, position, id) ->
+        languagesListView.setOnItemClickListener((parent, view, position, id) ->
                 closeActivity(availableLanguagesList.get(position)));
 
-        languagesList.setAdapter(new ArrayAdapter<>(getApplicationContext(), R.layout.item_language));
+        languagesListView.setAdapter(new ArrayAdapter<>(getApplicationContext(),
+                R.layout.item_language, availableLanguagesList));
     }
 
     @OnClick(R.id.ib_closeAvailableLanguages)
