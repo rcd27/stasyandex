@@ -75,7 +75,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.translation_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_translation, container, false);
         ButterKnife.bind(this, view);
 
         getTranslationButton.setOnClickListener(v -> {
