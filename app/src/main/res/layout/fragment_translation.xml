@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/chooseLanguagePane"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_height_standart"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:focusable="true"
         android:focusableInTouchMode="true"
@@ -55,55 +56,52 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/linear_container"
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/chooseLanguagePane">
+        android:layout_height="128dp"
+        tools:layout_editor_absoluteX="8dp">
 
         <EditText
             android:id="@+id/translation_editText"
-            android:layout_width="300dp"
-            android:layout_height="@dimen/item_height_standart"
-            android:layout_marginLeft="@dimen/padding"
-            android:layout_marginStart="@dimen/padding"
-            android:layout_marginTop="@dimen/padding"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height_big"
+            android:layout_margin="16dp"
+            android:background="@drawable/background_edit_text"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="top"
             android:hint="@string/textField_hint"
-            android:inputType="text"
-            android:textAlignment="gravity"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteY="6dp"
-            tools:text="здарова" />
+            android:inputType="textMultiLine"
+            android:padding="@dimen/padding"
+            android:textColor="@color/textBlack"
+            tools:text="привет" />
 
         <Button
             android:id="@+id/bt_getTranslation"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/get_translation"
-            app:layout_constraintBottom_toBottomOf="@+id/translation_editText"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/translation_editText"
-            app:layout_goneMarginEnd="0dp" />
-    </LinearLayout>
+            android:layout_width="@dimen/item_height_standart"
+            android:layout_height="@dimen/item_height_standart"
+            android:layout_gravity="end|top"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/get_translation" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_translation_result"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="@dimen/item_height_standart"
+        android:layout_marginLeft="@dimen/padding"
+        android:layout_marginRight="@dimen/padding"
+        android:padding="8dp"
+        android:layout_marginTop="@dimen/padding"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textStyle="normal"
-        app:layout_constraintLeft_toLeftOf="@+id/linear_container"
-        app:layout_constraintRight_toRightOf="@+id/linear_container"
-        app:layout_constraintTop_toBottomOf="@+id/linear_container"
-        tools:text="hello" />
+        tools:text="hello"
+        android:layout_marginStart="@dimen/padding"
+        android:layout_marginEnd="@dimen/padding" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

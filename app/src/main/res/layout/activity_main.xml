@@ -1,37 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <fragment
         android:id="@+id/traslation_fragment"
         android:name="rcd27.github.com.stasyandex.view.translation.TranslationFragment"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/fragment_translation" />
 
     <fragment
         android:id="@+id/dictionary_fragment"
         android:name="rcd27.github.com.stasyandex.view.dictionary.DictionaryFragment"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintLeft_toLeftOf="@+id/traslation_fragment"
-        app:layout_constraintTop_toBottomOf="@+id/traslation_fragment"
         tools:layout="@layout/fragment_dictionary" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
