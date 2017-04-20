@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/chooseLanguagePane"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/languageFrom"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_height_standart"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:gravity="end|center_vertical"
+            android:paddingEnd="@dimen/padding"
+            android:paddingLeft="@dimen/padding"
+            android:paddingRight="@dimen/padding"
+            android:paddingStart="@dimen/padding"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/item_text_size_normal"
+            tools:text="Русский" />
+
+        <ImageButton
+            android:id="@+id/im_switch_direction"
+            android:layout_width="@dimen/item_height_standart"
+            android:layout_height="@dimen/item_height_standart"
+            android:background="@color/colorPrimary"
+            android:contentDescription="@string/ib_switch_direction"
+            app:srcCompat="@drawable/ic_change_arrows_black_24dp" />
+
+        <TextView
+            android:id="@+id/languageTo"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_height_standart"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:gravity="start|center_vertical"
+            android:paddingEnd="@dimen/padding"
+            android:paddingLeft="@dimen/padding"
+            android:paddingRight="@dimen/padding"
+            android:paddingStart="@dimen/padding"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/item_text_size_normal"
+            tools:text="Английский" />
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <EditText
+            android:id="@+id/translation_editText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_height_big"
+            android:layout_margin="16dp"
+            android:background="@drawable/background_edit_text"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="top"
+            android:hint="@string/textField_hint"
+            android:inputType="textMultiLine"
+            android:padding="@dimen/padding"
+            android:textColor="@color/textBlack"
+            tools:text="привет" />
+
+        <Button
+            android:id="@+id/bt_getTranslation"
+            android:layout_width="@dimen/item_height_standart"
+            android:layout_height="@dimen/item_height_standart"
+            android:layout_gravity="end|top"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/get_translation" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_translation_result"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height_standart"
+        android:layout_marginLeft="@dimen/padding"
+        android:layout_marginRight="@dimen/padding"
+        android:padding="8dp"
+        android:layout_marginTop="@dimen/padding"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textStyle="normal"
+        tools:text="hello"
+        android:layout_marginStart="@dimen/padding"
+        android:layout_marginEnd="@dimen/padding" />
+
+</LinearLayout>

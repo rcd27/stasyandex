@@ -66,7 +66,7 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dictionary_layout, container, false);
+        View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
         ButterKnife.bind(this, view);
 
         LinearLayoutManager llm = new LinearLayoutManager(getContext());

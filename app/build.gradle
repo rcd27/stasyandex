@@ -8,49 +8,6 @@ retrolambda{
     incremental true
 }
 
-jacoco{
-    toolVersion = "0.7.9"
-}
-
-def coverageSourceDirs = [
-        '../app/src/main/java'
-]
-
-task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest"){
-    group = "Reporting"
-
-    description = "Generate JaCoCo coverage reports"
-
-    classDirectories = fileTree(
-        dir: '../app/build/intermediates/classes/debug',
-        excludes: ['**/R.class',
-                   '**/R$*.class',
-                   '**/*$ViewInjector*.*',
-                   '**/*$ViewBinder*.*',   //DI
-                   '**/*_MembersInjector*.*',  //DI
-                   '**/*_Factory*.*',  //DI
-                   '**/stasyandex/model/dictionary/dto/*.*', //dictionary dto model
-                   '**/stasyandex/model/translation/dto/*.*', //translation dto model
-                   '**/stasyandex/presenter/visualoject/*.*', //vo model
-                   '**/stasyandex/di/**',
-                   '**/BuildConfig.*',
-                   '**/Manifest*.*',
-                   '**/Lambda$*.class',
-                   '**/Lambda.class',
-                   '**/*Lambda.class',
-                   '**/*Lambda*.class']
-    )
-
-    additionalSourceDirs = files(coverageSourceDirs)
-    sourceDirectories = files(coverageSourceDirs)
-    executionData = files('../app/build/jacoco/testDebugUnitTest.exec')
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-}
-
 configurations.all{
     resolutionStrategy.preferProjectModules()
 }
@@ -102,14 +59,9 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:appcompat-v7:25.2.0'
 
-    //Test
-    compile 'org.mockito:mockito-core:2.7.22'
-
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-    testCompile 'com.squareup.okhttp3:mockwebserver:3.6.0'
-    testCompile 'org.robolectric:robolectric:3.3.2'
 }
