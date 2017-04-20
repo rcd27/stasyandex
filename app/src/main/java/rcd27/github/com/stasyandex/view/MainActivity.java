@@ -1,9 +1,10 @@
-package rcd27.github.com.stasyandex;
+package rcd27.github.com.stasyandex.view;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
+import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.view.dictionary.DictionaryFragment;
 import rcd27.github.com.stasyandex.view.translation.TranslationFragment;
 

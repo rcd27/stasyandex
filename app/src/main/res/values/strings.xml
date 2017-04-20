@@ -16,5 +16,7 @@
     <string name="ib_cross_description">Шобы текст стират</string>
     <string name="av_lang_close_button">Закрыть</string>
     <string name="tv_choose_language">Выбор языка</string>
+    <string name="translate_to">Язык перевода</string>
+    <string name="translate_from">Язык ввода</string>
 
 </resources>
