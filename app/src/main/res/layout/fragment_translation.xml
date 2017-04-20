@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/chooseLanguagePane"
@@ -31,7 +31,7 @@
             tools:text="Русский" />
 
         <ImageButton
-            android:id="@+id/im_switch_direction"
+            android:id="@+id/ib_switch_direction"
             android:layout_width="@dimen/item_height_standart"
             android:layout_height="@dimen/item_height_standart"
             android:background="@color/colorPrimary"
@@ -77,8 +77,8 @@
             android:textColor="@color/textBlack"
             tools:text="привет" />
 
-        <Button
-            android:id="@+id/bt_getTranslation"
+        <ImageButton
+            android:id="@+id/bt_clearEditText"
             android:layout_width="@dimen/item_height_standart"
             android:layout_height="@dimen/item_height_standart"
             android:layout_gravity="end|top"
@@ -86,7 +86,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/get_translation" />
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_backspace_black_24dp" />
 
     </FrameLayout>
 
@@ -94,14 +95,14 @@
         android:id="@+id/tv_translation_result"
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_height_standart"
+        android:layout_marginEnd="@dimen/padding"
         android:layout_marginLeft="@dimen/padding"
         android:layout_marginRight="@dimen/padding"
-        android:padding="8dp"
+        android:layout_marginStart="@dimen/padding"
         android:layout_marginTop="@dimen/padding"
+        android:padding="8dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:textStyle="normal"
-        tools:text="hello"
-        android:layout_marginStart="@dimen/padding"
-        android:layout_marginEnd="@dimen/padding" />
+        tools:text="hello" />
 
 </LinearLayout>

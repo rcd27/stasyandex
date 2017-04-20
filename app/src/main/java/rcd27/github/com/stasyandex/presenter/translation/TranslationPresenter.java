@@ -4,6 +4,11 @@ package rcd27.github.com.stasyandex.presenter.translation;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
@@ -21,6 +26,12 @@ public class TranslationPresenter extends BasePresenter {
     private TranslationMapper translationMapper = new TranslationMapper();
     private Translation translation;
 
+    //  мапа для языков en→Английски
+    Map<String, String> languagesMap = new HashMap<>();
+
+    // список направления переводов. Берётся из сети. Перенос в модель?
+    private List<String> directions = new ArrayList<>();
+
     @Inject
     public TranslationPresenter() {
     }
@@ -37,6 +48,7 @@ public class TranslationPresenter extends BasePresenter {
             view.showEmptyResut();
             return;
         }
+        //TODO запилить DELAY!
         addSubscription(getSubscriptionForTranslated(text));
     }
 

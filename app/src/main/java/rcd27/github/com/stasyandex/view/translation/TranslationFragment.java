@@ -9,14 +9,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnTextChanged;
 import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.di.DaggerTranslationComponent;
 import rcd27.github.com.stasyandex.di.TranslationComponent;
@@ -30,14 +32,23 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     private final String TAG = getClass().getSimpleName();
 
+    @Bind(R.id.languageFrom)
+    TextView tvLAnguageFrom;
+
+    @Bind(R.id.ib_switch_direction)
+    ImageButton ibSwitchDirection;
+
+    @Bind(R.id.languageTo)
+    TextView tvLAnguageTo;
+
     @Bind(R.id.translation_editText)
     EditText editText;
 
-    @Bind(R.id.bt_getTranslation)
-    Button getTranslationButton;
+    @Bind(R.id.bt_clearEditText)
+    ImageButton btClearEditText;
 
     @Bind(R.id.tv_translation_result)
-    TextView translationResultTextView;
+    TextView tvTranslationResult;
 
     @Inject
     TranslationPresenter presenter;
@@ -70,6 +81,17 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         component.inject(this);
     }
 
+    @OnClick(R.id.bt_clearEditText)
+    public void onClearEditTextButtonClicked() {
+        editText.setText("");
+    }
+
+    @OnTextChanged(R.id.translation_editText)
+    public void onTextChanged() {
+        presenter.onGetTranslation();
+        listener.onTranslateButtonClicked(getTextFromEditText());
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -78,15 +100,11 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         View view = inflater.inflate(R.layout.fragment_translation, container, false);
         ButterKnife.bind(this, view);
 
-        getTranslationButton.setOnClickListener(v -> {
-            presenter.onGetTranslation();
-            listener.onTranslateButtonClicked(getTextFromEditText());
-        });
         return view;
     }
 
     private void makeToast(String text) {
-        Snackbar.make(translationResultTextView, text, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(tvTranslationResult, text, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -102,12 +120,12 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @Override
     public void showTranslation(Translation resultTranslation) {
-        translationResultTextView.setText(resultTranslation.show());
+        tvTranslationResult.setText(resultTranslation.show());
     }
 
     @Override
     public void showEmptyResut() {
-        translationResultTextView.setText("");
+        tvTranslationResult.setText("");
     }
 
     @Override
