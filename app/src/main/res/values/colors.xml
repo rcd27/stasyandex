@@ -6,4 +6,5 @@
     <color name="buttonLight">#FFE751</color>
     <color name="colorAccent">#293475</color>
     <color name="buttonGray">#858E98</color>
+    <color name="textBlack">#000000</color>
 </resources>

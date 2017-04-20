@@ -18,5 +18,6 @@
     <string name="tv_choose_language">Выбор языка</string>
     <string name="translate_to">Язык перевода</string>
     <string name="translate_from">Язык ввода</string>
+    <string name="ib_switch_direction">Поменять направление</string>
 
 </resources>

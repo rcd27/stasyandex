@@ -6,18 +6,69 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/chooseLanguagePane"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height_standart"
+        android:background="@color/colorPrimary"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/languageFrom"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_height_standart"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:gravity="end|center_vertical"
+            android:paddingEnd="@dimen/padding"
+            android:paddingLeft="@dimen/padding"
+            android:paddingRight="@dimen/padding"
+            android:paddingStart="@dimen/padding"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/item_text_size_normal"
+            tools:text="Русский" />
+
+        <ImageButton
+            android:id="@+id/im_switch_direction"
+            android:layout_width="@dimen/item_height_standart"
+            android:layout_height="@dimen/item_height_standart"
+            android:background="@color/colorPrimary"
+            android:contentDescription="@string/ib_switch_direction"
+            app:srcCompat="@drawable/ic_change_arrows_black_24dp" />
+
+        <TextView
+            android:id="@+id/languageTo"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_height_standart"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:gravity="start|center_vertical"
+            android:paddingEnd="@dimen/padding"
+            android:paddingLeft="@dimen/padding"
+            android:paddingRight="@dimen/padding"
+            android:paddingStart="@dimen/padding"
+            android:textColor="@color/textBlack"
+            android:textSize="@dimen/item_text_size_normal"
+            tools:text="Английский" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:id="@+id/linear_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/chooseLanguagePane">
 
         <EditText
             android:id="@+id/translation_editText"
-            android:layout_width="283dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="300dp"
+            android:layout_height="@dimen/item_height_standart"
+            android:layout_marginLeft="@dimen/padding"
+            android:layout_marginStart="@dimen/padding"
+            android:layout_marginTop="@dimen/padding"
             android:hint="@string/textField_hint"
             android:inputType="text"
             android:textAlignment="gravity"
