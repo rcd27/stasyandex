@@ -1,6 +1,7 @@
 package rcd27.github.com.stasyandex.view.dictionary;
 
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,16 +46,17 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
     /*Присваивание текст-вьюшкам значений из листа*/
     @Override
     public void onBindViewHolder(DictionaryAdapter.ViewHolder holder, int position) {
-        List<String> synonyms = list.get(position).getSynonyms();
-        List<String> meaninigs = list.get(position).getMeanings();
+        //TODO привести в порядок
+//        List<String> synonyms = list.get(position).getSynonyms();
+//        List<String> meaninigs = list.get(position).getMeanings();
 
-        if (null != synonyms) {
-            holder.textSyn.setText(TextUtil.commaRawFromList(synonyms));
-        }
-
-        if (null != meaninigs) {
-            holder.mean.setText(TextUtil.commaRawFromList(meaninigs));
-        }
+//        if (null != synonyms) {
+//            holder.textSyn.setText(TextUtil.commaRawFromList(synonyms));
+//        }
+//
+//        if (null != meaninigs) {
+//            holder.mean.setText(TextUtil.commaRawFromList(meaninigs));
+//        }
     }
 
     public void setDictionaryItemList(List<DicTranslation> dictionaryItemList) {

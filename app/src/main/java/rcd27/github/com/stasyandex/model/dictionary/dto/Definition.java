@@ -14,16 +14,16 @@ public class Definition {
     /*Часть речи, может отсутствовать*/
     @SerializedName("pos")
     @Expose
-    public String pos;
+    private String pos;
 
     @SerializedName("anm")
     @Expose
-    public String anm;
+    private String anm;
 
     /*Массив переводов*/
     @SerializedName("tr")
     @Expose
-    public List<DicTranslation> dicTranslation;
+    private List<DicTranslation> dicTranslation;
 
     public String getText() {
         return text;

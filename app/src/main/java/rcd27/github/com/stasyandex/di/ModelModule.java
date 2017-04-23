@@ -18,6 +18,7 @@ public class ModelModule {
     @Provides
     @ApplicationScope
     TranslationAPI translationAPI() {
+        //TODO сюда надо передать Context приложения, чтобы добавить кэширование хттпклиента
         return ApiModule.getTranslationApi();
     }
 

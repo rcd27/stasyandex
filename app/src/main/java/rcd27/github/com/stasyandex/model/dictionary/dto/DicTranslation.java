@@ -1,9 +1,16 @@
 package rcd27.github.com.stasyandex.model.dictionary.dto;
 
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+/*----------------------------------------- [tr]
+1. [tr.text],[tr.getSyn[0]],[tr.getSyn[..]]
+   ([tr.pos])
+   ----------------------------------------
+ */
 
 public class DicTranslation {
     @SerializedName("text")
@@ -12,16 +19,15 @@ public class DicTranslation {
 
     @SerializedName("pos")
     @Expose
-    public String pos;
+    private String pos;
 
-    /*Массив синонимов*/
     @SerializedName("syn")
     @Expose
-    public List<String> synonyms;
+    private List<Synonym> synonyms;
 
     @SerializedName("mean")
-    @Expose
-    public List<String> meanings;
+    @Expose(deserialize = false, serialize = false)
+    private List<Meaning> meanings;
 
     public String getText() {
         return text;
@@ -39,19 +45,19 @@ public class DicTranslation {
         this.pos = pos;
     }
 
-    public List<String> getSynonyms() {
+    public List<Synonym> getSynonyms() {
         return synonyms;
     }
 
-    public void setSynonyms(List<String> synonyms) {
+    public void setSynonyms(List<Synonym> synonyms) {
         this.synonyms = synonyms;
     }
 
-    public List<String> getMeanings() {
+    public List<Meaning> getMeanings() {
         return meanings;
     }
 
-    public void setMeanings(List<String> meanings) {
+    public void setMeanings(List<Meaning> meanings) {
         this.meanings = meanings;
     }
 }

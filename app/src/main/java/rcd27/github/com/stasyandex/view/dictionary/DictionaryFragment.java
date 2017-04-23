@@ -24,7 +24,6 @@ import rcd27.github.com.stasyandex.di.DictionaryModule;
 import rcd27.github.com.stasyandex.model.dictionary.dto.Definition;
 import rcd27.github.com.stasyandex.model.dictionary.dto.DicTranslation;
 import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryPresenter;
-import rcd27.github.com.stasyandex.presenter.visualobject.DictionaryDefinition;
 import rcd27.github.com.stasyandex.view.BaseFragment;
 
 public class DictionaryFragment extends BaseFragment implements DictionaryView {
@@ -80,11 +79,11 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     @Override
     public void showDef(Definition definition) {
 //        dictionaryAdapter.setDictionaryItemList(new ArrayList< >(definition),presenter);
-        showDictionaryDefiniton(new DictionaryDefinition(definition.getText(), definition.getPos()));
+        showDictionaryDefiniton(definition);
         showDictionaryDictionaryItems(definition.getDicTranslation());
     }
 
-    public void showDictionaryDefiniton(DictionaryDefinition definition) {
+    public void showDictionaryDefiniton(Definition definition) {
         dictionaryOriginWord.setText(definition.getText());
         dictionaryOriginWordPos.setText(definition.getPos());
     }
