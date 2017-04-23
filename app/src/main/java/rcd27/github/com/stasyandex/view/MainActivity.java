@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements TranslationFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
+        //TODO пробросить getCacheDir() в OkHttpClient;
     }
 
     @Override

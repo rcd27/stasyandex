@@ -9,7 +9,6 @@ import java.util.List;
 
 import rcd27.github.com.stasyandex.model.ApiModule;
 import rcd27.github.com.stasyandex.model.translation.TranslationAPI;
-import rcd27.github.com.stasyandex.presenter.visualobject.Translation;
 
 import static org.junit.Assert.assertEquals;
 

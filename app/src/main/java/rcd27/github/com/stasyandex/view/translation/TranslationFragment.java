@@ -24,9 +24,9 @@ import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.di.DaggerTranslationComponent;
 import rcd27.github.com.stasyandex.di.TranslationComponent;
 import rcd27.github.com.stasyandex.di.TranslationModule;
+import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.presenter.translation.TranslationPresenter;
-import rcd27.github.com.stasyandex.presenter.visualobject.Translation;
 import rcd27.github.com.stasyandex.view.BaseFragment;
 import rcd27.github.com.stasyandex.view.LanguagesActivity;
 

@@ -4,22 +4,19 @@ package rcd27.github.com.stasyandex.presenter.translation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.inject.Inject;
 
 import rcd27.github.com.stasyandex.model.Const;
+import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
-import rcd27.github.com.stasyandex.presenter.visualobject.Translation;
 import rcd27.github.com.stasyandex.view.translation.TranslationView;
 import rx.Subscription;
 
@@ -30,7 +27,6 @@ public class TranslationPresenter extends BasePresenter {
     private TranslationView view;
     private Context context;
 
-    private TranslationMapper translationMapper = new TranslationMapper();
     private Translation translation;
 
     //TODO сугубо через DI
@@ -48,6 +44,7 @@ public class TranslationPresenter extends BasePresenter {
         super();
         this.view = view;
         this.context = context;
+        //TODO сделать так, чтобы только один раз подгружалось из сети.
         addSubscription(getSubscriptionForAvailableLanguages("ru"));
     }
 
@@ -63,9 +60,7 @@ public class TranslationPresenter extends BasePresenter {
 
     //TODO прикручивать направление перевода начну отсюда пожалуй
     private Subscription getSubscriptionForTranslated(String text) {
-
         return responseData.getTranslation(text, "ru-en")
-                .map(translationMapper)
                 .doOnNext(response -> {
                     if (null != response && !response.isEmpty()) {
                         translation = response;
@@ -85,7 +80,6 @@ public class TranslationPresenter extends BasePresenter {
     }
 
     private Subscription getSubscriptionForAvailableLanguages(String forLanguage) {
-        //TODO сделать так, чтобы только один раз подгружалось из сети.
         return responseData.getAvailableLanguages(forLanguage)
                 .doOnNext(response -> {
                     languagesMap = response.getLanguages();

@@ -6,6 +6,8 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import rcd27.github.com.stasyandex.TextUtil;
+
 /*
 Собственно перевод.
 translationResult оформлен листом, но в нём замечен пока только один элемент.
@@ -48,5 +50,13 @@ public class Translation {
     public String toString() {
         return MessageFormat.format("Code: {0}, Direction: {1}, Translation result: {2}",
                 code, direction, translationResult.toString());
+    }
+
+    public String show() {
+        return TextUtil.commaRawFromList(translationResult);
+    }
+
+    public boolean isEmpty() {
+        return getTranslationResult().isEmpty();
     }
 }
