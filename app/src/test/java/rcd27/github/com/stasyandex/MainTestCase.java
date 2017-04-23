@@ -23,10 +23,7 @@ public class MainTestCase {
 
     @Test
     public void jsonMappigTest() {
-        translationAPI.getAvailableLangs("ru").subscribe(avLangs -> {
-            System.out.print(avLangs.printLanguagesKeySet());
-            System.out.print(avLangs.printLanguagesValues());
-        });
+        translationAPI.getAvailableLangs("ru").subscribe(System.out::print);
     }
 
     @Test

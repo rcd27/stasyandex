@@ -1,6 +1,8 @@
 package rcd27.github.com.stasyandex.model;
 
 
+import android.support.annotation.NonNull;
+
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
@@ -18,32 +20,36 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static okhttp3.logging.HttpLoggingInterceptor.Level;
 
 public class ApiModule {
-    //TODO избавиться от этого позорного дублирования кода.
     public static TranslationAPI getTranslationApi() {
+        OkHttpClient translationClient = getHttpClient(Const.TRANSLATE_API_KEY);
+        Retrofit translationService = buildService(Const.TRANSLATE_URL, translationClient);
+        return translationService.create(TranslationAPI.class);
+    }
+
+
+    public static DictionaryAPI getDictionaryApi() {
+        OkHttpClient dictionaryClient = getHttpClient(Const.DICTIONARY_API_KEY);
+        Retrofit dictionaryService = buildService(Const.DICTIONARY_URL, dictionaryClient);
+        return dictionaryService.create(DictionaryAPI.class);
+    }
+
+    @NonNull
+    private static OkHttpClient getHttpClient(String apiKey) {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient().newBuilder();
         HttpLoggingInterceptor networkLogger = new HttpLoggingInterceptor();
         networkLogger.setLevel(Level.BASIC);
-        httpClientBuilder.addInterceptor(new CustomInterceptor(Const.TRANSLATE_API_KEY));
+        httpClientBuilder.addInterceptor(new CustomInterceptor(apiKey));
         httpClientBuilder.addInterceptor(networkLogger);
-
-        return new Retrofit.Builder()
-                .baseUrl(Const.TRANSLATE_URL)
-                .client(httpClientBuilder.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build().create(TranslationAPI.class);
+        return httpClientBuilder.build();
     }
 
-    public static DictionaryAPI getDictionaryApi() {
-        OkHttpClient.Builder httpClientBuilder = new OkHttpClient().newBuilder();
-        httpClientBuilder.addInterceptor(new CustomInterceptor(Const.DICTIONARY_API_KEY));
-
+    private static Retrofit buildService(String baseUrl, OkHttpClient client) {
         return new Retrofit.Builder()
-                .baseUrl(Const.DICTIONARY_URL)
-                .client(httpClientBuilder.build())
+                .baseUrl(baseUrl)
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build().create(DictionaryAPI.class);
+                .build();
     }
 
     private static class CustomInterceptor implements Interceptor {
