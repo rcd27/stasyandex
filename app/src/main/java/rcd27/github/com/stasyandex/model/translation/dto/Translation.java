@@ -10,7 +10,7 @@ import java.util.List;
 Собственно перевод.
 translationResult оформлен листом, но в нём замечен пока только один элемент.
  */
-public class TranslationDTO {
+public class Translation {
     @SerializedName("code")
     private int code;
 
@@ -46,7 +46,7 @@ public class TranslationDTO {
 
     @Override
     public String toString() {
-        return MessageFormat.format("Code: {0}, Direction: {1}, TranslationDTO result: {2}",
+        return MessageFormat.format("Code: {0}, Direction: {1}, Translation result: {2}",
                 code, direction, translationResult.toString());
     }
 }

@@ -5,7 +5,7 @@
     <string name="textField_hint">Что переводим?</string>
     <string name="fake_sound_button">fake sound button</string>
     <string name="fake_mic_button">fake mic button</string>
-    <string name="switches_to_translation_api">Switches to translationDTO API</string>
+    <string name="switches_to_translation_api">Switches to translation API</string>
     <string name="switches_to_history_fragment">Switches to History fragment</string>
     <string name="fake_preferencies_button">Fake Preferencies button</string>
     <string name="get_translation">Оп!</string>

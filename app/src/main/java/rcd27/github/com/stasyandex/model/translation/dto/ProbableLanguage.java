@@ -7,7 +7,7 @@ import java.text.MessageFormat;
 /*
 Получаемый DTO, Ответ API на команду detect.
  */
-public class ProbableLanguageDTO {
+public class ProbableLanguage {
     @SerializedName("code")
     private int code;
     @SerializedName("lang")

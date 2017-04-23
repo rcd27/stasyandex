@@ -21,10 +21,8 @@ public class ApiModule {
     //TODO избавиться от этого позорного дублирования кода.
     public static TranslationAPI getTranslationApi() {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient().newBuilder();
-        /*OUT OF ORDER****/
         HttpLoggingInterceptor networkLogger = new HttpLoggingInterceptor();
         networkLogger.setLevel(Level.BASIC);
-        /*---------------*/
         httpClientBuilder.addInterceptor(new CustomInterceptor(Const.TRANSLATE_API_KEY));
         httpClientBuilder.addInterceptor(networkLogger);
 

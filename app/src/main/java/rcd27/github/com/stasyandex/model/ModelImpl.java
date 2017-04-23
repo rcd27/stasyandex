@@ -9,9 +9,9 @@ import rcd27.github.com.stasyandex.di.ModelModule;
 import rcd27.github.com.stasyandex.model.dictionary.DictionaryAPI;
 import rcd27.github.com.stasyandex.model.dictionary.dto.DicResultDTO;
 import rcd27.github.com.stasyandex.model.translation.TranslationAPI;
-import rcd27.github.com.stasyandex.model.translation.dto.AvailableLanguagesDTO;
-import rcd27.github.com.stasyandex.model.translation.dto.ProbableLanguageDTO;
-import rcd27.github.com.stasyandex.model.translation.dto.TranslationDTO;
+import rcd27.github.com.stasyandex.model.translation.dto.AvailableLanguages;
+import rcd27.github.com.stasyandex.model.translation.dto.ProbableLanguage;
+import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rx.Observable;
 import rx.Scheduler;
 
@@ -47,19 +47,19 @@ public class ModelImpl implements Model {
     }
 
     @Override
-    public Observable<AvailableLanguagesDTO> getAvailableLanguages(String forLanguage) {
+    public Observable<AvailableLanguages> getAvailableLanguages(String forLanguage) {
         return translationAPI.getAvailableLangs(forLanguage)
                 .compose(applySchedulers());
     }
 
     @Override
-    public Observable<ProbableLanguageDTO> getProbableLanguage(String forText) {
+    public Observable<ProbableLanguage> getProbableLanguage(String forText) {
         return translationAPI.getProbableLanguage(forText)
                 .compose(applySchedulers());
     }
 
     @Override
-    public Observable<TranslationDTO> getTranslation(String forText, String direction) {
+    public Observable<Translation> getTranslation(String forText, String direction) {
         return translationAPI.getTranslation(forText, direction)
                 .compose(applySchedulers());
     }

@@ -5,22 +5,16 @@ import com.google.gson.annotations.SerializedName;
 
 import java.text.MessageFormat;
 import java.util.List;
+import java.util.Map;
 
-/*
-DTO объект для всех доступных языках перевода.
-Задача: получать его один раз при запуске приложения.
-Мапить в объект для визуализации.
- */
-
-public class AvailableLanguagesDTO {
+public class AvailableLanguages {
 
     @SerializedName("dirs")
     private List<String> directions;
 
-    //TODO изучить вопрос перевода этого дерьма в нормальный List<String>,чем он по сути и является.
     @SerializedName("langs")
     private
-    LangsDTO languages;
+    Map<String, String> languages;
 
     public List<String> getDirections() {
         return directions;
@@ -30,17 +24,16 @@ public class AvailableLanguagesDTO {
         this.directions = directions;
     }
 
-    public LangsDTO getLanguages() {
+    public Map<String, String> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(LangsDTO languages) {
+    public void setLanguages(Map<String, String> languages) {
         this.languages = languages;
     }
 
     public boolean isEmpty() {
-        //TODO поменять на languages.isEmpty()
-        return directions.isEmpty() && languages == null;
+        return directions.isEmpty() && languages.isEmpty();
     }
 
     @Override

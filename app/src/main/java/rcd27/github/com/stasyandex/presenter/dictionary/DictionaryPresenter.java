@@ -69,7 +69,7 @@ public class DictionaryPresenter extends BasePresenter {
                 });
     }
 
-    //TODO потом это перейдёт в тесты.
+    //TODO убрать.
     private void showFake() {
         DefinitionDTO fakeDTO = new DefinitionDTO();
 

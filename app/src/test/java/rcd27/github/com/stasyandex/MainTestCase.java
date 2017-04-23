@@ -1,16 +1,33 @@
 package rcd27.github.com.stasyandex;
 
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import rcd27.github.com.stasyandex.model.ApiModule;
+import rcd27.github.com.stasyandex.model.translation.TranslationAPI;
 import rcd27.github.com.stasyandex.presenter.visualobject.Translation;
 
 import static org.junit.Assert.assertEquals;
 
 public class MainTestCase {
+    private TranslationAPI translationAPI;
+
+    @Before
+    public void getApi() {
+        translationAPI = ApiModule.getTranslationApi();
+    }
+
+    @Test
+    public void jsonMappigTest() {
+        translationAPI.getAvailableLangs("ru").subscribe(avLangs -> {
+            System.out.print(avLangs.printLanguagesKeySet());
+            System.out.print(avLangs.printLanguagesValues());
+        });
+    }
 
     @Test
     public void translationShowTest() {

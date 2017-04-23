@@ -52,8 +52,6 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
         List<SynonymDTO> synonymDTOs = list.get(position).getSynonymDTO();
         List<MeaninigDTO> meaninigDTOs = list.get(position).getMeaninigDTO();
 
-        //TODO посмотреть как в гугловском курсе нумеруются элементы RecyclerView.
-
         if (null != synonymDTOs) {
             holder.textSyn.setText(TextUtil.commaRawFromSynList(synonymDTOs));
         }
