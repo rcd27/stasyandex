@@ -75,7 +75,7 @@ public class LanguagesActivity extends AppCompatActivity {
         intent.putExtra("selectedLanguage", chosenLanguage);
         intent.putExtra("direction", direction);
         setResult(RESULT_OK, intent);
-        NavUtils.navigateUpFromSameTask(this);
+        finish();
     }
 
     private void setHeadText(int direction) {
