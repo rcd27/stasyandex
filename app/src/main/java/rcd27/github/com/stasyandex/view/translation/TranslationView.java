@@ -23,4 +23,10 @@ public interface TranslationView extends BaseView {
 
     /*На какой*/
     void showLanguageTo(String selectedLAnguage);
+
+    /*Взять значение из tv переводимого языка*/
+    String getLanguageFrom();
+
+    /*В какой*/
+    String getLanguageTo();
 }

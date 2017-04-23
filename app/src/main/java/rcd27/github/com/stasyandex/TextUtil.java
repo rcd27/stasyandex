@@ -3,6 +3,7 @@ package rcd27.github.com.stasyandex;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import rcd27.github.com.stasyandex.model.dictionary.dto.MeaninigDTO;
 import rcd27.github.com.stasyandex.model.dictionary.dto.SynonymDTO;
@@ -39,5 +40,14 @@ public class TextUtil {
             resultList.add(meaninigDTO.getText());
         }
         return commaRawFromList(resultList);
+    }
+
+    public static String findKeyByValue(Map<String, String> languagesMap, String languageFrom) {
+        for (Map.Entry<String, String> entry : languagesMap.entrySet()) {
+            if (entry.getValue().equals(languageFrom)) {
+                return entry.getKey();
+            }
+        }
+        return "";
     }
 }

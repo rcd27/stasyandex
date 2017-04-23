@@ -14,6 +14,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import rcd27.github.com.stasyandex.TextUtil;
 import rcd27.github.com.stasyandex.model.Const;
 import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
@@ -25,16 +26,12 @@ public class TranslationPresenter extends BasePresenter {
     private final String TAG = getClass().getSimpleName();
 
     private TranslationView view;
+
     private Context context;
 
     private Translation translation;
 
-    //TODO сугубо через DI
-    //  мапа для языков en→Английски. Берётся из сети / с базы.
-    private Map<String, String> languagesMap = new HashMap<>();
-
-    // список направления переводов. Берётся из сети. Перенос в модель? Типа "ru-en"
-    private List<String> directions = new ArrayList<>();
+    private Map<String, String> languagesMap;
 
     @Inject
     public TranslationPresenter() {
@@ -58,9 +55,17 @@ public class TranslationPresenter extends BasePresenter {
         addSubscription(getSubscriptionForTranslated(text));
     }
 
-    //TODO прикручивать направление перевода начну отсюда пожалуй
     private Subscription getSubscriptionForTranslated(String text) {
-        return responseData.getTranslation(text, "ru-en")
+        //TODO мб вшить direction поглубже?
+        String languageFrom = view.getLanguageFrom();
+        String languageFromAbbr = TextUtil.findKeyByValue(languagesMap,languageFrom);
+
+        String languageTo = view.getLanguageTo();
+        String languageToAbbr = TextUtil.findKeyByValue(languagesMap, languageTo);
+
+        String direction = languageFromAbbr.concat("-").concat(languageToAbbr);
+
+        return responseData.getTranslation(text, direction)
                 .doOnNext(response -> {
                     if (null != response && !response.isEmpty()) {
                         translation = response;
@@ -74,9 +79,8 @@ public class TranslationPresenter extends BasePresenter {
                 .subscribe();
     }
 
-    public void onChooseLanguage(int direction) {
-        view.chooseLanguage(direction);
-        Log.w(TAG, languagesMap.values().toString());
+    public void onChooseLanguage(int directionInt) {
+        view.chooseLanguage(directionInt);
     }
 
     private Subscription getSubscriptionForAvailableLanguages(String forLanguage) {
