@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import javax.inject.Inject;
 
 import butterknife.Bind;
@@ -43,7 +41,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     ImageButton ibSwitchDirection;
 
     @Bind(R.id.tv_languageTo)
-    TextView tvLAnguageTo;
+    TextView tvLanguageTo;
 
     @Bind(R.id.translation_editText)
     EditText editText;
@@ -79,7 +77,8 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         super.onCreate(savedInstanceState);
         if (null == component) {
             component = DaggerTranslationComponent.builder()
-                    .translationModule(new TranslationModule(this, listener))
+                    .translationModule(new TranslationModule(this, listener,
+                            getContext().getApplicationContext()))
                     .build();
         }
         component.inject(this);
@@ -109,7 +108,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     @OnTextChanged(R.id.translation_editText)
     public void onTextChanged() {
         presenter.onGetTranslation();
-        listener.onTranslateButtonClicked(getTextFromEditText());
+        listener.onTranslateEditTextChanged(getTextFromEditText());
     }
 
     @Nullable
@@ -162,16 +161,10 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         super.onSaveInstanceState(outState);
     }
 
-    //TODO FIXME: теперь нифига не через кнопку
-    public interface TranslateButtonListener {
-        void onTranslateButtonClicked(String textFromEditText);
-    }
-
     @Override
-    public void chooseLanguage(final ArrayList<String> availableLangs, final int direction) {
+    public void chooseLanguage(final int direction) {
         Intent intent = new Intent(getContext(), LanguagesActivity.class);
         intent.putExtra("direction", direction);
-        intent.putExtra("availableLanguages", availableLangs);
         startActivityForResult(intent, 0);
     }
 
@@ -182,6 +175,11 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @Override
     public void showLanguageTo(String languageToShow) {
-        tvLAnguageTo.setText(languageToShow);
+        tvLanguageTo.setText(languageToShow);
+    }
+
+    //TODO FIXME: теперь нифига не через кнопку
+    public interface TranslateButtonListener {
+        void onTranslateEditTextChanged(String textFromEditText);
     }
 }

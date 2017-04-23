@@ -2,8 +2,10 @@ package rcd27.github.com.stasyandex.view;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,7 +35,6 @@ public class LanguagesActivity extends AppCompatActivity {
     TextView tvTitle;
 
     private int direction;
-    private ArrayList<String> availableLanguagesList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,16 +48,21 @@ public class LanguagesActivity extends AppCompatActivity {
             setHeadText(direction);
         }
 
-        if (intent.hasExtra("availableLanguages")) {
-            availableLanguagesList = intent.getStringArrayListExtra("availableLanguages");
-            Collections.sort(availableLanguagesList);
+        SharedPreferences prefs = getSharedPreferences(Const.TRANSLATION_CACHE, MODE_PRIVATE);
+        Map<String, String> availableLanguagesMap = (Map<String, String>) prefs.getAll();
+
+        List<String> languageListToShow = new ArrayList<>();
+        for (String s : availableLanguagesMap.values()) {
+            languageListToShow.add(s);
         }
+        Collections.sort(languageListToShow);
 
         languagesListView.setOnItemClickListener((parent, view, position, id) ->
-                closeActivity(availableLanguagesList.get(position)));
+                closeActivity(languageListToShow.get(position)));
+
 
         languagesListView.setAdapter(new ArrayAdapter<>(getApplicationContext(),
-                R.layout.item_language, availableLanguagesList));
+                R.layout.item_language, languageListToShow));
     }
 
     @OnClick(R.id.ib_closeAvailableLanguages)
@@ -67,7 +75,7 @@ public class LanguagesActivity extends AppCompatActivity {
         intent.putExtra("selectedLanguage", chosenLanguage);
         intent.putExtra("direction", direction);
         setResult(RESULT_OK, intent);
-        finish();
+        NavUtils.navigateUpFromSameTask(this);
     }
 
     private void setHeadText(int direction) {

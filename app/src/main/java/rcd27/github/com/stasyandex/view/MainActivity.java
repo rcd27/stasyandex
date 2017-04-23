@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements TranslationFragme
     }
 
     @Override
-    public void onTranslateButtonClicked(String textFromEditText) {
+    public void onTranslateEditTextChanged(String textFromEditText) {
         DictionaryFragment dicFrag = (DictionaryFragment) fragmentManager
                 .findFragmentById(R.id.dictionary_fragment);
         dicFrag.getPresenter().onGetDictionaryResponse(textFromEditText);

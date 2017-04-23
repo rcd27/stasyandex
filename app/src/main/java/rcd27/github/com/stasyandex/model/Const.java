@@ -18,4 +18,6 @@ public interface Const {
 
     int DIRECTION_FROM = 1;
     int DIRECTION_TO = 2;
+
+    String TRANSLATION_CACHE = "TRANSLATION_CACHE";
 }

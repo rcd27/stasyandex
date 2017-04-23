@@ -1,8 +1,6 @@
 package rcd27.github.com.stasyandex.view.translation;
 
 
-import java.util.ArrayList;
-
 import rcd27.github.com.stasyandex.presenter.visualobject.Translation;
 import rcd27.github.com.stasyandex.view.BaseView;
 
@@ -18,7 +16,7 @@ public interface TranslationView extends BaseView {
     void showEmptyResut();
 
     /*Выбор языка*/
-    void chooseLanguage(final ArrayList<String> availableLangs, final int direction);
+    void chooseLanguage(final int direction);
 
     /*Показать с какого языка переводим*/
     void showLanguageFrom(String selectedLAnguage);

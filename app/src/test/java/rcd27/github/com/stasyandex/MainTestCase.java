@@ -23,7 +23,7 @@ public class MainTestCase {
 
     @Test
     public void jsonMappigTest() {
-        translationAPI.getAvailableLangs("ru").subscribe(System.out::print);
+//        translationAPI.getAvailableLangs("ru").subscribe(System.out::print);
     }
 
     @Test
