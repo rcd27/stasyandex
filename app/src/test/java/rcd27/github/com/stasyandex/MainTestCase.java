@@ -9,6 +9,7 @@ import java.util.List;
 
 import rcd27.github.com.stasyandex.model.ApiModule;
 import rcd27.github.com.stasyandex.model.translation.TranslationAPI;
+import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 
 import static org.junit.Assert.assertEquals;
 
@@ -29,12 +30,12 @@ public class MainTestCase {
     public void translationShowTest() {
         List<String> fakeList = new ArrayList<>();
         fakeList.add("Раз перевод");
-        Translation translation = new Translation(fakeList);
+        Translation translation = new Translation();
+        translation.setTranslationResult(fakeList);
         assertEquals("Раз перевод", translation.show());
 
         fakeList.add("два перевод");
         fakeList.add("три перевод");
-        translation = new Translation(fakeList);
         assertEquals("Раз перевод, два перевод, три перевод", translation.show());
     }
 }

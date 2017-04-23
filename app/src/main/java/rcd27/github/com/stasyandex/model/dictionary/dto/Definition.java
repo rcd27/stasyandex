@@ -6,13 +6,12 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /*Словарная статья*/
-public class DefinitionDTO {
+public class Definition {
     @SerializedName("text")
     @Expose
     public String text;
 
     /*Часть речи, может отсутствовать*/
-    //TODO освежить в памяти, что там про null в JSON'e
     @SerializedName("pos")
     @Expose
     public String pos;
@@ -22,9 +21,9 @@ public class DefinitionDTO {
     public String anm;
 
     /*Массив переводов*/
-    @SerializedName("dicTranslationDTO")
+    @SerializedName("tr")
     @Expose
-    public List<DicTranslationDTO> dicTranslationDTO = null;
+    public List<DicTranslation> dicTranslation;
 
     public String getText() {
         return text;
@@ -50,11 +49,11 @@ public class DefinitionDTO {
         this.anm = anm;
     }
 
-    public List<DicTranslationDTO> getDicTranslationDTO() {
-        return dicTranslationDTO;
+    public List<DicTranslation> getDicTranslation() {
+        return dicTranslation;
     }
 
-    public void setDicTranslationDTO(List<DicTranslationDTO> dicTranslationDTO) {
-        this.dicTranslationDTO = dicTranslationDTO;
+    public void setDicTranslation(List<DicTranslation> dicTranslation) {
+        this.dicTranslation = dicTranslation;
     }
 }

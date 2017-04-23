@@ -7,24 +7,23 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /*Возвращается JSON'ом*/
-public class DicResultDTO {
+public class DicResult {
     /*Заголовок результата - не используется*/
     @SerializedName("head")
     @Expose(deserialize = false)
     public Object nullhead;
 
     /*Массив словарных статей*/
-    //TODO то есть из них надо ещё достать DicTranslationDTO
-    @SerializedName("definitionDTO")
+    @SerializedName("def")
     @Expose
-    public List<DefinitionDTO> definitionDTO = null;
+    private List<Definition> definition;
 
-    public List<DefinitionDTO> getDefinitionDTO() {
-        return definitionDTO;
+    public List<Definition> getDefinition() {
+        return definition;
     }
 
-    public void setDefinitionDTO(List<DefinitionDTO> definitionDTO) {
-        this.definitionDTO = definitionDTO;
+    public void setDefinition(List<Definition> definition) {
+        this.definition = definition;
     }
 }
 

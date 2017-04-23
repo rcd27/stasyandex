@@ -1,7 +1,7 @@
 package rcd27.github.com.stasyandex.model;
 
 
-import rcd27.github.com.stasyandex.model.dictionary.dto.DicResultDTO;
+import rcd27.github.com.stasyandex.model.dictionary.dto.DicResult;
 import rcd27.github.com.stasyandex.model.translation.dto.AvailableLanguages;
 import rcd27.github.com.stasyandex.model.translation.dto.ProbableLanguage;
 import rcd27.github.com.stasyandex.model.translation.dto.Translation;
@@ -18,5 +18,5 @@ public interface Model {
     @text - "привет"
     @forUi - "ru"
      */
-    Observable<DicResultDTO> getDicResult(String forLanguage, String text, String forUi);
+    Observable<DicResult> getDicResult(String forLanguage, String text, String forUi);
 }

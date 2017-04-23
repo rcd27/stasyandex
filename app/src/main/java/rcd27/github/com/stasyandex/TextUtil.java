@@ -1,12 +1,9 @@
 package rcd27.github.com.stasyandex;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import rcd27.github.com.stasyandex.model.dictionary.dto.MeaninigDTO;
-import rcd27.github.com.stasyandex.model.dictionary.dto.SynonymDTO;
 
 public class TextUtil {
     public static String commaRawFromList(List<String> fromList) {
@@ -23,23 +20,6 @@ public class TextUtil {
             }
             return sb.toString();
         }
-    }
-
-    //TODO запилить твой любимый дженерик.
-    public static String commaRawFromSynList(List<SynonymDTO> synonymDTOs) {
-        List<String> synStrings = new ArrayList<>();
-        for (SynonymDTO synonymDTO : synonymDTOs) {
-            synStrings.add(synonymDTO.getText());
-        }
-        return commaRawFromList(synStrings);
-    }
-
-    public static String commaRawFromMeanList(List<MeaninigDTO> fromList) {
-        List<String> resultList = new ArrayList<>();
-        for (MeaninigDTO meaninigDTO : fromList) {
-            resultList.add(meaninigDTO.getText());
-        }
-        return commaRawFromList(resultList);
     }
 
     public static String findKeyByValue(Map<String, String> languagesMap, String languageFrom) {

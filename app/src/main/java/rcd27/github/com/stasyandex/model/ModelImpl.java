@@ -7,7 +7,7 @@ import javax.inject.Named;
 import rcd27.github.com.stasyandex.di.DaggerAppComponent;
 import rcd27.github.com.stasyandex.di.ModelModule;
 import rcd27.github.com.stasyandex.model.dictionary.DictionaryAPI;
-import rcd27.github.com.stasyandex.model.dictionary.dto.DicResultDTO;
+import rcd27.github.com.stasyandex.model.dictionary.dto.DicResult;
 import rcd27.github.com.stasyandex.model.translation.TranslationAPI;
 import rcd27.github.com.stasyandex.model.translation.dto.AvailableLanguages;
 import rcd27.github.com.stasyandex.model.translation.dto.ProbableLanguage;
@@ -65,7 +65,7 @@ public class ModelImpl implements Model {
     }
 
     @Override
-    public Observable<DicResultDTO> getDicResult(String forLanguage, String text, String uiLang) {
+    public Observable<DicResult> getDicResult(String forLanguage, String text, String uiLang) {
         return dictionaryAPI.getDicResultFor(forLanguage, text, uiLang);
     }
 

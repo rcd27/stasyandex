@@ -1,11 +1,13 @@
 package rcd27.github.com.stasyandex.view.dictionary;
 
 
-import rcd27.github.com.stasyandex.model.dictionary.dto.DefinitionDTO;
+import java.util.List;
+
+import rcd27.github.com.stasyandex.model.dictionary.dto.Definition;
 
 public interface DictionaryView {
 
-    void showDef(DefinitionDTO definitionDTO);
+    void showDef(Definition definition);
 
     void showEmpty();
 }

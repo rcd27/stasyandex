@@ -188,7 +188,6 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         return tvLanguageTo.getText().toString();
     }
 
-    //TODO FIXME: теперь нифига не через кнопку
     public interface TranslateButtonListener {
         void onTranslateEditTextChanged(String textFromEditText);
     }
