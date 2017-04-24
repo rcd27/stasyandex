@@ -1,8 +1,8 @@
 package rcd27.github.com.stasyandex;
 
 
-import java.util.Collection;
-import java.util.Collections;
+import android.support.annotation.NonNull;
+
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +24,7 @@ public class TextUtil {
         }
     }
 
-    public static String findKeyByValue(Map<String, String> languagesMap, String languageFrom) {
+    public static String findKeyByValue(@NonNull Map<String, String> languagesMap, String languageFrom) {
         for (Map.Entry<String, String> entry : languagesMap.entrySet()) {
             if (entry.getValue().equals(languageFrom)) {
                 return entry.getKey();

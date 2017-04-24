@@ -21,9 +21,9 @@ import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.di.DaggerDictionaryComponent;
 import rcd27.github.com.stasyandex.di.DictionaryComponent;
 import rcd27.github.com.stasyandex.di.DictionaryModule;
-import rcd27.github.com.stasyandex.model.dictionary.dto.Definition;
-import rcd27.github.com.stasyandex.model.dictionary.dto.DicTranslation;
 import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryPresenter;
+import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryVisualDefinition;
+import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryVisualItem;
 import rcd27.github.com.stasyandex.view.BaseFragment;
 
 public class DictionaryFragment extends BaseFragment implements DictionaryView {
@@ -77,23 +77,14 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     }
 
     @Override
-    public void showDef(Definition definition) {
-//        dictionaryAdapter.setDictionaryItemList(new ArrayList< >(definition),presenter);
-        showDictionaryDefiniton(definition);
-        showDictionaryDictionaryItems(definition.getDicTranslation());
-    }
-
-    public void showDictionaryDefiniton(Definition definition) {
+    public void showDefinition(DictionaryVisualDefinition definition) {
         dictionaryOriginWord.setText(definition.getText());
         dictionaryOriginWordPos.setText(definition.getPos());
     }
 
-    public void showDictionaryDictionaryItems(List<DicTranslation> items) {
-        if (null != items && !items.isEmpty()) {
-            dictionaryAdapter.setDictionaryItemList(items);
-        } else {
-            showEmpty();
-        }
+    @Override
+    public void showDictionaryItems(List<DictionaryVisualItem> items) {
+        dictionaryAdapter.setDictionaryItemList(items);
     }
 
     @Override

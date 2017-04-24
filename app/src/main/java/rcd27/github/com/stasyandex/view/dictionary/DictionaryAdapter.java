@@ -18,16 +18,17 @@ import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.TextUtil;
 import rcd27.github.com.stasyandex.model.dictionary.dto.DicTranslation;
+import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryVisualItem;
 
 public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.ViewHolder> {
 
-    private List<DicTranslation> list;
+    private List<DictionaryVisualItem> list;
 
-    DictionaryAdapter(List<DicTranslation> list) {
+    DictionaryAdapter(List<DictionaryVisualItem> list) {
         this.list = list;
     }
 
-    public List<DicTranslation> getList() {
+    public List<DictionaryVisualItem> getList() {
         return list;
     }
 
@@ -43,23 +44,21 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
         return new ViewHolder(v);
     }
 
-    /*Присваивание текст-вьюшкам значений из листа*/
     @Override
     public void onBindViewHolder(DictionaryAdapter.ViewHolder holder, int position) {
-        //TODO привести в порядок
-//        List<String> synonyms = list.get(position).getSynonyms();
-//        List<String> meaninigs = list.get(position).getMeanings();
+        List<String> synonyms = list.get(position).getComaRaw();
+        List<String> meaninigs = list.get(position).getMeaningRaw();
 
-//        if (null != synonyms) {
-//            holder.textSyn.setText(TextUtil.commaRawFromList(synonyms));
-//        }
-//
-//        if (null != meaninigs) {
-//            holder.mean.setText(TextUtil.commaRawFromList(meaninigs));
-//        }
+        if (null != synonyms) {
+            holder.textSyn.setText(TextUtil.commaRawFromList(synonyms));
+        }
+
+        if (null != meaninigs) {
+            holder.mean.setText(TextUtil.commaRawFromList(meaninigs));
+        }
     }
 
-    public void setDictionaryItemList(List<DicTranslation> dictionaryItemList) {
+    public void setDictionaryItemList(List<DictionaryVisualItem> dictionaryItemList) {
         this.list = dictionaryItemList;
         notifyDataSetChanged();
     }

@@ -13,6 +13,14 @@ public class DictionaryVisualItem {
         this.meaningRaw = meaningRaw;
     }
 
+    public List<String> getComaRaw() {
+        return comaRaw;
+    }
+
+    public List<String> getMeaningRaw() {
+        return meaningRaw;
+    }
+
     @Override
     public String toString() {
         return MessageFormat.format("{0}\n({1})", comaRaw.toString(), meaningRaw.toString());
