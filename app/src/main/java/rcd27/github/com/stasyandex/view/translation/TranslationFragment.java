@@ -156,7 +156,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     }
 
     @Override
-    public void showEmptyResut() {
+    public void showEmptyResult() {
         tvTranslationResult.setText("");
     }
 

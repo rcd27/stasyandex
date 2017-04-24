@@ -3,8 +3,12 @@ package rcd27.github.com.stasyandex.presenter.translation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Map;
 
@@ -14,6 +18,7 @@ import rcd27.github.com.stasyandex.TextUtil;
 import rcd27.github.com.stasyandex.model.Const;
 import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
+import rcd27.github.com.stasyandex.view.history.HistoryItem;
 import rcd27.github.com.stasyandex.view.translation.TranslationView;
 import rx.Subscription;
 
@@ -44,7 +49,7 @@ public class TranslationPresenter extends BasePresenter {
         String text = view.getTextFromEditText();
         if (TextUtils.isEmpty(text) || text.isEmpty()) {
             view.showError("Введите текст для перевода.");
-            view.showEmptyResut();
+            view.showEmptyResult();
             return;
         }
         addSubscription(getSubscriptionForTranslated(text));
@@ -65,9 +70,11 @@ public class TranslationPresenter extends BasePresenter {
                     if (null != response && !response.isEmpty()) {
                         translation = response;
                         view.showTranslation(translation);
+                        //TODO сделать задержку
+                        saveToHistory(translation);
                         Log.i(TAG, "response from server is OK");
                     } else {
-                        view.showEmptyResut();
+                        view.showEmptyResult();
                         Log.w(TAG, "response from server is null or empty");
                     }
                 })
@@ -99,5 +106,20 @@ public class TranslationPresenter extends BasePresenter {
 
     public void switchToHistory() {
         view.openHistory();
+    }
+
+    private void saveToHistory(Translation toSave) {
+        String to = TextUtil.commaRawFromList(translation.getTranslationResult());
+        String from = view.getTextFromEditText();
+
+        HistoryItem historyItem = new HistoryItem(translation.getDirection(), to, from, 0, true);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(historyItem);
+
+        SharedPreferences prefs = context.getSharedPreferences(Const.HISTORY_CACHE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString(toSave.getDirection() + toSave.getTranslationResult().toString(), json);
+        editor.apply();
     }
 }

@@ -20,4 +20,5 @@ public interface Const {
     int DIRECTION_TO = 2;
 
     String TRANSLATION_CACHE = "TRANSLATION_CACHE";
+    String HISTORY_CACHE = "HISTORY_CACHE";
 }
