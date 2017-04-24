@@ -46,6 +46,7 @@ public class DictionaryPresenter extends BasePresenter {
                     if (!dicResult.definitionListIsEmptyOrNull()) {
                         view.showDefinition(dicResult.getDefinition());
                         view.showDictionaryItems(dicResult.getElementsList());
+                        view.showError("«Реализовано с помощью сервиса «Яндекс.Словарь»");
                     } else {
                         view.showEmpty();
                     }

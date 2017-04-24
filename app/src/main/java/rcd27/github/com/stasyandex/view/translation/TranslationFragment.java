@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -135,13 +134,9 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         return view;
     }
 
-    private void makeToast(String text) {
-        Snackbar.make(tvTranslationResult, text, Snackbar.LENGTH_LONG).show();
-    }
-
     @Override
     public void showError(String error) {
-        makeToast(error);
+        makeToast(tvTranslationResult, error);
     }
 
 

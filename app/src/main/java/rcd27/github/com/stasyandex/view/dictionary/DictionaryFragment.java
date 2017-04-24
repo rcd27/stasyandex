@@ -78,6 +78,11 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     }
 
     @Override
+    public void showError(String text) {
+        makeToast(definitionItemsRecyclerView, text);
+    }
+
+    @Override
     public void showDefinition(DictionaryVisualDefinition definition) {
         dictionaryOriginWord.setText(definition.getText());
         dictionaryOriginWordPos.setText(definition.getPos());
@@ -99,4 +104,6 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     public DictionaryPresenter getPresenter() {
         return presenter;
     }
+
+
 }

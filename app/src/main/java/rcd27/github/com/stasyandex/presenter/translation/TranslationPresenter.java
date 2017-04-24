@@ -68,6 +68,7 @@ public class TranslationPresenter extends BasePresenter {
                         view.showTranslation(translation);
                         //TODO сделать задержку
                         saveToHistory(translation);
+                        view.showError("«Переведено сервисом «Яндекс.Переводчик»");
                         Log.i(TAG, "response from server is OK");
                     } else {
                         view.showEmptyResult();

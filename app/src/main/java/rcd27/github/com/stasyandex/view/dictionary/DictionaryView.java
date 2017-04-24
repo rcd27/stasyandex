@@ -9,6 +9,8 @@ import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryVisualItem;
 
 public interface DictionaryView {
 
+    void showError(String text);
+
     void showDefinition(DictionaryVisualDefinition definition);
 
     void showDictionaryItems(List<DictionaryVisualItem> items);
