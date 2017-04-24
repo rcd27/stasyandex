@@ -18,6 +18,9 @@ public interface TranslationView extends BaseView {
     /*Выбор языка*/
     void chooseLanguage(final int direction);
 
+    /*Переход к истории*/
+    void openHistory();
+
     /*Показать с какого языка переводим*/
     void showLanguageFrom(String selectedLAnguage);
 

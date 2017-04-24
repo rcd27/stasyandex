@@ -79,6 +79,7 @@ public class TranslationPresenter extends BasePresenter {
                 .subscribe();
     }
 
+    //TODO FIXME инт пробрасывается в презентер и обратно. Убрать, чтобы вью ничего не знал.
     public void onChooseLanguage(int directionInt) {
         view.chooseLanguage(directionInt);
     }
@@ -115,5 +116,9 @@ public class TranslationPresenter extends BasePresenter {
                 }
             }
         }
+    }
+
+    public void switchToHistory() {
+        view.openHistory();
     }
 }

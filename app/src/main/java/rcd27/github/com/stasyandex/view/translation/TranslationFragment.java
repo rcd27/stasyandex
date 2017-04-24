@@ -28,6 +28,7 @@ import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.presenter.translation.TranslationPresenter;
 import rcd27.github.com.stasyandex.view.BaseFragment;
+import rcd27.github.com.stasyandex.view.HistoryActivity;
 import rcd27.github.com.stasyandex.view.LanguagesActivity;
 
 public class TranslationFragment extends BaseFragment implements TranslationView {
@@ -51,6 +52,9 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @Bind(R.id.tv_translation_result)
     TextView tvTranslationResult;
+
+    @Bind(R.id.bt_history)
+    ImageButton historyButton;
 
     @Inject
     TranslationPresenter presenter;
@@ -103,6 +107,11 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     @OnClick(R.id.bt_clearEditText)
     public void onClearEditTextButtonClicked() {
         editText.setText("");
+    }
+
+    @OnClick(R.id.bt_history)
+    public void onHistoryButtonClicked() {
+        presenter.switchToHistory();
     }
 
     @OnTextChanged(R.id.translation_editText)
@@ -166,6 +175,12 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         Intent intent = new Intent(getContext(), LanguagesActivity.class);
         intent.putExtra("direction", direction);
         startActivityForResult(intent, 0);
+    }
+
+    @Override
+    public void openHistory() {
+        Intent intent = new Intent(getContext(), HistoryActivity.class);
+        startActivity(intent);
     }
 
     @Override

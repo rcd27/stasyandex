@@ -17,7 +17,7 @@
             android:id="@+id/ib_closeAvailableLanguages"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/transparent"
             android:contentDescription="@string/av_lang_close_button"
             app:srcCompat="@drawable/ic_clear_black_24dp" />
 

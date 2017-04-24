@@ -19,5 +19,6 @@
     <string name="translate_to">Язык перевода</string>
     <string name="translate_from">Язык ввода</string>
     <string name="ib_switch_direction">Поменять направление</string>
+    <string name="hint_history_search">Поиск в истории</string>
 
 </resources>

@@ -10,7 +10,8 @@ import rcd27.github.com.stasyandex.view.translation.TranslationFragment;
 
 public class MainActivity extends AppCompatActivity implements TranslationFragment.TranslateButtonListener {
 
-    //TODO: Поддержка выбора языков.
+    //TODO переключение на историю
+    //TODO флажок "Избранное"
 
     private FragmentManager fragmentManager;
 

@@ -6,13 +6,14 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <fragment
         android:id="@+id/traslation_fragment"
         android:name="rcd27.github.com.stasyandex.view.translation.TranslationFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="220dp"
         tools:layout="@layout/fragment_translation" />
 
     <fragment
