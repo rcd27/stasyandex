@@ -5,7 +5,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryVisualDefinition;
@@ -37,35 +36,35 @@ public class DicResult {
     }
 
     public List<DictionaryVisualItem> getElementsList() {
-        if (!definitionList.isEmpty()) {
-            Definition theFirstDef = definitionList.get(0);
+        Definition theFirstDef = definitionList.get(0);
 
-            List<DictionaryVisualItem> dicVoList = new ArrayList<>();
-            for (DicTranslation dicTranslation : theFirstDef.getDicTranslation()) {
-                /*comma raw*/
-                List<String> commaRaw = new ArrayList<>();
-                String firstTrWord = dicTranslation.getText();
-
-                commaRaw.add(firstTrWord);
-                List<Synonym> allSynsForFirstTrWord = dicTranslation.getSynonyms();
-                if (null != allSynsForFirstTrWord) {
-                    for (Synonym syn : allSynsForFirstTrWord) {
-                        commaRaw.add(syn.text);
-                    }
-                /*(значение)*/
-                    List<String> meaningRaw = new ArrayList<>();
-                    List<Meaning> meanings = dicTranslation.getMeanings();
-                    if (null != meanings) {
-                        for (Meaning m : meanings) {
-                            meaningRaw.add(m.getText());
-                        }
-                    }
-                    dicVoList.add(new DictionaryVisualItem(commaRaw, meaningRaw));
+        List<DictionaryVisualItem> dicVoList = new ArrayList<>();
+        for (DicTranslation dicTranslation : theFirstDef.getDicTranslation()) {
+            //Первая линия слов, ч/з зпт
+            List<String> commaRaw = new ArrayList<>();
+            String firstTrWord = dicTranslation.getText();
+            commaRaw.add(firstTrWord);
+            //добавляем синонимы
+            List<Synonym> allSynsForFirstTrWord = dicTranslation.getSynonyms();
+            if (null != allSynsForFirstTrWord) {
+                for (Synonym syn : allSynsForFirstTrWord) {
+                    commaRaw.add(syn.text);
                 }
             }
-            return dicVoList;
+            //линия значений
+            List<String> meaningRaw = new ArrayList<>();
+            List<Meaning> meanings = dicTranslation.getMeanings();
+            if (null != meanings) {
+                for (Meaning m : meanings) {
+                    meaningRaw.add(m.getText());
+                }
+            }
+
+            dicVoList.add(new DictionaryVisualItem(commaRaw, meaningRaw));
         }
-        return Collections.emptyList();
+        return dicVoList;
     }
 }
+
+
 

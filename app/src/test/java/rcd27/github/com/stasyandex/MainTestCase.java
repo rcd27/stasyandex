@@ -12,6 +12,7 @@ import rcd27.github.com.stasyandex.model.dictionary.DictionaryAPI;
 import rcd27.github.com.stasyandex.model.dictionary.dto.DicResult;
 import rcd27.github.com.stasyandex.model.translation.TranslationAPI;
 import rcd27.github.com.stasyandex.model.translation.dto.Translation;
+import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryVisualItem;
 
 import static org.junit.Assert.assertEquals;
 
@@ -41,9 +42,10 @@ public class MainTestCase {
     @Test
     public void dicResultMapperTest() {
         DicResult dicResult = dictionaryAPI.getDicResultFor("ru-en", "художник", "ru")
-                .toBlocking()
-                .first();
+                .toBlocking().last();
         System.out.println(dicResult.getDefinition().toString());
-        System.out.println(dicResult.getElementsList().toString());
+        for (DictionaryVisualItem dvi : dicResult.getElementsList()) {
+            System.out.println(dvi);
+        }
     }
 }
