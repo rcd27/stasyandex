@@ -26,7 +26,7 @@ public class DicTranslation {
     private List<Synonym> synonyms;
 
     @SerializedName("mean")
-    @Expose(deserialize = false, serialize = false)
+    @Expose()
     private List<Meaning> meanings;
 
     public String getText() {

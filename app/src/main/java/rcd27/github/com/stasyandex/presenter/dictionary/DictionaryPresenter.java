@@ -30,33 +30,33 @@ public class DictionaryPresenter extends BasePresenter {
     }
 
     public void onGetDictionaryResponse(String text) {
-        addSubscription(getSubscriptionForDictionaryDefention(text));
+//        addSubscription(getSubscriptionForDictionaryDefention(text));
     }
 
     //TODO запилить направление перевода
-    private Subscription getSubscriptionForDictionaryDefention(String text) {
-        return responseData.getDicResult("ru-en", text, "ru")
-                .flatMap(response -> Observable.from(response.getDefinition()))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .firstOrDefault(new Definition())
-                .subscribe(new Observer<Definition>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.i(TAG, "subscription: onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                        Log.w(TAG, "subscription: onError()");
-                    }
-
-                    @Override
-                    public void onNext(Definition definition) {
-                        view.showDef(definition);
-                        Log.i(TAG, "subscription: onNext()");
-                    }
-                });
-    }
+//    private Subscription getSubscriptionForDictionaryDefention(String text) {
+//        return responseData.getDicResult("ru-en", text, "ru")
+//                .flatMap(response -> Observable.from(response.getDefinition()))
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .firstOrDefault(new Definition())
+//                .subscribe(new Observer<Definition>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        Log.i(TAG, "subscription: onCompleted");
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        e.printStackTrace();
+//                        Log.w(TAG, "subscription: onError()");
+//                    }
+//
+//                    @Override
+//                    public void onNext(Definition definition) {
+//                        view.showDef(definition);
+//                        Log.i(TAG, "subscription: onNext()");
+//                    }
+//                });
+//    }
 }
