@@ -129,8 +129,8 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         ButterKnife.bind(this, view);
 
         /*ДЛЯ ДЕФОЛТА*/
-        showLanguageFrom("Русский");
-        showLanguageTo("Сербский");
+        showLanguageFrom("русский");
+        showLanguageTo("сербский");
 
         return view;
     }

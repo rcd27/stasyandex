@@ -3,21 +3,15 @@ package rcd27.github.com.stasyandex.presenter.translation;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import rcd27.github.com.stasyandex.TextUtil;
 import rcd27.github.com.stasyandex.model.Const;
-import rcd27.github.com.stasyandex.model.translation.dto.AvailableLanguages;
 import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.view.translation.TranslationView;
@@ -43,8 +37,7 @@ public class TranslationPresenter extends BasePresenter {
         super();
         this.view = view;
         this.context = context;
-        //TODO сделать так, чтобы только один раз подгружалось из сети.
-        addSubscription(getSubscriptionForAvailableLanguages("ru"));
+        languagesMap = Translation.createLanguagesMap();
     }
 
     public void onGetTranslation() {
@@ -60,7 +53,7 @@ public class TranslationPresenter extends BasePresenter {
     private Subscription getSubscriptionForTranslated(String text) {
         //TODO мб вшить direction поглубже?
         String languageFrom = view.getLanguageFrom();
-        String languageFromAbbr = TextUtil.findKeyByValue(languagesMap,languageFrom);
+        String languageFromAbbr = TextUtil.findKeyByValue(languagesMap, languageFrom);
 
         String languageTo = view.getLanguageTo();
         String languageToAbbr = TextUtil.findKeyByValue(languagesMap, languageTo);
@@ -84,22 +77,6 @@ public class TranslationPresenter extends BasePresenter {
     //TODO FIXME инт пробрасывается в презентер и обратно. Убрать, чтобы вью ничего не знал.
     public void onChooseLanguage(int directionInt) {
         view.chooseLanguage(directionInt);
-    }
-
-    private Subscription getSubscriptionForAvailableLanguages(String forLanguage) {
-        return responseData.getAvailableLanguages(forLanguage)
-                .doOnNext(response -> {
-                    languagesMap = response.getLanguages();
-                    SharedPreferences prefs = context
-                            .getSharedPreferences(Const.TRANSLATION_CACHE, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    for (Map.Entry<String,String> entry : languagesMap.entrySet()) {
-                        editor.putString(entry.getKey(), entry.getValue());
-                    }
-                    editor.apply();
-                    Log.w(TAG, "Updated Available Languages!");
-                })
-                .subscribe();
     }
 
     public void handleIntentForSelectedLanguages(Intent intent) {

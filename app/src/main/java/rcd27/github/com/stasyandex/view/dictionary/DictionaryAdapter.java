@@ -1,7 +1,6 @@
 package rcd27.github.com.stasyandex.view.dictionary;
 
 
-import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +8,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.TextUtil;
-import rcd27.github.com.stasyandex.model.dictionary.dto.DicTranslation;
 import rcd27.github.com.stasyandex.presenter.dictionary.DictionaryVisualItem;
 
 public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.ViewHolder> {
@@ -32,11 +29,7 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
         return list;
     }
 
-    void makeEmpty() {
-        list = new ArrayList<>();
-    }
-
-    @Override
+       @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater
                 .from(parent.getContext())
@@ -54,8 +47,10 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
         }
 
         if (null != meaninigs) {
-            holder.mean.setText(TextUtil.commaRawFromList(meaninigs));
+            holder.mean.setText("(" + TextUtil.commaRawFromList(meaninigs) + ")");
         }
+
+        holder.itemNumber.setText(String.valueOf(position + 1));
     }
 
     public void setDictionaryItemList(List<DictionaryVisualItem> dictionaryItemList) {

@@ -3,15 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
 
     <TextView
         android:id="@+id/tv_dictionary_item_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:paddingEnd="12dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="16dp"
+        android:paddingStart="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="1" />
@@ -20,9 +22,6 @@
         android:id="@+id/tv_dictionary_item_text_syn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="0dp"
         android:textColor="@color/colorAccent"
         app:layout_constraintLeft_toRightOf="@+id/tv_dictionary_item_number"
         app:layout_constraintTop_toTopOf="parent"
@@ -32,9 +31,6 @@
         android:id="@+id/tv_dictionary_item_mean"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="4dp"
         app:layout_constraintLeft_toLeftOf="@+id/tv_dictionary_item_text_syn"
         app:layout_constraintTop_toBottomOf="@+id/tv_dictionary_item_text_syn"
         tools:text="(приветствие)" />

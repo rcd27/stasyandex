@@ -36,8 +36,12 @@ public class DictionaryPresenter extends BasePresenter {
                 .unsubscribeOn(Schedulers.io())
                 .firstOrDefault(new DicResult())
                 .doOnNext(dicResult -> {
-                    view.showDefinition(dicResult.getDefinition());
-                    view.showDictionaryItems(dicResult.getElementsList());
+                    if (!dicResult.definitionListIsEmptyOrNull()) {
+                        view.showDefinition(dicResult.getDefinition());
+                        view.showDictionaryItems(dicResult.getElementsList());
+                    } else {
+                        view.showEmpty();
+                    }
                 })
                 .subscribe();
     }

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -91,7 +92,7 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     public void showEmpty() {
         dictionaryOriginWord.setText("");
         dictionaryOriginWordPos.setText("");
-        dictionaryAdapter.makeEmpty();
+        dictionaryAdapter.setDictionaryItemList(Collections.EMPTY_LIST);
     }
 
     @Override
