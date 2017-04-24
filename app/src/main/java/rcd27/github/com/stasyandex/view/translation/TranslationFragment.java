@@ -117,7 +117,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     @OnTextChanged(R.id.translation_editText)
     public void onTextChanged() {
         presenter.onGetTranslation();
-        listener.onTranslateEditTextChanged(getTextFromEditText());
+        listener.onTranslateEditTextChanged(presenter.getDirection(), getTextFromEditText());
     }
 
     @Nullable
@@ -204,6 +204,6 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     }
 
     public interface TranslateButtonListener {
-        void onTranslateEditTextChanged(String textFromEditText);
+        void onTranslateEditTextChanged(String direction, String textFromEditText);
     }
 }

@@ -10,9 +10,6 @@ import rcd27.github.com.stasyandex.view.translation.TranslationFragment;
 
 public class MainActivity extends AppCompatActivity implements TranslationFragment.TranslateButtonListener {
 
-    //TODO переключение на историю
-    //TODO флажок "Избранное"
-
     private FragmentManager fragmentManager;
 
     @Override
@@ -29,9 +26,11 @@ public class MainActivity extends AppCompatActivity implements TranslationFragme
     }
 
     @Override
-    public void onTranslateEditTextChanged(String textFromEditText) {
+    public void onTranslateEditTextChanged(String direction, String textFromEditText) {
         DictionaryFragment dicFrag = (DictionaryFragment) fragmentManager
                 .findFragmentById(R.id.dictionary_fragment);
-        dicFrag.getPresenter().onGetDictionaryResponse(textFromEditText);
+        //TODO добавить интерсептор для okhttp3,чтобы тот ловил ощибки от сервера при
+        //неподдерживаемом языке.
+        dicFrag.getPresenter().onGetDictionaryResponse("ru-en", textFromEditText);
     }
 }

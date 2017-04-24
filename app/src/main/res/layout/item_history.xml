@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
 
     android:layout_height="wrap_content"
-    android:padding="@dimen/padding">
+    android:padding="4dp">
 
     <ImageButton
         android:id="@+id/ib_history_fav"

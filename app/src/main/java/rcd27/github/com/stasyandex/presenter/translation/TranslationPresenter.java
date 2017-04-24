@@ -4,6 +4,7 @@ package rcd27.github.com.stasyandex.presenter.translation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -20,6 +21,7 @@ import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.view.history.HistoryItem;
 import rcd27.github.com.stasyandex.view.translation.TranslationView;
+import retrofit2.Retrofit;
 import rx.Subscription;
 
 public class TranslationPresenter extends BasePresenter {
@@ -56,16 +58,10 @@ public class TranslationPresenter extends BasePresenter {
     }
 
     private Subscription getSubscriptionForTranslated(String text) {
-        //TODO мб вшить direction поглубже?
-        String languageFrom = view.getLanguageFrom();
-        String languageFromAbbr = TextUtil.findKeyByValue(languagesMap, languageFrom);
-
-        String languageTo = view.getLanguageTo();
-        String languageToAbbr = TextUtil.findKeyByValue(languagesMap, languageTo);
-
-        String direction = languageFromAbbr.concat("-").concat(languageToAbbr);
-
-        return responseData.getTranslation(text, direction)
+        return responseData.getTranslation(text, getDirection())
+                .doOnError(throwable -> {
+                    Log.w(TAG, "Retrofit/rxJava error!");
+                })
                 .doOnNext(response -> {
                     if (null != response && !response.isEmpty()) {
                         translation = response;
@@ -79,6 +75,19 @@ public class TranslationPresenter extends BasePresenter {
                     }
                 })
                 .subscribe();
+    }
+
+    @NonNull
+    public String getDirection() {
+        String languageFrom = view.getLanguageFrom();
+        String languageFromAbbr = TextUtil.findKeyByValue(languagesMap, languageFrom);
+
+        String languageTo = view.getLanguageTo();
+        String languageToAbbr = TextUtil.findKeyByValue(languagesMap, languageTo);
+
+        Log.w(TAG, "Direction is" + languageFromAbbr.concat("-").concat(languageToAbbr));
+
+        return languageFromAbbr.concat("-").concat(languageToAbbr);
     }
 
     //TODO FIXME инт пробрасывается в презентер и обратно. Убрать, чтобы вью ничего не знал.

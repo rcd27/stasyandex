@@ -1,6 +1,8 @@
 package rcd27.github.com.stasyandex.presenter.dictionary;
 
 
+import android.util.Log;
+
 import javax.inject.Inject;
 
 import rcd27.github.com.stasyandex.model.dictionary.dto.DicResult;
@@ -25,16 +27,21 @@ public class DictionaryPresenter extends BasePresenter {
         this.view = view;
     }
 
-    public void onGetDictionaryResponse(String text) {
-        addSubscription(getSubscriptionForDictionaryDefention(text));
+    public void onGetDictionaryResponse(String direction, String text) {
+        addSubscription(getSubscriptionForDictionaryDefention(direction, text));
     }
 
-    private Subscription getSubscriptionForDictionaryDefention(String text) {
-        return responseData.getDicResult("ru-en", text, "ru")
+    private Subscription getSubscriptionForDictionaryDefention(String direction, String text) {
+        return responseData.getDicResult(direction, text, "ru")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
                 .firstOrDefault(new DicResult())
+                .doOnError(throwable -> {
+                    view.showEmpty();
+                    Log.w(TAG, "Retrofit/rxJava error!");
+                    throwable.printStackTrace();
+                })
                 .doOnNext(dicResult -> {
                     if (!dicResult.definitionListIsEmptyOrNull()) {
                         view.showDefinition(dicResult.getDefinition());

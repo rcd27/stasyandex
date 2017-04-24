@@ -48,6 +48,7 @@ public class ApiModule {
                 .baseUrl(baseUrl)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
+                //TODO вот тут надо вшить обработку ошибки 400
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
