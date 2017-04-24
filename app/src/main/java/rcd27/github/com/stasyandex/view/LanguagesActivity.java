@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.model.Const;
+import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 
 public class LanguagesActivity extends AppCompatActivity {
 
@@ -47,8 +48,7 @@ public class LanguagesActivity extends AppCompatActivity {
             setHeadText(direction);
         }
 
-        SharedPreferences prefs = getSharedPreferences(Const.TRANSLATION_CACHE, MODE_PRIVATE);
-        Map<String, String> availableLanguagesMap = (Map<String, String>) prefs.getAll();
+        Map<String, String> availableLanguagesMap = Translation.createLanguagesMap();
 
         List<String> languageListToShow = new ArrayList<>();
         for (String s : availableLanguagesMap.values()) {
