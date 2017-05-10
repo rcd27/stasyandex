@@ -27,7 +27,7 @@ import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.presenter.translation.TranslationPresenter;
 import rcd27.github.com.stasyandex.view.BaseFragment;
-import rcd27.github.com.stasyandex.view.HistoryActivity;
+import rcd27.github.com.stasyandex.view.history.HistoryActivity;
 import rcd27.github.com.stasyandex.view.LanguagesActivity;
 
 public class TranslationFragment extends BaseFragment implements TranslationView {

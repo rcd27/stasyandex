@@ -24,6 +24,7 @@ public abstract class BasePresenter implements Presenter {
     @Inject
     CompositeSubscription compositeSubscription;
 
+    //TODO FIXME: вот для чего эти танцы с бубнами? Тоже не ясно.
     public BasePresenter() {
         DaggerAppComponent.builder()
                 .presenterModule(new PresenterModule())

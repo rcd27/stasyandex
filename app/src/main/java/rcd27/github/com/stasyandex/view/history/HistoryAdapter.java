@@ -1,4 +1,4 @@
-package rcd27.github.com.stasyandex.view;
+package rcd27.github.com.stasyandex.view.history;
 
 
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +11,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import rcd27.github.com.stasyandex.R;
-import rcd27.github.com.stasyandex.view.history.HistoryItem;
+import rcd27.github.com.stasyandex.model.history.HistoryItem;
+import rcd27.github.com.stasyandex.view.OnFavClickListener;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 

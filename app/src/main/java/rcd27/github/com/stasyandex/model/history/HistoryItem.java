@@ -1,8 +1,10 @@
-package rcd27.github.com.stasyandex.view.history;
+package rcd27.github.com.stasyandex.model.history;
 
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+//У меня пока нет visual objects, используются объекты из model.
 
 public class HistoryItem {
     @SerializedName("lang")

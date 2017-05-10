@@ -19,9 +19,8 @@ import rcd27.github.com.stasyandex.TextUtil;
 import rcd27.github.com.stasyandex.model.Const;
 import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
-import rcd27.github.com.stasyandex.view.history.HistoryItem;
+import rcd27.github.com.stasyandex.model.history.HistoryItem;
 import rcd27.github.com.stasyandex.view.translation.TranslationView;
-import retrofit2.Retrofit;
 import rx.Subscription;
 
 public class TranslationPresenter extends BasePresenter {

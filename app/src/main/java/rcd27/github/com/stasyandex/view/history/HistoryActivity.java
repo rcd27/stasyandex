@@ -1,4 +1,4 @@
-package rcd27.github.com.stasyandex.view;
+package rcd27.github.com.stasyandex.view.history;
 
 
 import android.content.Context;
@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.model.Const;
-import rcd27.github.com.stasyandex.view.history.HistoryItem;
+import rcd27.github.com.stasyandex.model.history.HistoryItem;
 
 public class HistoryActivity extends AppCompatActivity {
 

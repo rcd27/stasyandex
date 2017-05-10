@@ -31,7 +31,7 @@
                 android:value=".view.MainActivity" />
         </activity>
         <activity
-            android:name=".view.HistoryActivity"
+            android:name=".view.history.HistoryActivity"
             android:parentActivityName=".view.MainActivity"
             android:screenOrientation="portrait">
             <meta-data
