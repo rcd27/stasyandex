@@ -27,7 +27,8 @@ public class DictionaryPresenter extends BasePresenter {
         this.view = view;
     }
 
-    public void onGetDictionaryResponse(String direction, String text) {
+    //TODO FIXME есди в этом методе используется другой с такими же параметрами, зачем он нужен?!
+    public void getDictionaryResponseFor(String direction, String text) {
         addSubscription(getSubscriptionForDictionaryDefention(direction, text));
     }
 

@@ -1,0 +1,14 @@
+@startuml
+
+interface AppComponent
+interface TranslationComponent
+interface DictionaryComponent
+
+class TranslationModule
+class DictionaryModule
+class ModelModule
+class PresenterModule
+
+annotation ApplicationScope
+
+@enduml

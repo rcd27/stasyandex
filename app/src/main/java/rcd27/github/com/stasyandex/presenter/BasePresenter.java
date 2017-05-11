@@ -22,7 +22,7 @@ public abstract class BasePresenter implements Presenter {
 
     /*Составная подписка*/
     @Inject
-    CompositeSubscription compositeSubscription;
+    protected CompositeSubscription compositeSubscription;
 
     //TODO FIXME: вот для чего эти танцы с бубнами? Тоже не ясно.
     public BasePresenter() {

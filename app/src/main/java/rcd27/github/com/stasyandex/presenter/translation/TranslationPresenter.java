@@ -17,22 +17,19 @@ import javax.inject.Inject;
 
 import rcd27.github.com.stasyandex.TextUtil;
 import rcd27.github.com.stasyandex.model.Const;
+import rcd27.github.com.stasyandex.model.history.HistoryItem;
 import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
-import rcd27.github.com.stasyandex.model.history.HistoryItem;
 import rcd27.github.com.stasyandex.view.translation.TranslationView;
 import rx.Subscription;
 
 public class TranslationPresenter extends BasePresenter {
-
     private final String TAG = getClass().getSimpleName();
 
     private TranslationView view;
-
     private Context context;
 
-    private Translation translation;
-
+    //TODO получать из Translate API при загрузке приложения в первый раз, сохранять в Preferences.
     private Map<String, String> languagesMap;
 
     @Inject
@@ -46,7 +43,7 @@ public class TranslationPresenter extends BasePresenter {
         languagesMap = Translation.createLanguagesMap();
     }
 
-    public void onGetTranslation() {
+    public void getTranslationForTextFromEditText() {
         String text = view.getTextFromEditText();
         if (TextUtils.isEmpty(text) || text.isEmpty()) {
             view.showError("Введите текст для перевода.");
@@ -63,10 +60,9 @@ public class TranslationPresenter extends BasePresenter {
                 })
                 .doOnNext(response -> {
                     if (null != response && !response.isEmpty()) {
-                        translation = response;
-                        view.showTranslation(translation);
+                        view.showTranslation(response);
                         //TODO сделать задержку
-                        saveToHistory(translation);
+                        saveToHistory(response);
                         view.showError("«Переведено сервисом «Яндекс.Переводчик»");
                         Log.i(TAG, "response from server is OK");
                     } else {
@@ -117,18 +113,18 @@ public class TranslationPresenter extends BasePresenter {
         view.openHistory();
     }
 
-    private void saveToHistory(Translation toSave) {
-        String to = TextUtil.commaRawFromList(translation.getTranslationResult());
+    private void saveToHistory(Translation current) {
+        String to = TextUtil.commaRawFromList(current.getTranslationResult());
         String from = view.getTextFromEditText();
 
-        HistoryItem historyItem = new HistoryItem(translation.getDirection(), to, from, 0, true);
+        HistoryItem historyItem = new HistoryItem(current.getDirection(), to, from, 0, true);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(historyItem);
 
         SharedPreferences prefs = context.getSharedPreferences(Const.HISTORY_CACHE, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putString(toSave.getDirection() + toSave.getTranslationResult().toString(), json);
+        editor.putString(current.getDirection() + current.getTranslationResult().toString(), json);
         editor.apply();
     }
 }

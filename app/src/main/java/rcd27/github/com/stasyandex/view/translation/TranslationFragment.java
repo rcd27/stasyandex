@@ -115,7 +115,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @OnTextChanged(R.id.translation_editText)
     public void onTextChanged() {
-        presenter.onGetTranslation();
+        presenter.getTranslationForTextFromEditText();
         listener.onTranslateEditTextChanged(presenter.getDirection(), getTextFromEditText());
     }
 

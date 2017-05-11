@@ -37,6 +37,6 @@ public class MainActivity extends AppCompatActivity implements TranslationFragme
                 .findFragmentById(R.id.dictionary_fragment);
         //TODO добавить интерсептор для okhttp3,чтобы тот ловил ошибки от сервера при
         //неподдерживаемом языке.
-        dicFrag.getPresenter().onGetDictionaryResponse("ru-en", textFromEditText);
+        dicFrag.getPresenter().getDictionaryResponseFor("ru-en", textFromEditText);
     }
 }
