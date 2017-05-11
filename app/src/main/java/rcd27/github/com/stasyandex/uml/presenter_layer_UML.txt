@@ -7,21 +7,21 @@ onStop(): void
 abstract class BasePresenter{
 #responseData: Model
 #compositeSubscription: CompositeSubscription
-
+--
+Dagger injection
+--
 #addSubscription(subscription: Subscription): void
-+onStop(): void
++@Override onStop(): void
 }
 
 class TranslationPresenter{
 -view: TranslationView
 -context: Context
 -languagesMap: Map<String,String>
-
 --
-{abstract}+TranslationPresenter()
+{abstract}+@Inject TranslationPresenter()
 +TranslationPresenter(view: TranslationView, context: Context)
 --
-
 +getTranslationForTextFromEditText(): void
 -getSubscriptionForTranslated(text: String): Subscription
 +getDirection(): String
@@ -33,12 +33,10 @@ class TranslationPresenter{
 
 class DictionaryPresenter{
 -view: DictionaryView
-
 --
-{abstract}+DictionaryPresenter()
+{abstract}+@Inject DictionaryPresenter()
 +DictionaryPresenter(view: DictionaryView)
 --
-
 +getDictionaryResponse(direction: String, text: String): void
 -getSubscriptionForDictionaryDefinition(direction: String, text: String): Subscription
 }
