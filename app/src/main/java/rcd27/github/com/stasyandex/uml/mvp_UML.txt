@@ -1,115 +1,139 @@
 @startuml
 
 package Presenter{
-interface Presenter{
-onStop(): void
-}
+    interface Presenter{
+        onStop(): void
+    }
 
-abstract class BasePresenter{
-#responseData: Model
-#compositeSubscription: CompositeSubscription
---
-Dagger injection
---
-#addSubscription(subscription: Subscription): void
-+@Override onStop(): void
-}
+    abstract class BasePresenter{
+        #responseData: Model
+        #compositeSubscription: CompositeSubscription
+        --
+        Dagger injection
+        --
+        #addSubscription(Subscription): void
+        +@Override onStop(): void
+    }
 
-class TranslationPresenter{
--view: TranslationView
--context: Context
--languagesMap: Map<String,String>
---
-{abstract}+@Inject TranslationPresenter()
-+TranslationPresenter(view: TranslationView, context: Context)
---
-+getTranslationForTextFromEditText(): void
--getSubscriptionForTranslated(String): Subscription
-+getDirection(): String
-+onChooseLanguage(int): void
-+handleIntentForSelectedLanguages(Intent): void
-+clearTranslationEditText(): void
-+switchToHistory(): void
-+saveToHistory(Translation): void
-}
+    class TranslationPresenter{
+        -view: TranslationView
+        -context: Context
+        -languagesMap: Map<String,String>
+        --
+        {abstract}+@Inject TranslationPresenter()
+        +TranslationPresenter(view: TranslationView, context: Context)
+        --
+        +getTranslationForTextFromEditText(): void
+        -getSubscriptionForTranslated(String): Subscription
+        +getDirection(): String
+        +onChooseLanguage(int): void
+        +handleIntentForSelectedLanguages(Intent): void
+        +clearTranslationEditText(): void
+        +switchToHistory(): void
+        +saveToHistory(Translation): void
+    }
 
-class DictionaryPresenter{
--view: DictionaryView
---
-{abstract}+@Inject DictionaryPresenter()
-+DictionaryPresenter(DictionaryView)
---
-+getDictionaryResponse(String, String): void
--getSubscriptionForDictionaryDefinition(String, String): Subscription
-}
+    class DictionaryPresenter{
+        -view: DictionaryView
+        --
+        {abstract}+@Inject DictionaryPresenter()
+        +DictionaryPresenter(DictionaryView)
+        --
+        +getDictionaryResponse(String, String): void
+        -getSubscriptionForDictionaryDefinition(String, String): Subscription
+    }
 
-Presenter<|.. BasePresenter : implements
+    Presenter<|.. BasePresenter : implements
+    BasePresenter<|-- DictionaryPresenter : < subscription
+    BasePresenter<|-- TranslationPresenter : < subscription
 
-BasePresenter<|-- DictionaryPresenter : < subscription
-BasePresenter<|-- TranslationPresenter : < subscription
 }
 
 package View {
-interface BaseView{
-showError(String error): void
-showEmpty(): void
-}
+        interface BaseView{
+        showError(String error): void
+        showEmpty(): void
+    }
 
-interface TranslationView extends BaseView{
-getTextFromEditText(): String
-showTranslation(Translation): void
-chooseLanguage(int): void
-showLanguageFrom(String): void
-showLanguageTo(String): void
-getLanguageFrom(): String
-getLanguageTo(): String
-openHistory(): void
-clearEditText(): void
-}
+    interface TranslationView extends BaseView{
+        getTextFromEditText(): String
+        showTranslation(Translation): void
+        chooseLanguage(int): void
+        showLanguageFrom(String): void
+        showLanguageTo(String): void
+        getLanguageFrom(): String
+        getLanguageTo(): String
+        openHistory(): void
+        clearEditText(): void
+    }
 
-interface DictionaryView extends BaseView{
-showDefinition(DictionaryVisualDefinition): void
-showDictionaryItems(List<DictionaryVisualItem>): void
-}
+    interface DictionaryView extends BaseView{
+        showDefinition(DictionaryVisualDefinition): void
+        showDictionaryItems(List<DictionaryVisualItem>): void
+    }
 
-class TranslationFragment{
-~presenter: TranslationPresenter
--translationListener: TranslationListenter
--component: TranslationComponent
---
---
-+onAttach(Context): void
-+onCreate(Bundle): void
-+onCreateView(LayoutInflater, ViewGroup, Bundle): View
-+onActivityResult(int, int, Intent): void
-__ other __
-{abstract}interface implementations and onClicks
-}
+    class TranslationFragment{
+        ~presenter: TranslationPresenter
+        -translationListener: TranslationListenter
+        -component: TranslationComponent
+        --
+        --
+        +onAttach(Context): void
+        +onCreate(Bundle): void
+        +onCreateView(LayoutInflater, ViewGroup, Bundle): View
+        +onActivityResult(int, int, Intent): void
+        __ other __
+        {abstract}interface implementations and onClicks
+    }
 
-class DictionaryFragment{
-~presenter: DictionaryPresenter
--dictionaryAdapter: DictionaryAdapter
--component: DictionaryComponent
---
---
-+onCreate(Bundle): void
-+onCreateView(LayoutInflater, ViewGroup, Bundle): View
-__ other __
-{abstract}interface implementations and onClicks
-}
+    class DictionaryFragment{
+        ~presenter: DictionaryPresenter
+        -dictionaryAdapter: DictionaryAdapter
+        -component: DictionaryComponent
+        --
+        --
+        +onCreate(Bundle): void
+        +onCreateView(LayoutInflater, ViewGroup, Bundle): View
+        __ other __
+        {abstract}interface implementations and onClicks
+        }
 
-TranslationView <|.. TranslationFragment
-DictionaryView <|.. DictionaryFragment
+    TranslationView <|.. TranslationFragment
+    DictionaryView <|.. DictionaryFragment
+
 }
 
 package Model <<Database>>{
-
 }
 
-BasePresenter *-l- Model
-TranslationPresenter *--> TranslationView
-DictionaryPresenter *--> DictionaryView
-TranslationFragment *--> TranslationPresenter
-DictionaryFragment *--> DictionaryPresenter
+package DependencyInjection{
+
+    interface TranslationComponent{
+        inject(TranslationFragment): void
+    }
+
+    interface DictionaryComponent{
+    inject(DictionaryFragment): void
+    }
+
+    class TranslationModule{
+        -view: TranslationView
+        -context: Context
+        -listener: TranslationFragmentListener
+     --
+        +TranslationModule(TranslationView,TranslateButtonListener,Context)
+     --
+        ~translationPresenter(): TranslationPresenter
+    }
+
+    class DictionaryModule{
+       -view: DictionaryView
+     --
+        +DictionaryModule(DictionaryView)
+     --
+        ~dictionaryPresenter(): DictionaryPresenter
+    }
+
+}
 
 @enduml
