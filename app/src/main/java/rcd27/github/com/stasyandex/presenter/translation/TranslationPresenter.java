@@ -47,7 +47,7 @@ public class TranslationPresenter extends BasePresenter {
         String text = view.getTextFromEditText();
         if (TextUtils.isEmpty(text) || text.isEmpty()) {
             view.showError("Введите текст для перевода.");
-            view.showEmptyResult();
+            view.showEmpty();
             return;
         }
         addSubscription(getSubscriptionForTranslated(text));
@@ -66,7 +66,7 @@ public class TranslationPresenter extends BasePresenter {
                         view.showError("«Переведено сервисом «Яндекс.Переводчик»");
                         Log.i(TAG, "response from server is OK");
                     } else {
-                        view.showEmptyResult();
+                        view.showEmpty();
                         Log.w(TAG, "response from server is null or empty");
                     }
                 })
@@ -107,6 +107,10 @@ public class TranslationPresenter extends BasePresenter {
                 }
             }
         }
+    }
+
+    public void clearTranslationEditText() {
+        view.clearEditText();
     }
 
     public void switchToHistory() {

@@ -27,8 +27,8 @@ import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 import rcd27.github.com.stasyandex.presenter.BasePresenter;
 import rcd27.github.com.stasyandex.presenter.translation.TranslationPresenter;
 import rcd27.github.com.stasyandex.view.BaseFragment;
-import rcd27.github.com.stasyandex.view.history.HistoryActivity;
 import rcd27.github.com.stasyandex.view.LanguagesActivity;
+import rcd27.github.com.stasyandex.view.history.HistoryActivity;
 
 public class TranslationFragment extends BaseFragment implements TranslationView {
 
@@ -87,6 +87,21 @@ public class TranslationFragment extends BaseFragment implements TranslationView
         component.inject(this);
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_translation, container, false);
+        ButterKnife.bind(this, view);
+
+        /*ДЛЯ ДЕФОЛТА*/
+        showLanguageFrom("русский");
+        showLanguageTo("сербский");
+
+        return view;
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -105,7 +120,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @OnClick(R.id.bt_clearEditText)
     public void onClearEditTextButtonClicked() {
-        editText.setText("");
+        presenter.clearTranslationEditText();
     }
 
     @OnClick(R.id.bt_history)
@@ -117,21 +132,6 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     public void onTextChanged() {
         presenter.getTranslationForTextFromEditText();
         listener.onTranslateEditTextChanged(presenter.getDirection(), getTextFromEditText());
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_translation, container, false);
-        ButterKnife.bind(this, view);
-
-        /*ДЛЯ ДЕФОЛТА*/
-        showLanguageFrom("русский");
-        showLanguageTo("сербский");
-
-        return view;
     }
 
     @Override
@@ -151,7 +151,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     }
 
     @Override
-    public void showEmptyResult() {
+    public void showEmpty() {
         tvTranslationResult.setText("");
     }
 
@@ -179,13 +179,18 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     }
 
     @Override
-    public void showLanguageFrom(String languageToShow) {
-        tvLanguageFrom.setText(languageToShow);
+    public void clearEditText() {
+        editText.setText("");
     }
 
     @Override
-    public void showLanguageTo(String languageToShow) {
-        tvLanguageTo.setText(languageToShow);
+    public void showLanguageFrom(String selectedLanguage) {
+        tvLanguageFrom.setText(selectedLanguage);
+    }
+
+    @Override
+    public void showLanguageTo(String selectedLanguage) {
+        tvLanguageTo.setText(selectedLanguage);
     }
 
     @Override

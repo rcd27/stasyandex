@@ -43,12 +43,13 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     @Bind(R.id.dictionary_recycler_view)
     RecyclerView definitionItemsRecyclerView;
 
-    private DictionaryAdapter dictionaryAdapter;
-
     @Inject
     DictionaryPresenter presenter;
 
+    private DictionaryAdapter dictionaryAdapter;
+
     private DictionaryComponent component;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

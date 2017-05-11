@@ -12,24 +12,24 @@ public interface TranslationView extends BaseView {
     /*Отображаем результат перевода*/
     void showTranslation(Translation translation);
 
-    /*Показать пустой результат/очистка поля результата перевода*/
-    void showEmptyResult();
-
     /*Выбор языка*/
     void chooseLanguage(final int direction);
 
-    /*Переход к истории*/
-    void openHistory();
-
+    //TODO FIXME вот тут много делов. Выглядит громоздко. Объеденить методы
     /*Показать с какого языка переводим*/
-    void showLanguageFrom(String selectedLAnguage);
+    void showLanguageFrom(String selectedLanguage);
 
     /*На какой*/
-    void showLanguageTo(String selectedLAnguage);
+    void showLanguageTo(String selectedLanguage);
 
     /*Взять значение из tv переводимого языка*/
     String getLanguageFrom();
 
     /*В какой*/
     String getLanguageTo();
+
+    /*Переход к истории*/
+    void openHistory();
+
+    void clearEditText();
 }
