@@ -10,6 +10,8 @@ import rx.Observable;
 
 public interface TranslationAPI {
     @GET("api/v1.5/tr.json/getLangs")
+    //TODO: Поменять Observable<> на Single<>
+    //см. Single vs Observable: в случае, когда имеем один объект - снгл лучше
     Observable<AvailableLanguages> getAvailableLangs(@Query("ui") String forLanguage);
 
     @GET("api/v1.5/tr.json/detect")
