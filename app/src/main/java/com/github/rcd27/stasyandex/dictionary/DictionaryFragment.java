@@ -11,10 +11,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.rcd27.stasyandex.R;
-import com.github.rcd27.stasyandex.di.DaggerDictionaryComponent;
-import com.github.rcd27.stasyandex.di.dictionary.DictionaryComponent;
+import com.github.rcd27.stasyandex.Stasyandex;
+import com.github.rcd27.stasyandex.common.BaseFragment;
 import com.github.rcd27.stasyandex.di.dictionary.DictionaryModule;
-import com.github.rcd27.stasyandex.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,18 +36,12 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
 
     private DictionaryAdapter dictionaryAdapter;
 
-    private DictionaryComponent component;
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (null == component) {
-            component = DaggerDictionaryComponent.builder()
-                    .dictionaryModule(new DictionaryModule(this))
-                    .build();
-        }
-        component.inject(this);
+        Stasyandex.getInstance().getAppComponent()
+                .plus(new DictionaryModule(this))
+                .inject(this);
     }
 
     @Nullable

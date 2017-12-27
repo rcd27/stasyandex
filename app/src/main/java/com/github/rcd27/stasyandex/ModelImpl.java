@@ -1,21 +1,18 @@
 package com.github.rcd27.stasyandex;
 
 
-import com.github.rcd27.stasyandex.di.DaggerAppComponent;
-import com.github.rcd27.stasyandex.di.ModelModule;
-import com.github.rcd27.stasyandex.dictionary.DictionaryAPI;
+import android.support.annotation.NonNull;
+
 import com.github.rcd27.stasyandex.data.dictionary.DicResult;
-import com.github.rcd27.stasyandex.translation.TranslationAPI;
 import com.github.rcd27.stasyandex.data.translation.AvailableLanguages;
 import com.github.rcd27.stasyandex.data.translation.ProbableLanguage;
 import com.github.rcd27.stasyandex.data.translation.Translation;
-import com.github.rcd27.stasyandex.common.Const;
-
-import javax.inject.Inject;
-import javax.inject.Named;
+import com.github.rcd27.stasyandex.dictionary.DictionaryAPI;
+import com.github.rcd27.stasyandex.translation.TranslationAPI;
 
 import rx.Observable;
-import rx.Scheduler;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /*
 Объединяет в себе логику получения JSON ответа с сервера, перевод его в DTO объекты.
@@ -24,26 +21,20 @@ import rx.Scheduler;
 public class ModelImpl implements Model {
 
     private final Observable.Transformer schedulersTransformer;
+    private final TranslationAPI translationAPI;
+    private final DictionaryAPI dictionaryAPI;
 
-    @Inject TranslationAPI translationAPI;
+    public ModelImpl(@NonNull TranslationAPI translationAPI,
+                     @NonNull DictionaryAPI dictionaryAPI) {
 
-    @Inject DictionaryAPI dictionaryAPI;
+        this.translationAPI = translationAPI;
+        this.dictionaryAPI = dictionaryAPI;
 
-    @Inject
-    @Named(Const.UI_THREAD)
-    Scheduler uiThread;
-
-    @Inject
-    @Named(Const.IO_THREAD)
-    Scheduler ioThread;
-
-    public ModelImpl() {
-        DaggerAppComponent.builder().modelModule(new ModelModule())
-                .build().inject(this);
         schedulersTransformer = o -> ((Observable) o) // если убрать каст, компилятор начинает моросить
-                .subscribeOn(ioThread)
-                .observeOn(uiThread)
-                .unsubscribeOn(ioThread);
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                // FIXME: а unsubscribeOn тоже нужен?
+                .unsubscribeOn(Schedulers.io());
     }
 
     @Override

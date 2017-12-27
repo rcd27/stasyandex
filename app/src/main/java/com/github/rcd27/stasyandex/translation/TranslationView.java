@@ -2,7 +2,7 @@ package com.github.rcd27.stasyandex.translation;
 
 
 import com.github.rcd27.stasyandex.data.translation.Translation;
-import com.github.rcd27.stasyandex.BaseView;
+import com.github.rcd27.stasyandex.common.BaseView;
 
 public interface TranslationView extends BaseView {
 

@@ -1,23 +1,18 @@
 package com.github.rcd27.stasyandex.di;
 
-import com.github.rcd27.stasyandex.BasePresenter;
 import com.github.rcd27.stasyandex.ModelImpl;
-import com.github.rcd27.stasyandex.dictionary.DictionaryPresenter;
-import com.github.rcd27.stasyandex.translation.TranslationPresenter;
+import com.github.rcd27.stasyandex.di.dictionary.DictionaryComponent;
+import com.github.rcd27.stasyandex.di.dictionary.DictionaryModule;
+import com.github.rcd27.stasyandex.di.translation.TranslationComponent;
+import com.github.rcd27.stasyandex.di.translation.TranslationModule;
 
 import dagger.Component;
 
 @ApplicationScope
-@Component(modules = {ModelModule.class, PresenterModule.class})
+@Component(modules = ModelModule.class)
 public interface AppComponent {
 
-    // FIXME: не должно быть никаких инжектов в презентер и модель.
-    void inject(ModelImpl dataFromApi);
+    TranslationComponent plus(TranslationModule translationModule);
 
-    void inject(BasePresenter basePresenter);
-
-    void inject(TranslationPresenter translationPresenter);
-
-    void inject(DictionaryPresenter dictionaryPresenter);
-
+    DictionaryComponent plus(DictionaryModule dictionaryModule);
 }

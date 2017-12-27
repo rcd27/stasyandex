@@ -3,7 +3,7 @@ package com.github.rcd27.stasyandex.dictionary;
 
 import java.util.List;
 
-import com.github.rcd27.stasyandex.BaseView;
+import com.github.rcd27.stasyandex.common.BaseView;
 
 public interface DictionaryView extends BaseView{
 

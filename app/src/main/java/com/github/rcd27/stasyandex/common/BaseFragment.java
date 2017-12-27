@@ -1,4 +1,4 @@
-package com.github.rcd27.stasyandex;
+package com.github.rcd27.stasyandex.common;
 
 
 import android.support.design.widget.Snackbar;

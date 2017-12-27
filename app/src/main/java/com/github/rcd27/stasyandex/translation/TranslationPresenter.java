@@ -8,39 +8,37 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.github.rcd27.stasyandex.Model;
+import com.github.rcd27.stasyandex.common.BasePresenter;
+import com.github.rcd27.stasyandex.common.Const;
+import com.github.rcd27.stasyandex.common.TextUtil;
+import com.github.rcd27.stasyandex.data.translation.Translation;
+import com.github.rcd27.stasyandex.history.HistoryItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.Map;
-
-import javax.inject.Inject;
-
-import com.github.rcd27.stasyandex.common.TextUtil;
-import com.github.rcd27.stasyandex.common.Const;
-import com.github.rcd27.stasyandex.history.HistoryItem;
-import com.github.rcd27.stasyandex.data.translation.Translation;
-import com.github.rcd27.stasyandex.BasePresenter;
 
 import rx.Subscription;
 
 public class TranslationPresenter extends BasePresenter {
     private final String TAG = getClass().getSimpleName();
 
-    private TranslationView view;
-    private Context context;
+    private final TranslationView view;
+    private final Context context;
+    private final Model model;
 
     //TODO получать из Translate API при загрузке приложения в первый раз, сохранять в Preferences.
     private Map<String, String> languagesMap;
 
-    @Inject
-    public TranslationPresenter() {
-    }
+    public TranslationPresenter(TranslationView view,
+                                Context context,
+                                Model model) {
 
-    public TranslationPresenter(TranslationView view, Context context) {
-        super();
         this.view = view;
         this.context = context;
-        languagesMap = Translation.createLanguagesMap();
+        this.model = model;
+        this.languagesMap = Translation.createLanguagesMap();
     }
 
     public void getTranslationForTextFromEditText() {
@@ -54,7 +52,7 @@ public class TranslationPresenter extends BasePresenter {
     }
 
     private Subscription getSubscriptionForTranslated(String text) {
-        return responseData.getTranslation(text, getDirection())
+        return model.getTranslation(text, getDirection())
                 .doOnError(throwable -> {
                     Log.w(TAG, "Retrofit/rxJava error!");
                 })

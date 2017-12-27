@@ -1,19 +1,22 @@
 package com.github.rcd27.stasyandex.di;
 
-import javax.inject.Named;
+import com.github.rcd27.stasyandex.Model;
+import com.github.rcd27.stasyandex.ModelImpl;
+import com.github.rcd27.stasyandex.dictionary.DictionaryAPI;
+import com.github.rcd27.stasyandex.net.ApiModule;
+import com.github.rcd27.stasyandex.translation.TranslationAPI;
 
 import dagger.Module;
 import dagger.Provides;
-import com.github.rcd27.stasyandex.common.Const;
-import com.github.rcd27.stasyandex.net.ApiModule;
-import com.github.rcd27.stasyandex.dictionary.DictionaryAPI;
-import com.github.rcd27.stasyandex.translation.TranslationAPI;
-import rx.Scheduler;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 @Module
 public class ModelModule {
+
+    @Provides
+    @ApplicationScope
+    Model provideMode(TranslationAPI translationAPI, DictionaryAPI dictionaryAPI) {
+        return new ModelImpl(translationAPI, dictionaryAPI);
+    }
 
     @Provides
     @ApplicationScope
@@ -26,20 +29,6 @@ public class ModelModule {
     @ApplicationScope
     DictionaryAPI dictionaryAPI() {
         return ApiModule.getDictionaryApi();
-    }
-
-    @Provides
-    @ApplicationScope
-    @Named(Const.UI_THREAD)
-    Scheduler schedulerUI() {
-        return AndroidSchedulers.mainThread();
-    }
-
-    @Provides
-    @ApplicationScope
-    @Named(Const.IO_THREAD)
-    Scheduler schedulerIO() {
-        return Schedulers.io();
     }
 }
 

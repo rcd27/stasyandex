@@ -13,14 +13,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.github.rcd27.stasyandex.R;
-import com.github.rcd27.stasyandex.di.DaggerTranslationComponent;
-import com.github.rcd27.stasyandex.di.translation.TranslationComponent;
-import com.github.rcd27.stasyandex.di.translation.TranslationModule;
-import com.github.rcd27.stasyandex.data.translation.Translation;
-import com.github.rcd27.stasyandex.BasePresenter;
-import com.github.rcd27.stasyandex.BaseFragment;
 import com.github.rcd27.stasyandex.LanguagesActivity;
+import com.github.rcd27.stasyandex.R;
+import com.github.rcd27.stasyandex.Stasyandex;
+import com.github.rcd27.stasyandex.common.BaseFragment;
+import com.github.rcd27.stasyandex.common.BasePresenter;
+import com.github.rcd27.stasyandex.data.translation.Translation;
+import com.github.rcd27.stasyandex.di.translation.TranslationModule;
 import com.github.rcd27.stasyandex.history.HistoryActivity;
 
 import javax.inject.Inject;
@@ -46,9 +45,6 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     private TranslateButtonListener listener;
 
-    //TODO StartAndroid: объясняетя как такого избежать.
-    private TranslationComponent component;
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -64,13 +60,9 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (null == component) {
-            component = DaggerTranslationComponent.builder()
-                    .translationModule(new TranslationModule(this, listener,
-                            getContext().getApplicationContext()))
-                    .build();
-        }
-        component.inject(this);
+        Stasyandex.getInstance().getAppComponent()
+                .plus(new TranslationModule(this, listener, getContext()))
+                .inject(this);
     }
 
     @Nullable
@@ -78,6 +70,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_translation, container, false);
         ButterKnife.bind(this, view);
 
