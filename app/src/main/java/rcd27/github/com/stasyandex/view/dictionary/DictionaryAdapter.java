@@ -7,11 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.TextUtil;
@@ -29,11 +27,12 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
         return list;
     }
 
-       @Override
+    @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.item_dictionary, parent, false);
+
         return new ViewHolder(v);
     }
 
@@ -53,7 +52,7 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
         holder.itemNumber.setText(String.valueOf(position + 1));
     }
 
-    public void setDictionaryItemList(List<DictionaryVisualItem> dictionaryItemList) {
+    void setDictionaryItemList(List<DictionaryVisualItem> dictionaryItemList) {
         this.list = dictionaryItemList;
         notifyDataSetChanged();
     }
@@ -63,12 +62,13 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
         return list.size();
     }
 
+    // TODO: переименовать
     class ViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.tv_dictionary_item_number)
+        @BindView(R.id.tv_dictionary_item_number)
         TextView itemNumber;
-        @Bind(R.id.tv_dictionary_item_text_syn)
+        @BindView(R.id.tv_dictionary_item_text_syn)
         TextView textSyn;
-        @Bind(R.id.tv_dictionary_item_mean)
+        @BindView(R.id.tv_dictionary_item_mean)
         TextView mean;
 
         ViewHolder(View itemView) {

@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
@@ -34,25 +34,25 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     private final String TAG = getClass().getSimpleName();
 
-    @Bind(R.id.tv_languageFrom)
+    @BindView(R.id.tv_languageFrom)
     TextView tvLanguageFrom;
 
-    @Bind(R.id.ib_switch_direction)
+    @BindView(R.id.ib_switch_direction)
     ImageButton ibSwitchDirection;
 
-    @Bind(R.id.tv_languageTo)
+    @BindView(R.id.tv_languageTo)
     TextView tvLanguageTo;
 
-    @Bind(R.id.translation_editText)
+    @BindView(R.id.translation_editText)
     EditText editText;
 
-    @Bind(R.id.bt_clearEditText)
+    @BindView(R.id.bt_clearEditText)
     ImageButton btClearEditText;
 
-    @Bind(R.id.tv_translation_result)
+    @BindView(R.id.tv_translation_result)
     TextView tvTranslationResult;
 
-    @Bind(R.id.bt_history)
+    @BindView(R.id.bt_history)
     ImageButton historyButton;
 
     @Inject

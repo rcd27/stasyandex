@@ -1,23 +1,19 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: 'dependencies.gradle'
-
 buildscript {
-    apply from: 'dependencies.gradle'
 
     repositories {
         jcenter()
+        google()
     }
 
     dependencies {
-        classpath gradlePlugins.gradle_tools
-        classpath gradlePlugins.retrolambda
-        classpath gradlePlugins.android_apt
+        classpath "com.android.tools.build:gradle:3.0.1"
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 

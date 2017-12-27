@@ -2,7 +2,6 @@ package rcd27.github.com.stasyandex.view;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rcd27.github.com.stasyandex.R;
@@ -25,13 +24,13 @@ import rcd27.github.com.stasyandex.model.translation.dto.Translation;
 
 public class LanguagesActivity extends AppCompatActivity {
 
-    @Bind(R.id.ib_closeAvailableLanguages)
+    @BindView(R.id.ib_closeAvailableLanguages)
     ImageButton closeButton;
 
-    @Bind(R.id.languagesListView)
+    @BindView(R.id.languagesListView)
     ListView languagesListView;
 
-    @Bind(R.id.tv_available_languages_title)
+    @BindView(R.id.tv_available_languages_title)
     TextView tvTitle;
 
     private int direction;

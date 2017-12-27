@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rcd27.github.com.stasyandex.R;
@@ -27,16 +27,16 @@ import rcd27.github.com.stasyandex.model.history.HistoryItem;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    @Bind(R.id.ib_closeHistory)
+    @BindView(R.id.ib_closeHistory)
     ImageButton btCloseHistory;
 
-    @Bind(R.id.et_historyEditText)
+    @BindView(R.id.et_historyEditText)
     EditText editText;
 
-    @Bind(R.id.ib_deleteHistory)
+    @BindView(R.id.ib_deleteHistory)
     ImageButton btDeleteHistory;
 
-    @Bind(R.id.rw_history_recyclerView)
+    @BindView(R.id.rw_history_recyclerView)
     RecyclerView recyclerView;
 
     RecyclerView.Adapter adapter;

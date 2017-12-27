@@ -16,7 +16,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import rcd27.github.com.stasyandex.R;
 import rcd27.github.com.stasyandex.di.DaggerDictionaryComponent;
@@ -32,15 +32,15 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     private final String TAG = getClass().getSimpleName();
 
     /*Здесь отображается слово, с которого был произведён перевод*/
-    @Bind(R.id.tv_dictionary_word)
+    @BindView(R.id.tv_dictionary_word)
     TextView dictionaryOriginWord;
 
     /*Часть речи исходного слова*/
-    @Bind(R.id.tv_dictionary_pos)
+    @BindView(R.id.tv_dictionary_pos)
     TextView dictionaryOriginWordPos;
 
     /*Для отображения вариантов перевода*/
-    @Bind(R.id.dictionary_recycler_view)
+    @BindView(R.id.dictionary_recycler_view)
     RecyclerView definitionItemsRecyclerView;
 
     @Inject
