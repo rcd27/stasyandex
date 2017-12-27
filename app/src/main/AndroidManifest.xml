@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="rcd27.github.com.stasyandex">
+    package="com.github.rcd27.stasyandex">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:launchMode="singleTop"
-            android:name=".view.MainActivity"
+            android:name="com.github.rcd27.stasyandex.view.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -21,20 +21,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.LanguagesActivity"
-            android:parentActivityName=".view.MainActivity"
+            android:name="com.github.rcd27.stasyandex.view.LanguagesActivity"
+            android:parentActivityName="com.github.rcd27.stasyandex.view.MainActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.MainActivity" />
+                android:value="com.github.rcd27.stasyandex.view.MainActivity" />
         </activity>
         <activity
-            android:name=".view.history.HistoryActivity"
-            android:parentActivityName=".view.MainActivity"
+            android:name="com.github.rcd27.stasyandex.view.history.HistoryActivity"
+            android:parentActivityName="com.github.rcd27.stasyandex.view.MainActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.MainActivity" />
+                android:value="com.github.rcd27.stasyandex.view.MainActivity" />
         </activity>
     </application>
 
