@@ -4,10 +4,10 @@ import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
-import com.github.rcd27.stasyandex.model.Const;
-import com.github.rcd27.stasyandex.model.ApiModule;
-import com.github.rcd27.stasyandex.model.dictionary.DictionaryAPI;
-import com.github.rcd27.stasyandex.model.translation.TranslationAPI;
+import com.github.rcd27.stasyandex.common.Const;
+import com.github.rcd27.stasyandex.net.ApiModule;
+import com.github.rcd27.stasyandex.dictionary.DictionaryAPI;
+import com.github.rcd27.stasyandex.translation.TranslationAPI;
 import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

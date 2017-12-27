@@ -7,12 +7,12 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.rcd27.stasyandex.model.ApiModule;
-import com.github.rcd27.stasyandex.model.dictionary.DictionaryAPI;
-import com.github.rcd27.stasyandex.model.dictionary.dto.DicResult;
-import com.github.rcd27.stasyandex.model.translation.TranslationAPI;
-import com.github.rcd27.stasyandex.model.translation.dto.Translation;
-import com.github.rcd27.stasyandex.presenter.dictionary.DictionaryVisualItem;
+import com.github.rcd27.stasyandex.dictionary.DictionaryAPI;
+import com.github.rcd27.stasyandex.data.dictionary.DicResult;
+import com.github.rcd27.stasyandex.net.ApiModule;
+import com.github.rcd27.stasyandex.translation.TranslationAPI;
+import com.github.rcd27.stasyandex.data.translation.Translation;
+import com.github.rcd27.stasyandex.dictionary.DictionaryVisualItem;
 
 import static org.junit.Assert.assertEquals;
 

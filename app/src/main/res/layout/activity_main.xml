@@ -11,14 +11,14 @@
 
     <fragment
         android:id="@+id/traslation_fragment"
-        android:name="com.github.rcd27.stasyandex.view.translation.TranslationFragment"
+        android:name="com.github.rcd27.stasyandex.translation.TranslationFragment"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         tools:layout="@layout/fragment_translation" />
 
     <fragment
         android:id="@+id/dictionary_fragment"
-        android:name="com.github.rcd27.stasyandex.view.dictionary.DictionaryFragment"
+        android:name="com.github.rcd27.stasyandex.dictionary.DictionaryFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_dictionary" />
