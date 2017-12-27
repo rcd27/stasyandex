@@ -10,6 +10,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.github.rcd27.stasyandex.R;
+import com.github.rcd27.stasyandex.model.Const;
+import com.github.rcd27.stasyandex.model.translation.dto.Translation;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,20 +22,12 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.github.rcd27.stasyandex.R;
-import com.github.rcd27.stasyandex.model.Const;
-import com.github.rcd27.stasyandex.model.translation.dto.Translation;
 
 public class LanguagesActivity extends AppCompatActivity {
 
-    @BindView(R.id.ib_closeAvailableLanguages)
-    ImageButton closeButton;
-
-    @BindView(R.id.languagesListView)
-    ListView languagesListView;
-
-    @BindView(R.id.tv_available_languages_title)
-    TextView tvTitle;
+    @BindView(R.id.ib_closeAvailableLanguages) ImageButton closeButton;
+    @BindView(R.id.languagesListView) ListView languagesListView;
+    @BindView(R.id.tv_available_languages_title) TextView tvTitle;
 
     private int direction;
 

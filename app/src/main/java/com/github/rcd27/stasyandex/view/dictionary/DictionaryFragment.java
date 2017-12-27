@@ -10,14 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import com.github.rcd27.stasyandex.R;
 import com.github.rcd27.stasyandex.di.DaggerDictionaryComponent;
 import com.github.rcd27.stasyandex.di.DictionaryComponent;
@@ -27,24 +19,24 @@ import com.github.rcd27.stasyandex.presenter.dictionary.DictionaryVisualDefiniti
 import com.github.rcd27.stasyandex.presenter.dictionary.DictionaryVisualItem;
 import com.github.rcd27.stasyandex.view.BaseFragment;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DictionaryFragment extends BaseFragment implements DictionaryView {
 
     private final String TAG = getClass().getSimpleName();
 
-    /*Здесь отображается слово, с которого был произведён перевод*/
-    @BindView(R.id.tv_dictionary_word)
-    TextView dictionaryOriginWord;
+    @BindView(R.id.tv_dictionary_word) TextView dictionaryOriginWord;
+    @BindView(R.id.tv_dictionary_pos) TextView dictionaryOriginWordPos;
+    @BindView(R.id.dictionary_recycler_view) RecyclerView definitionItemsRecyclerView;
 
-    /*Часть речи исходного слова*/
-    @BindView(R.id.tv_dictionary_pos)
-    TextView dictionaryOriginWordPos;
-
-    /*Для отображения вариантов перевода*/
-    @BindView(R.id.dictionary_recycler_view)
-    RecyclerView definitionItemsRecyclerView;
-
-    @Inject
-    DictionaryPresenter presenter;
+    @Inject DictionaryPresenter presenter;
 
     private DictionaryAdapter dictionaryAdapter;
 

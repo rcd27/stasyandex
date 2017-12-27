@@ -11,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.github.rcd27.stasyandex.R;
+import com.github.rcd27.stasyandex.model.Const;
+import com.github.rcd27.stasyandex.model.history.HistoryItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -21,23 +24,13 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.github.rcd27.stasyandex.R;
-import com.github.rcd27.stasyandex.model.Const;
-import com.github.rcd27.stasyandex.model.history.HistoryItem;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    @BindView(R.id.ib_closeHistory)
-    ImageButton btCloseHistory;
-
-    @BindView(R.id.et_historyEditText)
-    EditText editText;
-
-    @BindView(R.id.ib_deleteHistory)
-    ImageButton btDeleteHistory;
-
-    @BindView(R.id.rw_history_recyclerView)
-    RecyclerView recyclerView;
+    @BindView(R.id.ib_closeHistory) ImageButton btCloseHistory;
+    @BindView(R.id.et_historyEditText) EditText editText;
+    @BindView(R.id.ib_deleteHistory) ImageButton btDeleteHistory;
+    @BindView(R.id.rw_history_recyclerView) RecyclerView recyclerView;
 
     RecyclerView.Adapter adapter;
 

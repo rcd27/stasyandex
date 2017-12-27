@@ -65,12 +65,9 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
 
     // TODO: переименовать
     class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tv_dictionary_item_number)
-        TextView itemNumber;
-        @BindView(R.id.tv_dictionary_item_text_syn)
-        TextView textSyn;
-        @BindView(R.id.tv_dictionary_item_mean)
-        TextView mean;
+        @BindView(R.id.tv_dictionary_item_number) TextView itemNumber;
+        @BindView(R.id.tv_dictionary_item_text_syn) TextView textSyn;
+        @BindView(R.id.tv_dictionary_item_mean) TextView mean;
 
         ViewHolder(View itemView) {
             super(itemView);

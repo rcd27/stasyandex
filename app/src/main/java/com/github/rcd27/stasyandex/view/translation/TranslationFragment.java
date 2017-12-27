@@ -13,12 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnTextChanged;
 import com.github.rcd27.stasyandex.R;
 import com.github.rcd27.stasyandex.di.DaggerTranslationComponent;
 import com.github.rcd27.stasyandex.di.TranslationComponent;
@@ -30,33 +24,26 @@ import com.github.rcd27.stasyandex.view.BaseFragment;
 import com.github.rcd27.stasyandex.view.LanguagesActivity;
 import com.github.rcd27.stasyandex.view.history.HistoryActivity;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnTextChanged;
+
 public class TranslationFragment extends BaseFragment implements TranslationView {
 
     private final String TAG = getClass().getSimpleName();
 
-    @BindView(R.id.tv_languageFrom)
-    TextView tvLanguageFrom;
+    @BindView(R.id.tv_languageFrom) TextView tvLanguageFrom;
+    @BindView(R.id.ib_switch_direction) ImageButton ibSwitchDirection;
+    @BindView(R.id.tv_languageTo) TextView tvLanguageTo;
+    @BindView(R.id.translation_editText) EditText editText;
+    @BindView(R.id.bt_clearEditText) ImageButton btClearEditText;
+    @BindView(R.id.tv_translation_result) TextView tvTranslationResult;
+    @BindView(R.id.bt_history) ImageButton historyButton;
 
-    @BindView(R.id.ib_switch_direction)
-    ImageButton ibSwitchDirection;
-
-    @BindView(R.id.tv_languageTo)
-    TextView tvLanguageTo;
-
-    @BindView(R.id.translation_editText)
-    EditText editText;
-
-    @BindView(R.id.bt_clearEditText)
-    ImageButton btClearEditText;
-
-    @BindView(R.id.tv_translation_result)
-    TextView tvTranslationResult;
-
-    @BindView(R.id.bt_history)
-    ImageButton historyButton;
-
-    @Inject
-    TranslationPresenter presenter;
+    @Inject TranslationPresenter presenter;
 
     private TranslateButtonListener listener;
 
