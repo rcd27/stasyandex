@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 
 import com.github.rcd27.stasyandex.R;
 import com.github.rcd27.stasyandex.common.Const;
+import com.github.rcd27.stasyandex.data.history.HistoryItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -49,7 +50,7 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private List<HistoryItem> loadDataFromSharedResources() {
-        Map<String, String> items = (Map<String, String>) getSharedPreferences(Const.HISTORY_CACHE, Context.MODE_PRIVATE).getAll();
+        Map<String, ?> items = getSharedPreferences(Const.HISTORY_CACHE, Context.MODE_PRIVATE).getAll();
         List<HistoryItem> result = new ArrayList<>();
         Gson gson = new Gson();
         for (Map.Entry<String, ?> entry : items.entrySet()) {
@@ -88,6 +89,5 @@ public class HistoryActivity extends AppCompatActivity {
 
         editor.putString(name, json);
         editor.apply();
-
     }
 }

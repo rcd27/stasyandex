@@ -1,6 +1,7 @@
 package com.github.rcd27.stasyandex.history;
 
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,48 +9,52 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.github.rcd27.stasyandex.OnFavClickListener;
+import com.github.rcd27.stasyandex.R;
+import com.github.rcd27.stasyandex.data.history.HistoryItem;
+
 import java.util.List;
 
-import com.github.rcd27.stasyandex.R;
-import com.github.rcd27.stasyandex.OnFavClickListener;
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryAdapterViewHolder> {
 
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
+    private final List<HistoryItem> historyItems;
+    private final OnFavClickListener onFavClickListener;
 
-    private List<HistoryItem> dataset;
-    OnFavClickListener onFavClickListener;
+    HistoryAdapter(@NonNull List<HistoryItem> historyItems,
+                   @NonNull OnFavClickListener onFavClickListener) {
 
-    public HistoryAdapter(List<HistoryItem> dataset, OnFavClickListener onFavClickListener) {
-        this.dataset = dataset;
+        this.historyItems = historyItems;
         this.onFavClickListener = onFavClickListener;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HistoryAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_history, parent, false);
-        return new ViewHolder(view, onFavClickListener);
+        return new HistoryAdapterViewHolder(view, onFavClickListener);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.from.setText(dataset.get(position).getTextFrom());
-        holder.to.setText(dataset.get(position).getTextTo());
-        holder.lang.setText(dataset.get(position).getLang());
-        holder.fav.setSelected(dataset.get(position).isMarkedFav());
+    public void onBindViewHolder(HistoryAdapterViewHolder holder, int position) {
+        holder.from.setText(historyItems.get(position).getTextFrom());
+        holder.to.setText(historyItems.get(position).getTextTo());
+        holder.lang.setText(historyItems.get(position).getLang());
+        holder.fav.setSelected(historyItems.get(position).isMarkedFav());
     }
 
     @Override
     public int getItemCount() {
-        return dataset.size();
+        return historyItems.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class HistoryAdapterViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView from;
-        public TextView to;
-        public TextView lang;
-        public ImageButton fav;
+        public final TextView from;
+        public final TextView to;
+        public final TextView lang;
 
-        public ViewHolder(View view, OnFavClickListener listener) {
+        final ImageButton fav;
+
+        HistoryAdapterViewHolder(View view, OnFavClickListener listener) {
             super(view);
             from = view.findViewById(R.id.tv_history_from);
             to = view.findViewById(R.id.tv_history_to);
@@ -60,13 +65,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         }
 
         private void setFavListener(final OnFavClickListener listener) {
-            fav.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        fav.setSelected(!fav.isSelected());
-                        listener.onFavClick(getAdapterPosition());
-                    }
+            fav.setOnClickListener(v -> {
+                if (listener != null) {
+                    fav.setSelected(!fav.isSelected());
+                    listener.onFavClick(getAdapterPosition());
                 }
             });
         }

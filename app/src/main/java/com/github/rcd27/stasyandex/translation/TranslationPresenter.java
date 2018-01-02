@@ -13,7 +13,7 @@ import com.github.rcd27.stasyandex.common.BasePresenter;
 import com.github.rcd27.stasyandex.common.Const;
 import com.github.rcd27.stasyandex.common.TextUtil;
 import com.github.rcd27.stasyandex.data.translation.Translation;
-import com.github.rcd27.stasyandex.history.HistoryItem;
+import com.github.rcd27.stasyandex.data.history.HistoryItem;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -21,17 +21,17 @@ import java.util.Map;
 
 import rx.Subscription;
 
-public class TranslationPresenter extends BasePresenter {
+public class TranslationPresenter extends BasePresenter implements TranslationContract.Presenter {
     private final String TAG = getClass().getSimpleName();
 
-    private final TranslationView view;
+    private final TranslationContract.View view;
     private final Context context;
     private final Model model;
 
     //TODO получать из Translate API при загрузке приложения в первый раз, сохранять в Preferences.
-    private Map<String, String> languagesMap;
+    private final Map<String, String> languagesMap;
 
-    public TranslationPresenter(TranslationView view,
+    public TranslationPresenter(TranslationContract.View view,
                                 Context context,
                                 Model model) {
 
@@ -41,6 +41,7 @@ public class TranslationPresenter extends BasePresenter {
         this.languagesMap = Translation.createLanguagesMap();
     }
 
+    @Override
     public void getTranslationForTextFromEditText() {
         String text = view.getTextFromEditText();
         if (TextUtils.isEmpty(text) || text.isEmpty()) {
@@ -51,27 +52,26 @@ public class TranslationPresenter extends BasePresenter {
         addSubscription(getSubscriptionForTranslated(text));
     }
 
-    private Subscription getSubscriptionForTranslated(String text) {
+    // TODO: прикрутить задержку, чтобы экшон не происходил по каждому нажатию
+    @NonNull
+    private Subscription getSubscriptionForTranslated(@NonNull String text) {
         return model.getTranslation(text, getDirection())
-                .doOnError(throwable -> {
-                    Log.w(TAG, "Retrofit/rxJava error!");
-                })
-                .doOnNext(response -> {
+                .doOnError(throwable -> Log.w(TAG, "Retrofit/rxJava error!"))
+                .subscribe(response -> {
                     if (null != response && !response.isEmpty()) {
                         view.showTranslation(response);
-                        //TODO сделать задержку
                         saveToHistory(response);
-                        view.showError("«Переведено сервисом «Яндекс.Переводчик»");
+//                        view.showError("«Переведено сервисом «Яндекс.Переводчик»");
                         Log.i(TAG, "response from server is OK");
                     } else {
                         view.showEmpty();
                         Log.w(TAG, "response from server is null or empty");
                     }
-                })
-                .subscribe();
+                });
     }
 
     @NonNull
+    @Override
     public String getDirection() {
         String languageFrom = view.getLanguageFrom();
         String languageFromAbbr = TextUtil.findKeyByValue(languagesMap, languageFrom);
@@ -85,10 +85,12 @@ public class TranslationPresenter extends BasePresenter {
     }
 
     //TODO FIXME инт пробрасывается в презентер и обратно. Убрать, чтобы вью ничего не знал.
+    @Override
     public void onChooseLanguage(int directionInt) {
         view.chooseLanguage(directionInt);
     }
 
+    @Override
     public void handleIntentForSelectedLanguages(Intent intent) {
         if (intent.hasExtra("direction") && intent.hasExtra("selectedLanguage")) {
             int direction = intent.getIntExtra("direction", 0);
@@ -102,15 +104,19 @@ public class TranslationPresenter extends BasePresenter {
                     case Const.DIRECTION_TO:
                         view.showLanguageTo(selectedLanguage);
                         break;
+                    default:
+                        view.showError("Ошибка выбора языка");
                 }
             }
         }
     }
 
+    @Override
     public void clearTranslationEditText() {
         view.clearEditText();
     }
 
+    @Override
     public void switchToHistory() {
         view.openHistory();
     }

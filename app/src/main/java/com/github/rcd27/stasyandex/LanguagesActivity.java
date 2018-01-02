@@ -45,9 +45,7 @@ public class LanguagesActivity extends AppCompatActivity {
         Map<String, String> availableLanguagesMap = Translation.createLanguagesMap();
 
         List<String> languageListToShow = new ArrayList<>();
-        for (String s : availableLanguagesMap.values()) {
-            languageListToShow.add(s);
-        }
+        languageListToShow.addAll(availableLanguagesMap.values());
         Collections.sort(languageListToShow);
 
         languagesListView.setOnItemClickListener((parent, view, position, id) ->

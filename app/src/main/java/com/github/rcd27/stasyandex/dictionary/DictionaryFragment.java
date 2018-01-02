@@ -2,6 +2,7 @@ package com.github.rcd27.stasyandex.dictionary;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,9 @@ import com.github.rcd27.stasyandex.R;
 import com.github.rcd27.stasyandex.Stasyandex;
 import com.github.rcd27.stasyandex.common.BaseFragment;
 import com.github.rcd27.stasyandex.di.dictionary.DictionaryModule;
+import com.github.rcd27.stasyandex.dictionary.visual.DictionaryAdapter;
+import com.github.rcd27.stasyandex.dictionary.visual.DictionaryVisualDefinition;
+import com.github.rcd27.stasyandex.dictionary.visual.DictionaryVisualItem;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +28,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DictionaryFragment extends BaseFragment implements DictionaryView {
+public class DictionaryFragment extends BaseFragment implements DictionaryContract.View {
 
     private final String TAG = getClass().getSimpleName();
 
@@ -32,7 +36,7 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     @BindView(R.id.tv_dictionary_pos) TextView dictionaryOriginWordPos;
     @BindView(R.id.dictionary_recycler_view) RecyclerView definitionItemsRecyclerView;
 
-    @Inject DictionaryPresenter presenter;
+    @Inject DictionaryContract.Presenter presenter;
 
     private DictionaryAdapter dictionaryAdapter;
 
@@ -46,7 +50,7 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,
+    public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
@@ -80,13 +84,11 @@ public class DictionaryFragment extends BaseFragment implements DictionaryView {
     public void showEmpty() {
         dictionaryOriginWord.setText("");
         dictionaryOriginWordPos.setText("");
-        dictionaryAdapter.setDictionaryItemList(Collections.EMPTY_LIST);
+        dictionaryAdapter.setDictionaryItemList(Collections.emptyList());
     }
 
     @Override
     public DictionaryPresenter getPresenter() {
-        return presenter;
+        return (DictionaryPresenter) presenter;
     }
-
-
 }

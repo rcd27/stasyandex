@@ -11,10 +11,8 @@ import com.github.rcd27.stasyandex.translation.TranslationFragment;
 public class MainActivity extends AppCompatActivity implements TranslationFragment.TranslateButtonListener {
 
     //MAIN TODO:
-    //      1)Привести в порядок dependency injection
     //      2)Написать тесты
     //      3)Дописать весь функционал (с соотв. тестами)
-    //      4)Провести рефакторинг, проследить за строгим соблюдением MVP архитектуры.
 
     private FragmentManager fragmentManager;
 
@@ -24,11 +22,6 @@ public class MainActivity extends AppCompatActivity implements TranslationFragme
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
         //TODO пробросить getCacheDir() в OkHttpClient;
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
     }
 
     @Override

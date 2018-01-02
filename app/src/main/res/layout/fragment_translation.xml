@@ -18,7 +18,7 @@
         <TextView
             android:id="@+id/tv_languageFrom"
             android:layout_width="0dp"
-            android:layout_height="@dimen/item_height_standart"
+            android:layout_height="@dimen/item_height_standard"
             android:layout_gravity="start"
             android:layout_weight="1"
             android:gravity="end|center_vertical"
@@ -32,8 +32,8 @@
 
         <ImageButton
             android:id="@+id/ib_switch_direction"
-            android:layout_width="@dimen/item_height_standart"
-            android:layout_height="@dimen/item_height_standart"
+            android:layout_width="@dimen/item_height_standard"
+            android:layout_height="@dimen/item_height_standard"
             android:background="@color/colorPrimary"
             android:contentDescription="@string/ib_switch_direction"
             app:srcCompat="@drawable/ic_change_arrows_black_24dp" />
@@ -41,7 +41,7 @@
         <TextView
             android:id="@+id/tv_languageTo"
             android:layout_width="0dp"
-            android:layout_height="@dimen/item_height_standart"
+            android:layout_height="@dimen/item_height_standard"
             android:layout_gravity="end"
             android:layout_weight="1"
             android:gravity="start|center_vertical"
@@ -79,8 +79,8 @@
 
         <ImageButton
             android:id="@+id/bt_clearEditText"
-            android:layout_width="@dimen/item_height_standart"
-            android:layout_height="@dimen/item_height_standart"
+            android:layout_width="@dimen/item_height_standard"
+            android:layout_height="@dimen/item_height_standard"
             android:layout_gravity="end|top"
             android:layout_marginBottom="24dp"
             android:layout_marginEnd="16dp"
@@ -91,8 +91,8 @@
 
         <ImageButton
             android:id="@+id/bt_history"
-            android:layout_width="@dimen/item_height_standart"
-            android:layout_height="@dimen/item_height_standart"
+            android:layout_width="@dimen/item_height_standard"
+            android:layout_height="@dimen/item_height_standard"
             android:layout_gravity="end|bottom"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp"
@@ -105,7 +105,7 @@
     <TextView
         android:id="@+id/tv_translation_result"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_height_standart"
+        android:layout_height="@dimen/item_height_standard"
         android:layout_marginEnd="@dimen/padding"
         android:layout_marginLeft="@dimen/padding"
         android:layout_marginRight="@dimen/padding"

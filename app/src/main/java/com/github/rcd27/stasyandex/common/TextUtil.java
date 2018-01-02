@@ -6,8 +6,12 @@ import android.support.annotation.NonNull;
 import java.util.List;
 import java.util.Map;
 
-
 public class TextUtil {
+
+    private TextUtil() {
+        // empty
+    }
+
     public static String commaRawFromList(List<String> fromList) {
         if (fromList.size() == 1) {
             return fromList.get(0);

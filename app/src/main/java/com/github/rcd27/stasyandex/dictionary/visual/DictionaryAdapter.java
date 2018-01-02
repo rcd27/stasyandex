@@ -1,4 +1,4 @@
-package com.github.rcd27.stasyandex.dictionary;
+package com.github.rcd27.stasyandex.dictionary.visual;
 
 
 import android.support.v7.widget.RecyclerView;
@@ -15,11 +15,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.ViewHolder> {
+public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.DictionaryAdapterViewHolder> {
 
     private List<DictionaryVisualItem> list;
 
-    DictionaryAdapter(List<DictionaryVisualItem> list) {
+    public DictionaryAdapter(List<DictionaryVisualItem> list) {
         this.list = list;
     }
 
@@ -28,16 +28,16 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DictionaryAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.item_dictionary, parent, false);
 
-        return new ViewHolder(v);
+        return new DictionaryAdapterViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(DictionaryAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(DictionaryAdapter.DictionaryAdapterViewHolder holder, int position) {
         List<String> synonyms = list.get(position).getComaRaw();
         List<String> meaninigs = list.get(position).getMeaningRaw();
 
@@ -52,7 +52,7 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
         holder.itemNumber.setText(String.valueOf(position + 1));
     }
 
-    void setDictionaryItemList(List<DictionaryVisualItem> dictionaryItemList) {
+    public void setDictionaryItemList(List<DictionaryVisualItem> dictionaryItemList) {
         this.list = dictionaryItemList;
         notifyDataSetChanged();
     }
@@ -62,13 +62,12 @@ public class DictionaryAdapter extends RecyclerView.Adapter<DictionaryAdapter.Vi
         return list.size();
     }
 
-    // TODO: переименовать
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class DictionaryAdapterViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_dictionary_item_number) TextView itemNumber;
         @BindView(R.id.tv_dictionary_item_text_syn) TextView textSyn;
         @BindView(R.id.tv_dictionary_item_mean) TextView mean;
 
-        ViewHolder(View itemView) {
+        DictionaryAdapterViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

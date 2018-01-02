@@ -1,17 +1,10 @@
 package com.github.rcd27.stasyandex.common;
 
 
-import com.github.rcd27.stasyandex.Presenter;
-
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-/*
-Базовый перзентер, включает в себя добавление subscription'а к составному subscription'у, очистку
-последнего при onStop().
- */
-
-public abstract class BasePresenter implements Presenter {
+public abstract class BasePresenter {
 
     protected final CompositeSubscription compositeSubscription;
 
@@ -23,8 +16,7 @@ public abstract class BasePresenter implements Presenter {
         compositeSubscription.add(subscription);
     }
 
-    @Override
-    public void onStop() {
+    void onStop() {
         compositeSubscription.clear();
     }
 }

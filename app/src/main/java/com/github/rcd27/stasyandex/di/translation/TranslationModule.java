@@ -4,10 +4,9 @@ package com.github.rcd27.stasyandex.di.translation;
 import android.content.Context;
 
 import com.github.rcd27.stasyandex.Model;
-import com.github.rcd27.stasyandex.di.ApplicationScope;
+import com.github.rcd27.stasyandex.translation.TranslationContract;
 import com.github.rcd27.stasyandex.translation.TranslationFragment;
 import com.github.rcd27.stasyandex.translation.TranslationPresenter;
-import com.github.rcd27.stasyandex.translation.TranslationView;
 
 import dagger.Module;
 import dagger.Provides;
@@ -15,22 +14,20 @@ import dagger.Provides;
 @Module
 public class TranslationModule {
 
-    private TranslationView view;
-    private TranslationFragment.TranslateButtonListener listener;
-    private Context context;
+    private final TranslationContract.View view;
+    private final Context context;
 
-    public TranslationModule(TranslationView view,
+    public TranslationModule(TranslationContract.View view,
                              TranslationFragment.TranslateButtonListener li,
                              Context context) {
 
         this.view = view;
-        this.listener = li;
+        TranslationFragment.TranslateButtonListener listener = li;
         this.context = context;
     }
 
     @Provides
-    @ApplicationScope
-    TranslationPresenter translationPresenter(Model model) {
+    TranslationContract.Presenter translationPresenter(Model model) {
         return new TranslationPresenter(view, context, model);
     }
 }

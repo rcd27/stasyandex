@@ -7,22 +7,21 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.rcd27.stasyandex.dictionary.DictionaryAPI;
 import com.github.rcd27.stasyandex.data.dictionary.DicResult;
+import com.github.rcd27.stasyandex.dictionary.DictionaryContract;
 import com.github.rcd27.stasyandex.net.ApiModule;
-import com.github.rcd27.stasyandex.translation.TranslationAPI;
 import com.github.rcd27.stasyandex.data.translation.Translation;
-import com.github.rcd27.stasyandex.dictionary.DictionaryVisualItem;
+import com.github.rcd27.stasyandex.dictionary.visual.DictionaryVisualItem;
+import com.github.rcd27.stasyandex.translation.TranslationContract;
 
 import static org.junit.Assert.assertEquals;
 
 public class MainTestCase {
-    private TranslationAPI translationAPI;
-    private DictionaryAPI dictionaryAPI;
+    private DictionaryContract.Api dictionaryAPI;
 
     @Before
     public void getApi() {
-        translationAPI = ApiModule.getTranslationApi();
+        TranslationContract.Api translationAPI = ApiModule.getTranslationApi();
         dictionaryAPI = ApiModule.getDictionaryApi();
     }
 

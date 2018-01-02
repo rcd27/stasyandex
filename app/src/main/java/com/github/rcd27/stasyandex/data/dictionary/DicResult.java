@@ -7,10 +7,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.rcd27.stasyandex.dictionary.DictionaryVisualDefinition;
-import com.github.rcd27.stasyandex.dictionary.DictionaryVisualItem;
+import com.github.rcd27.stasyandex.dictionary.visual.DictionaryVisualDefinition;
+import com.github.rcd27.stasyandex.dictionary.visual.DictionaryVisualItem;
 
-/*Возвращается JSON'ом*/
 public class DicResult {
     /*Заголовок результата - не используется*/
     @SerializedName("head")
@@ -21,10 +20,6 @@ public class DicResult {
     @SerializedName("def")
     @Expose
     private List<Definition> definitionList;
-
-    private List<Definition> getDefinitionList() {
-        return definitionList;
-    }
 
     public void setDefinitionList(List<Definition> definitionList) {
         this.definitionList = definitionList;

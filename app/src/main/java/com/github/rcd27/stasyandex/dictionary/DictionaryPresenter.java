@@ -6,41 +6,39 @@ import android.util.Log;
 
 import com.github.rcd27.stasyandex.Model;
 import com.github.rcd27.stasyandex.common.BasePresenter;
-import com.github.rcd27.stasyandex.data.dictionary.DicResult;
 
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class DictionaryPresenter extends BasePresenter {
+public class DictionaryPresenter extends BasePresenter implements DictionaryContract.Presenter {
 
     private final String TAG = getClass().getSimpleName();
 
-    private final DictionaryView view;
+    private final DictionaryContract.View view;
     private final Model model;
 
-    public DictionaryPresenter(DictionaryView view, @NonNull Model model) {
+    public DictionaryPresenter(DictionaryContract.View view, @NonNull Model model) {
         this.view = view;
         this.model = model;
     }
 
-    //TODO FIXME есди в этом методе используется другой с такими же параметрами, зачем он нужен?!
-    public void getDictionaryResponseFor(String direction, String text) {
+    public void getDictionaryResponseFor(@NonNull String direction, @NonNull String text) {
         addSubscription(getSubscriptionForDictionaryDefinition(direction, text));
     }
 
+    @NonNull
     private Subscription getSubscriptionForDictionaryDefinition(String direction, String text) {
         return model.getDicResult(direction, text, "ru")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
-                .firstOrDefault(new DicResult())
                 .doOnError(throwable -> {
                     view.showEmpty();
                     Log.w(TAG, "Retrofit/rxJava error!");
                     throwable.printStackTrace();
                 })
-                .doOnNext(dicResult -> {
+                .subscribe(dicResult -> {
                     if (!dicResult.definitionListIsEmptyOrNull()) {
                         view.showDefinition(dicResult.getDefinition());
                         view.showDictionaryItems(dicResult.getElementsList());
@@ -48,7 +46,6 @@ public class DictionaryPresenter extends BasePresenter {
                     } else {
                         view.showEmpty();
                     }
-                })
-                .subscribe();
+                });
     }
 }

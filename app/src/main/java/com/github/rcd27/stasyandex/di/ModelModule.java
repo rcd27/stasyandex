@@ -2,9 +2,9 @@ package com.github.rcd27.stasyandex.di;
 
 import com.github.rcd27.stasyandex.Model;
 import com.github.rcd27.stasyandex.ModelImpl;
-import com.github.rcd27.stasyandex.dictionary.DictionaryAPI;
+import com.github.rcd27.stasyandex.dictionary.DictionaryContract;
 import com.github.rcd27.stasyandex.net.ApiModule;
-import com.github.rcd27.stasyandex.translation.TranslationAPI;
+import com.github.rcd27.stasyandex.translation.TranslationContract;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,21 +13,18 @@ import dagger.Provides;
 public class ModelModule {
 
     @Provides
-    @ApplicationScope
-    Model provideMode(TranslationAPI translationAPI, DictionaryAPI dictionaryAPI) {
+    Model provideMode(TranslationContract.Api translationAPI, DictionaryContract.Api dictionaryAPI) {
         return new ModelImpl(translationAPI, dictionaryAPI);
     }
 
     @Provides
-    @ApplicationScope
-    TranslationAPI translationAPI() {
+    TranslationContract.Api translationAPI() {
         //TODO сюда надо передать Context приложения, чтобы добавить кэширование хттпклиента
         return ApiModule.getTranslationApi();
     }
 
     @Provides
-    @ApplicationScope
-    DictionaryAPI dictionaryAPI() {
+    DictionaryContract.Api dictionaryAPI() {
         return ApiModule.getDictionaryApi();
     }
 }

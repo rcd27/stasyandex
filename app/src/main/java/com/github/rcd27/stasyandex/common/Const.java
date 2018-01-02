@@ -2,6 +2,7 @@ package com.github.rcd27.stasyandex.common;
 
 
 public interface Const {
+
     String TRANSLATE_URL = "https://translate.yandex.net/";
     String TRANSLATE_API_KEY
             = "trnsl.1.1.20170328T062222Z.f3f1e1ae57d4187c.6f006025ae089fb83376c9d76eabc979605f84e9";

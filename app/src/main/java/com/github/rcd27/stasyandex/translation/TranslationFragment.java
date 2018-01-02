@@ -4,6 +4,7 @@ package com.github.rcd27.stasyandex.translation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class TranslationFragment extends BaseFragment implements TranslationView {
+public class TranslationFragment extends BaseFragment implements TranslationContract.View{
 
     private final String TAG = getClass().getSimpleName();
 
@@ -41,8 +42,9 @@ public class TranslationFragment extends BaseFragment implements TranslationView
     @BindView(R.id.tv_translation_result) TextView tvTranslationResult;
     @BindView(R.id.bt_history) ImageButton historyButton;
 
-    @Inject TranslationPresenter presenter;
+    @Inject TranslationContract.Presenter presenter;
 
+    // FIXME: убрать
     private TranslateButtonListener listener;
 
     @Override
@@ -67,7 +69,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,
+    public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -136,12 +138,7 @@ public class TranslationFragment extends BaseFragment implements TranslationView
 
     @Override
     protected BasePresenter getPresenter() {
-        return presenter;
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+        return (BasePresenter) presenter;
     }
 
     @Override

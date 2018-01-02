@@ -1,11 +1,12 @@
-package com.github.rcd27.stasyandex.dictionary;
+package com.github.rcd27.stasyandex.dictionary.visual;
 
 
 import java.text.MessageFormat;
 
 public class DictionaryVisualDefinition {
-    String text;
-    String pos;
+
+    private final String text;
+    private final String pos;
 
     public DictionaryVisualDefinition(String text, String pos) {
         this.text = text;

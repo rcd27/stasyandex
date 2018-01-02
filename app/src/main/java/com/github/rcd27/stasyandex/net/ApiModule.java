@@ -3,6 +3,10 @@ package com.github.rcd27.stasyandex.net;
 
 import android.support.annotation.NonNull;
 
+import com.github.rcd27.stasyandex.common.Const;
+import com.github.rcd27.stasyandex.dictionary.DictionaryContract;
+import com.github.rcd27.stasyandex.translation.TranslationContract;
+
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
@@ -11,10 +15,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
-
-import com.github.rcd27.stasyandex.common.Const;
-import com.github.rcd27.stasyandex.dictionary.DictionaryAPI;
-import com.github.rcd27.stasyandex.translation.TranslationAPI;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -22,20 +22,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static okhttp3.logging.HttpLoggingInterceptor.Level;
 
 public class ApiModule {
-    public static TranslationAPI getTranslationApi() {
+
+    private ApiModule() {
+        //hiding constructor
+    }
+
+    public static TranslationContract.Api getTranslationApi() {
         OkHttpClient translationClient = getHttpClient(Const.TRANSLATE_API_KEY);
         Retrofit translationService = buildService(Const.TRANSLATE_URL, translationClient);
-        return translationService.create(TranslationAPI.class);
+        return translationService.create(TranslationContract.Api.class);
     }
 
 
-    public static DictionaryAPI getDictionaryApi() {
+    public static DictionaryContract.Api getDictionaryApi() {
         OkHttpClient dictionaryClient = getHttpClient(Const.DICTIONARY_API_KEY);
         Retrofit dictionaryService = buildService(Const.DICTIONARY_URL, dictionaryClient);
-        return dictionaryService.create(DictionaryAPI.class);
+        return dictionaryService.create(DictionaryContract.Api.class);
     }
 
-    @NonNull
     private static OkHttpClient getHttpClient(String apiKey) {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient().newBuilder();
         HttpLoggingInterceptor networkLogger = new HttpLoggingInterceptor();
@@ -63,7 +67,7 @@ public class ApiModule {
         }
 
         @Override
-        public Response intercept(Chain chain) throws IOException {
+        public Response intercept(@NonNull Chain chain) throws IOException {
             Request original = chain.request();
             HttpUrl originalHttpUrl = original.url();
 

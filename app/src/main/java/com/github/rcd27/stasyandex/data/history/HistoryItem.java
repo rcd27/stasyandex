@@ -1,10 +1,8 @@
-package com.github.rcd27.stasyandex.history;
+package com.github.rcd27.stasyandex.data.history;
 
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-//У меня пока нет visual objects, используются объекты из model.
 
 public class HistoryItem {
     @SerializedName("lang")
@@ -13,15 +11,15 @@ public class HistoryItem {
 
     @SerializedName("textTo")
     @Expose
-    private String to;
+    private final String to;
 
     @SerializedName("textFrom")
     @Expose
-    private String from;
+    private final String from;
 
     @SerializedName("date")
     @Expose
-    private long date;
+    private final long date;
 
     @SerializedName("fav")
     @Expose
