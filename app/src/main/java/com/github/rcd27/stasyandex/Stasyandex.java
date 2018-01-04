@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.github.rcd27.stasyandex.di.AppComponent;
 import com.github.rcd27.stasyandex.di.DaggerAppComponent;
-import com.github.rcd27.stasyandex.di.ModelModule;
 
 public class Stasyandex extends Application {
 
@@ -26,7 +25,7 @@ public class Stasyandex extends Application {
         instance = this;
 
         appComponent = DaggerAppComponent.builder()
-                .modelModule(new ModelModule())
+//                .apiModule(new ApiModule()) // FIXME: работает и без явного указания этой строки.
                 .build();
     }
 }

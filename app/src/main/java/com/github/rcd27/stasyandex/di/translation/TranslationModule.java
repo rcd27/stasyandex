@@ -3,7 +3,6 @@ package com.github.rcd27.stasyandex.di.translation;
 
 import android.content.Context;
 
-import com.github.rcd27.stasyandex.Model;
 import com.github.rcd27.stasyandex.translation.TranslationContract;
 import com.github.rcd27.stasyandex.translation.TranslationFragment;
 import com.github.rcd27.stasyandex.translation.TranslationPresenter;
@@ -27,7 +26,7 @@ public class TranslationModule {
     }
 
     @Provides
-    TranslationContract.Presenter translationPresenter(Model model) {
-        return new TranslationPresenter(view, context, model);
+    TranslationContract.Presenter translationPresenter(TranslationContract.Api api) {
+        return new TranslationPresenter(view, context, api);
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.github.rcd27.stasyandex.data.dictionary.DicResult;
 import com.github.rcd27.stasyandex.dictionary.DictionaryContract;
-import com.github.rcd27.stasyandex.net.ApiModule;
+import com.github.rcd27.stasyandex.network.RetrofitApiFactory;
 import com.github.rcd27.stasyandex.data.translation.Translation;
 import com.github.rcd27.stasyandex.dictionary.visual.DictionaryVisualItem;
 import com.github.rcd27.stasyandex.translation.TranslationContract;
@@ -21,8 +21,8 @@ public class MainTestCase {
 
     @Before
     public void getApi() {
-        TranslationContract.Api translationAPI = ApiModule.getTranslationApi();
-        dictionaryAPI = ApiModule.getDictionaryApi();
+        TranslationContract.Api translationAPI = RetrofitApiFactory.getTranslationApi();
+        dictionaryAPI = RetrofitApiFactory.getDictionaryApi();
     }
 
     @Test

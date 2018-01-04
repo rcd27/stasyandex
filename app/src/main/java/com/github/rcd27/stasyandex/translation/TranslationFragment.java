@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class TranslationFragment extends BaseFragment implements TranslationContract.View{
+public class TranslationFragment extends BaseFragment implements TranslationContract.View {
 
     private final String TAG = getClass().getSimpleName();
 

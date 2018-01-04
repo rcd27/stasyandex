@@ -1,43 +1,45 @@
 package com.github.rcd27.stasyandex.translation;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.util.Log;
 
-import com.github.rcd27.stasyandex.Model;
 import com.github.rcd27.stasyandex.common.BasePresenter;
 import com.github.rcd27.stasyandex.common.Const;
 import com.github.rcd27.stasyandex.common.TextUtil;
-import com.github.rcd27.stasyandex.data.translation.Translation;
 import com.github.rcd27.stasyandex.data.history.HistoryItem;
+import com.github.rcd27.stasyandex.data.translation.Translation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.Map;
 
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import timber.log.Timber;
 
 public class TranslationPresenter extends BasePresenter implements TranslationContract.Presenter {
     private final String TAG = getClass().getSimpleName();
 
     private final TranslationContract.View view;
     private final Context context;
-    private final Model model;
+    private final TranslationContract.Api api;
 
     //TODO получать из Translate API при загрузке приложения в первый раз, сохранять в Preferences.
     private final Map<String, String> languagesMap;
 
     public TranslationPresenter(TranslationContract.View view,
                                 Context context,
-                                Model model) {
+                                TranslationContract.Api api) {
 
         this.view = view;
         this.context = context;
-        this.model = model;
+        this.api = api;
         this.languagesMap = Translation.createLanguagesMap();
     }
 
@@ -53,19 +55,22 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
     }
 
     // TODO: прикрутить задержку, чтобы экшон не происходил по каждому нажатию
+    @SuppressLint("RxSubscribeOnError")
     @NonNull
     private Subscription getSubscriptionForTranslated(@NonNull String text) {
-        return model.getTranslation(text, getDirection())
-                .doOnError(throwable -> Log.w(TAG, "Retrofit/rxJava error!"))
+        return api.getTranslation(text, getDirection())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(throwable -> Timber.tag(TAG).w("Retrofit/rxJava error!"))
                 .subscribe(response -> {
                     if (null != response && !response.isEmpty()) {
                         view.showTranslation(response);
                         saveToHistory(response);
 //                        view.showError("«Переведено сервисом «Яндекс.Переводчик»");
-                        Log.i(TAG, "response from server is OK");
+                        Timber.i("response from server is OK");
                     } else {
                         view.showEmpty();
-                        Log.w(TAG, "response from server is null or empty");
+                        Timber.tag(TAG).w("response from server is null or empty");
                     }
                 });
     }
@@ -79,7 +84,7 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
         String languageTo = view.getLanguageTo();
         String languageToAbbr = TextUtil.findKeyByValue(languagesMap, languageTo);
 
-        Log.w(TAG, "Direction is" + languageFromAbbr.concat("-").concat(languageToAbbr));
+        Timber.tag(TAG).w("Direction is%s", languageFromAbbr.concat("-").concat(languageToAbbr));
 
         return languageFromAbbr.concat("-").concat(languageToAbbr);
     }

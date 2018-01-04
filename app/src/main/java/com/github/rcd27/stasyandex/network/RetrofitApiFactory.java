@@ -1,4 +1,4 @@
-package com.github.rcd27.stasyandex.net;
+package com.github.rcd27.stasyandex.network;
 
 
 import android.support.annotation.NonNull;
@@ -21,9 +21,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static okhttp3.logging.HttpLoggingInterceptor.Level;
 
-public class ApiModule {
+public class RetrofitApiFactory {
 
-    private ApiModule() {
+    private RetrofitApiFactory() {
         //hiding constructor
     }
 

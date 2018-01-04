@@ -1,6 +1,5 @@
 package com.github.rcd27.stasyandex.di.dictionary;
 
-import com.github.rcd27.stasyandex.Model;
 import com.github.rcd27.stasyandex.dictionary.DictionaryContract;
 import com.github.rcd27.stasyandex.dictionary.DictionaryPresenter;
 
@@ -17,7 +16,7 @@ public class DictionaryModule {
     }
 
     @Provides
-    DictionaryContract.Presenter dictionaryPresenter(Model model) {
-        return new DictionaryPresenter(view, model);
+    DictionaryContract.Presenter dictionaryPresenter(DictionaryContract.Api api) {
+        return new DictionaryPresenter(view, api);
     }
 }

@@ -6,7 +6,6 @@ import com.github.rcd27.stasyandex.data.translation.AvailableLanguages;
 import com.github.rcd27.stasyandex.data.translation.ProbableLanguage;
 import com.github.rcd27.stasyandex.data.translation.Translation;
 
-import rx.Observable;
 import rx.Single;
 
 public interface Model {

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.github.rcd27.stasyandex.R;
 import com.github.rcd27.stasyandex.dictionary.DictionaryFragment;
 import com.github.rcd27.stasyandex.translation.TranslationFragment;
 
@@ -24,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements TranslationFragme
         //TODO пробросить getCacheDir() в OkHttpClient;
     }
 
-    @Override
     public void onTranslateEditTextChanged(String direction, String textFromEditText) {
         DictionaryFragment dicFrag = (DictionaryFragment) fragmentManager
                 .findFragmentById(R.id.dictionary_fragment);
