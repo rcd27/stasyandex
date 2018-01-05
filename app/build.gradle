@@ -15,7 +15,7 @@ android {
         }
     }
 
-    flavorDimensions "dictionary", "theme"
+    flavorDimensions "dictionary"
     productFlavors {
         mock {
             dimension "dictionary"
@@ -26,13 +26,6 @@ android {
             dimension "dictionary"
             versionNameSuffix "-yandexDictionary"
         }
-
-        yellowTheme {
-            dimension "theme"
-            versionNameSuffix "-yellowTheme"
-        }
-        // https://developer.android.com/studio/build/build-variants.html#sourcesets
-        // https://developer.android.com/studio/build/build-variants.html#filter-variants
     }
 
     compileOptions {
