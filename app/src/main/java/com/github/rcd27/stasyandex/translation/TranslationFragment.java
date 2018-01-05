@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +28,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
+import timber.log.Timber;
 
 public class TranslationFragment extends BaseFragment implements TranslationContract.View {
 
-    private final String TAG = getClass().getSimpleName();
+    private final String tag = getClass().getSimpleName();
 
     @BindView(R.id.tv_languageFrom) TextView tvLanguageFrom;
     @BindView(R.id.ib_switch_direction) ImageButton ibSwitchDirection;
@@ -52,7 +52,7 @@ public class TranslationFragment extends BaseFragment implements TranslationCont
         super.onAttach(context);
         try {
             listener = (TranslateButtonListener) context;
-            Log.i(TAG, "onAttach: listener attached!");
+            Timber.tag(tag).i("onAttach: listener attached!");
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() +
                     " must implement TranslateButtonListener");

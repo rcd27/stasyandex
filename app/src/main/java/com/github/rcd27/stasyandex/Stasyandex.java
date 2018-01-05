@@ -5,6 +5,8 @@ import android.app.Application;
 import com.github.rcd27.stasyandex.di.AppComponent;
 import com.github.rcd27.stasyandex.di.DaggerAppComponent;
 
+import timber.log.Timber;
+
 public class Stasyandex extends Application {
 
     public static Stasyandex instance;
@@ -24,8 +26,10 @@ public class Stasyandex extends Application {
         super.onCreate();
         instance = this;
 
-        appComponent = DaggerAppComponent.builder()
-//                .apiModule(new ApiModule()) // FIXME: работает и без явного указания этой строки.
-                .build();
+        appComponent = DaggerAppComponent.builder().build();
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
     }
 }

@@ -24,7 +24,7 @@ import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 public class TranslationPresenter extends BasePresenter implements TranslationContract.Presenter {
-    private final String TAG = getClass().getSimpleName();
+    private final String tag = getClass().getSimpleName();
 
     private final TranslationContract.View view;
     private final Context context;
@@ -46,8 +46,7 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
     @Override
     public void getTranslationForTextFromEditText() {
         String text = view.getTextFromEditText();
-        if (TextUtils.isEmpty(text) || text.isEmpty()) {
-            view.showError("Введите текст для перевода.");
+        if (TextUtils.isEmpty(text)) {
             view.showEmpty();
             return;
         }
@@ -61,16 +60,14 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
         return api.getTranslation(text, getDirection())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(throwable -> Timber.tag(TAG).w("Retrofit/rxJava error!"))
+                .doOnError(throwable -> Timber.tag(tag).w("Retrofit/rxJava error!"))
                 .subscribe(response -> {
                     if (null != response && !response.isEmpty()) {
                         view.showTranslation(response);
                         saveToHistory(response);
-//                        view.showError("«Переведено сервисом «Яндекс.Переводчик»");
-                        Timber.i("response from server is OK");
                     } else {
                         view.showEmpty();
-                        Timber.tag(TAG).w("response from server is null or empty");
+                        Timber.tag(tag).w("response from server is null or empty");
                     }
                 });
     }
@@ -78,13 +75,15 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
     @NonNull
     @Override
     public String getDirection() {
+        //FIXME: не должно это из view доставаться
         String languageFrom = view.getLanguageFrom();
         String languageFromAbbr = TextUtil.findKeyByValue(languagesMap, languageFrom);
 
         String languageTo = view.getLanguageTo();
         String languageToAbbr = TextUtil.findKeyByValue(languagesMap, languageTo);
 
-        Timber.tag(TAG).w("Direction is%s", languageFromAbbr.concat("-").concat(languageToAbbr));
+        Timber.tag(tag).i("Direction is %s",
+                languageFromAbbr.concat("-").concat(languageToAbbr));
 
         return languageFromAbbr.concat("-").concat(languageToAbbr);
     }
