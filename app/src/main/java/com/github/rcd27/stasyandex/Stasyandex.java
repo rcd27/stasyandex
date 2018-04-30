@@ -7,6 +7,7 @@ import com.github.rcd27.stasyandex.di.DaggerAppComponent;
 
 import timber.log.Timber;
 
+// TODO: убрать subscribeOn(..) для всех вызовов API - теперь это по дефолту
 public class Stasyandex extends Application {
 
     public static Stasyandex instance;
