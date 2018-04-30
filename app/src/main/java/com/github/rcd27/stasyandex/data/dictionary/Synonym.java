@@ -1,17 +1,15 @@
 package com.github.rcd27.stasyandex.data.dictionary;
 
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.*;
 
 class Synonym {
 
-    @SerializedName("text")
-    @Expose
-    String text;
+  @SerializedName("text") public final String text;
+  @SerializedName("pos") public final String pos;
 
-    @SerializedName("pos")
-    @Expose(deserialize = false)
-    String pos;
-
+  Synonym(String text, String pos) {
+    this.text = text;
+    this.pos = pos;
+  }
 }

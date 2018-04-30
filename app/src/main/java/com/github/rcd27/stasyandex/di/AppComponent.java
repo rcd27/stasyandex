@@ -1,23 +1,21 @@
 package com.github.rcd27.stasyandex.di;
 
-import com.github.rcd27.stasyandex.api.ApiModule;
-import com.github.rcd27.stasyandex.di.dictionary.DictionaryComponent;
-import com.github.rcd27.stasyandex.di.dictionary.DictionaryModule;
-import com.github.rcd27.stasyandex.di.translation.TranslationComponent;
-import com.github.rcd27.stasyandex.di.translation.TranslationModule;
+import com.github.rcd27.stasyandex.api.*;
+import com.github.rcd27.stasyandex.di.dictionary.*;
+import com.github.rcd27.stasyandex.di.translation.*;
 
-import javax.inject.Singleton;
+import javax.inject.*;
 
-import dagger.Component;
+import dagger.*;
 
 @Singleton
 @Component(modules = {
-        ApiModule.class
+    ApiModule.class
 })
 
 public interface AppComponent {
 
-    TranslationComponent plus(TranslationModule translationModule);
+  TranslationComponent plus(TranslationModule translationModule);
 
-    DictionaryComponent plus(DictionaryModule dictionaryModule);
+  DictionaryComponent plus(DictionaryModule dictionaryModule);
 }

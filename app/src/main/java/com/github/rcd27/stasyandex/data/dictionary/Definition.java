@@ -1,59 +1,34 @@
 package com.github.rcd27.stasyandex.data.dictionary;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import android.support.annotation.*;
 
-import java.util.List;
+import com.google.gson.annotations.*;
+
+import java.util.*;
 
 /*Словарная статья*/
 public class Definition {
-    @SerializedName("text")
-    @Expose
-    public String text;
+  @SerializedName("text") public final String text;
 
-    /*Часть речи, может отсутствовать*/
-    @SerializedName("pos")
-    @Expose
-    private String pos;
+  /*Часть речи, может отсутствовать*/
+  @Nullable
+  @SerializedName("pos")
+  public final String pos;
 
-    @SerializedName("anm")
-    @Expose
-    private String anm;
+  @SerializedName("anm") public final String anm;
 
-    /*Массив переводов*/
-    @SerializedName("tr")
-    @Expose
-    private List<DicTranslation> dicTranslation;
+  /*Массив переводов*/
+  @SerializedName("tr") public final List<DicTranslation> dicTranslation;
 
-    public String getText() {
-        return text;
-    }
+  public Definition(
+      String text,
+      String pos,
+      String anm,
+      List<DicTranslation> dicTranslation) {
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getPos() {
-        return pos;
-    }
-
-    public void setPos(String pos) {
-        this.pos = pos;
-    }
-
-    public String getAnm() {
-        return anm;
-    }
-
-    public void setAnm(String anm) {
-        this.anm = anm;
-    }
-
-    public List<DicTranslation> getDicTranslation() {
-        return dicTranslation;
-    }
-
-    public void setDicTranslation(List<DicTranslation> dicTranslation) {
-        this.dicTranslation = dicTranslation;
-    }
+    this.text = text;
+    this.pos = pos;
+    this.anm = anm;
+    this.dicTranslation = dicTranslation;
+  }
 }

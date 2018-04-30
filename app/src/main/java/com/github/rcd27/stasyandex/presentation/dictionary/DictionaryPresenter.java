@@ -1,13 +1,12 @@
-package com.github.rcd27.stasyandex.dictionary;
+package com.github.rcd27.stasyandex.presentation.dictionary;
 
 
 import android.support.annotation.*;
 
-import com.github.rcd27.stasyandex.common.*;
+import com.github.rcd27.stasyandex.presentation.*;
 
 import io.reactivex.android.schedulers.*;
 import io.reactivex.disposables.*;
-import io.reactivex.schedulers.*;
 
 public class DictionaryPresenter extends BasePresenter implements DictionaryContract.Presenter {
 
@@ -26,7 +25,6 @@ public class DictionaryPresenter extends BasePresenter implements DictionaryCont
   @NonNull
   private Disposable getSubscriptionForDictionaryDefinition(String direction, String text) {
     return api.getDicResultFor(direction, text, "ru")
-        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .doOnError(throwable -> view.showEmpty())
         .subscribe(dicResult -> {

@@ -1,43 +1,23 @@
 package com.github.rcd27.stasyandex.data.translation;
 
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.*;
 
-import java.text.MessageFormat;
-import java.util.List;
-import java.util.Map;
+import java.text.*;
+import java.util.*;
 
 public class AvailableLanguages {
 
-    @SerializedName("dirs")
-    private List<String> directions;
+  @SerializedName("dirs") public final List<String> directions;
+  @SerializedName("langs") public final Map<String, String> languages;
 
-    @SerializedName("langs")
-    private
-    Map<String, String> languages;
+  public AvailableLanguages(List<String> directions, Map<String, String> languages) {
+    this.directions = directions;
+    this.languages = languages;
+  }
 
-    public List<String> getDirections() {
-        return directions;
-    }
-
-    public void setDirections(List<String> directions) {
-        this.directions = directions;
-    }
-
-    public Map<String, String> getLanguages() {
-        return languages;
-    }
-
-    public void setLanguages(Map<String, String> languages) {
-        this.languages = languages;
-    }
-
-    public boolean isEmpty() {
-        return directions.isEmpty() && languages.isEmpty();
-    }
-
-    @Override
-    public String toString() {
-        return MessageFormat.format("Directions: {0}, Languages: {1}", directions, languages);
-    }
+  @Override
+  public String toString() {
+    return MessageFormat.format("Directions: {0}, Languages: {1}", directions, languages);
+  }
 }

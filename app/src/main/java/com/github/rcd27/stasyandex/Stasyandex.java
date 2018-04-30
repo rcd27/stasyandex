@@ -1,36 +1,34 @@
 package com.github.rcd27.stasyandex;
 
-import android.app.Application;
+import android.app.*;
 
-import com.github.rcd27.stasyandex.di.AppComponent;
-import com.github.rcd27.stasyandex.di.DaggerAppComponent;
+import com.github.rcd27.stasyandex.di.*;
 
-import timber.log.Timber;
+import timber.log.*;
 
-// TODO: убрать subscribeOn(..) для всех вызовов API - теперь это по дефолту
 public class Stasyandex extends Application {
 
-    public static Stasyandex instance;
+  public static Stasyandex instance;
 
-    public static Stasyandex getInstance() {
-        return instance;
+  public static Stasyandex getInstance() {
+    return instance;
+  }
+
+  protected AppComponent appComponent;
+
+  public AppComponent getAppComponent() {
+    return appComponent;
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    instance = this;
+
+    appComponent = DaggerAppComponent.builder().build();
+
+    if (BuildConfig.DEBUG) {
+      Timber.plant(new Timber.DebugTree());
     }
-
-    protected AppComponent appComponent;
-
-    public AppComponent getAppComponent() {
-        return appComponent;
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        instance = this;
-
-        appComponent = DaggerAppComponent.builder().build();
-
-        if (BuildConfig.DEBUG) {
-            Timber.plant(new Timber.DebugTree());
-        }
-    }
+  }
 }

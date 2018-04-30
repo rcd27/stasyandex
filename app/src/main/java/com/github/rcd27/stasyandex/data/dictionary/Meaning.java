@@ -1,20 +1,13 @@
 package com.github.rcd27.stasyandex.data.dictionary;
 
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.*;
 
 public class Meaning {
 
-    @SerializedName("text")
-    @Expose
-    private String text;
+  @SerializedName("text") public final String text;
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
+  public Meaning(String text) {
+    this.text = text;
+  }
 }
