@@ -10,7 +10,6 @@ import com.github.rcd27.stasyandex.data.translation.Translation;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import rx.Single;
 
 public interface TranslationContract {
 
@@ -53,13 +52,13 @@ public interface TranslationContract {
 
     interface Api {
         @GET("api/v1.5/tr.json/getLangs")
-        Single<AvailableLanguages> getAvailableLangs(@Query("ui") String forLanguage);
+        io.reactivex.Single<AvailableLanguages> getAvailableLangs(@Query("ui") String forLanguage);
 
         @GET("api/v1.5/tr.json/detect")
-        Single<ProbableLanguage> getProbableLanguage(@Query("text") String text);
+        io.reactivex.Single<ProbableLanguage> getProbableLanguage(@Query("text") String text);
 
         @GET("api/v1.5/tr.json/translate")
-        Single<Translation> getTranslation(@Query("text") String textToTranslate,
+        io.reactivex.Single<Translation> getTranslation(@Query("text") String textToTranslate,
                                            @Query("lang") String translationDirection);
     }
 }

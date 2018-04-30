@@ -1,35 +1,33 @@
 package com.github.rcd27.stasyandex.dictionary;
 
-import com.github.rcd27.stasyandex.common.BaseView;
-import com.github.rcd27.stasyandex.data.dictionary.DicResult;
-import com.github.rcd27.stasyandex.dictionary.visual.DictionaryVisualDefinition;
-import com.github.rcd27.stasyandex.dictionary.visual.DictionaryVisualItem;
+import com.github.rcd27.stasyandex.common.*;
+import com.github.rcd27.stasyandex.data.dictionary.*;
+import com.github.rcd27.stasyandex.dictionary.visual.*;
 
-import java.util.List;
+import java.util.*;
 
-import retrofit2.http.GET;
-import retrofit2.http.Query;
-import rx.Single;
+import io.reactivex.*;
+import retrofit2.http.*;
 
 public interface DictionaryContract {
 
-    interface View extends BaseView {
+  interface View extends BaseView {
 
-        void showDefinition(DictionaryVisualDefinition definition);
+    void showDefinition(DictionaryVisualDefinition definition);
 
-        void showDictionaryItems(List<DictionaryVisualItem> items);
-    }
+    void showDictionaryItems(List<DictionaryVisualItem> items);
+  }
 
-    interface Presenter {
+  interface Presenter {
 
-    }
+  }
 
-    interface Api {
-        //TODO прикрутить возможность получать укороченную pos(часть речи)
-        //https://tech.yandex.ru/dictionary/doc/dg/reference/lookup-docpage/
-        @GET("api/v1/dicservice.json/lookup")
-        Single<DicResult> getDicResultFor(@Query("lang") String languageDirection,
-                                          @Query("text") String text,
-                                          @Query("ui") String inLanguage);
-    }
+  interface Api {
+    //TODO прикрутить возможность получать укороченную pos(часть речи)
+    //https://tech.yandex.ru/dictionary/doc/dg/reference/lookup-docpage/
+    @GET("api/v1/dicservice.json/lookup")
+    Single<DicResult> getDicResultFor(@Query("lang") String languageDirection,
+                                      @Query("text") String text,
+                                      @Query("ui") String inLanguage);
+  }
 }
