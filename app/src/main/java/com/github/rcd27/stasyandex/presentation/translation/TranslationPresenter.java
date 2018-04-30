@@ -6,10 +6,9 @@ import android.support.annotation.*;
 import android.text.*;
 
 import com.github.rcd27.stasyandex.common.*;
-import com.github.rcd27.stasyandex.data.history.*;
-import com.github.rcd27.stasyandex.data.translation.*;
+import com.github.rcd27.stasyandex.model.business.translation.*;
+import com.github.rcd27.stasyandex.model.data.translation.*;
 import com.github.rcd27.stasyandex.presentation.*;
-import com.google.gson.*;
 
 import java.util.*;
 
@@ -21,19 +20,17 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
   private final String tag = getClass().getSimpleName();
 
   private final TranslationContract.View view;
-  private final Context context;
-  private final TranslationContract.Api api;
+  private final TranslationInteractor interactor;
 
   //TODO получать из Translate API при загрузке приложения в первый раз, сохранять в Preferences.
   private final Map<String, String> languagesMap;
 
-  public TranslationPresenter(TranslationContract.View view,
-                              Context context,
-                              TranslationContract.Api api) {
+  public TranslationPresenter(
+      TranslationContract.View view,
+      TranslationInteractor interactor) {
 
     this.view = view;
-    this.context = context;
-    this.api = api;
+    this.interactor = interactor;
     this.languagesMap = Translation.createLanguagesMap();
   }
 
@@ -51,13 +48,13 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
   // это просто сделать с помощью RxBindings в самой вьюхе, поэтому сейчас не заморачиваться.
   @NonNull
   private Disposable translate(@NonNull String text) {
-    // TODO: this should become `apiService.get...`
-    return api.getTranslation(text, getDirection())
+
+    return interactor.getTranslation(text, getDirection())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(response -> {
           if (null != response && !response.isEmpty()) {
             view.showTranslation(response);
-            saveToHistory(response);
+            onSaveToHistory(response);
           } else {
             view.showEmpty();
             Timber.tag(tag).w("response from server is null or empty");
@@ -116,20 +113,7 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
     view.openHistory();
   }
 
-  // TODO: move to interactor
-  private void saveToHistory(Translation current) {
-    String to = TextUtil.commaRawFromList(current.getTranslationResult());
-    String from = view.getTextFromEditText();
-
-    HistoryItem historyItem = new HistoryItem(current.getDirection(), to, from, 0, true);
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    String json = gson.toJson(historyItem);
-
-    // FIXME: move that to Interactor
-    SharedPreferences prefs = context.getSharedPreferences(Const.HISTORY_CACHE, Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = prefs.edit();
-
-    editor.putString(current.getDirection() + current.getTranslationResult().toString(), json);
-    editor.apply();
+  private void onSaveToHistory(Translation current) {
+    interactor.saveCurrentTranslationToHistory(current, view.getTextFromEditText());
   }
 }

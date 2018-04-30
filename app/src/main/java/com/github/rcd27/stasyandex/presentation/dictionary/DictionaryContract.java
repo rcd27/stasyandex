@@ -1,6 +1,6 @@
 package com.github.rcd27.stasyandex.presentation.dictionary;
 
-import com.github.rcd27.stasyandex.data.dictionary.*;
+import com.github.rcd27.stasyandex.model.data.dictionary.*;
 import com.github.rcd27.stasyandex.presentation.*;
 import com.github.rcd27.stasyandex.presentation.dictionary.visual.*;
 

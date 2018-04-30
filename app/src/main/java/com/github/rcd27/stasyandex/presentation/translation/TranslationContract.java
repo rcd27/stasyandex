@@ -3,7 +3,7 @@ package com.github.rcd27.stasyandex.presentation.translation;
 import android.content.*;
 import android.support.annotation.*;
 
-import com.github.rcd27.stasyandex.data.translation.*;
+import com.github.rcd27.stasyandex.model.data.translation.*;
 import com.github.rcd27.stasyandex.presentation.*;
 
 import io.reactivex.*;

@@ -8,7 +8,7 @@ import android.support.v7.app.*;
 import android.widget.*;
 
 import com.github.rcd27.stasyandex.common.*;
-import com.github.rcd27.stasyandex.data.translation.*;
+import com.github.rcd27.stasyandex.model.data.translation.*;
 
 import java.util.*;
 

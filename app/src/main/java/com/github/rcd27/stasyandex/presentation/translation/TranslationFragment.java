@@ -9,7 +9,7 @@ import android.widget.*;
 
 import com.github.rcd27.stasyandex.*;
 import com.github.rcd27.stasyandex.R;
-import com.github.rcd27.stasyandex.data.translation.*;
+import com.github.rcd27.stasyandex.model.data.translation.*;
 import com.github.rcd27.stasyandex.di.translation.*;
 import com.github.rcd27.stasyandex.presentation.*;
 import com.github.rcd27.stasyandex.presentation.history.*;

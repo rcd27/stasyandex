@@ -10,7 +10,7 @@ import android.widget.*;
 
 import com.github.rcd27.stasyandex.R;
 import com.github.rcd27.stasyandex.common.*;
-import com.github.rcd27.stasyandex.data.history.*;
+import com.github.rcd27.stasyandex.model.data.history.*;
 import com.google.gson.*;
 
 import java.util.*;

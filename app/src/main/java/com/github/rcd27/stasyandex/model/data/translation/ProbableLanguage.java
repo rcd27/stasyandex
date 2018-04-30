@@ -1,4 +1,4 @@
-package com.github.rcd27.stasyandex.data.translation;
+package com.github.rcd27.stasyandex.model.data.translation;
 
 import com.google.gson.annotations.*;
 
