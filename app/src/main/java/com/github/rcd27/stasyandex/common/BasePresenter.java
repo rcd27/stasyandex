@@ -1,22 +1,21 @@
 package com.github.rcd27.stasyandex.common;
 
 
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
+import io.reactivex.disposables.*;
 
 public abstract class BasePresenter {
 
-    protected final CompositeSubscription compositeSubscription;
+  private final CompositeDisposable compositeDisposable;
 
-    protected BasePresenter() {
-        this.compositeSubscription = new CompositeSubscription();
-    }
+  protected BasePresenter() {
+    this.compositeDisposable = new CompositeDisposable();
+  }
 
-    protected void addSubscription(Subscription subscription) {
-        compositeSubscription.add(subscription);
-    }
+  protected void addDisposable(Disposable d) {
+    compositeDisposable.add(d);
+  }
 
-    void onStop() {
-        compositeSubscription.clear();
-    }
+  void onStop() {
+    compositeDisposable.clear();
+  }
 }
