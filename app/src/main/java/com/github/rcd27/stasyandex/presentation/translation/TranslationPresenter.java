@@ -5,6 +5,7 @@ import android.content.*;
 import android.support.annotation.*;
 import android.text.*;
 
+import com.github.rcd27.airbag.*;
 import com.github.rcd27.stasyandex.common.*;
 import com.github.rcd27.stasyandex.model.business.translation.*;
 import com.github.rcd27.stasyandex.model.data.translation.*;
@@ -14,7 +15,6 @@ import java.util.*;
 
 import io.reactivex.android.schedulers.*;
 import io.reactivex.disposables.*;
-import timber.log.*;
 
 public class TranslationPresenter extends BasePresenter implements TranslationContract.Presenter {
   private final String tag = getClass().getSimpleName();
@@ -41,25 +41,24 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
       view.showEmpty();
       return;
     }
-    addDisposable(translate(text));
-  }
 
-  // TODO: прикрутить задержку, чтобы экшон не происходил по каждому нажатию
-  // это просто сделать с помощью RxBindings в самой вьюхе, поэтому сейчас не заморачиваться.
-  @NonNull
-  private Disposable translate(@NonNull String text) {
-
-    return interactor.getTranslation(text, getDirection())
+    ApiRequest<Translation> request = interactor.getTranslation(text, getDirection());
+    Disposable errors = request.errors
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(response -> {
-          if (null != response && !response.isEmpty()) {
-            view.showTranslation(response);
-            onSaveToHistory(response);
-          } else {
-            view.showEmpty();
-            Timber.tag(tag).w("response from server is null or empty");
-          }
+        .subscribe(e -> view.showError(e.getMessage()), throwable -> {
+          // FIXME: this is still can be broken in Observer
         });
+
+    Disposable translations = request.response
+        .doOnEach(t -> onSaveToHistory(t.getValue()))
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(view::showTranslation);
+
+    Disposable states = request.state
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(view::showState);
+
+    addDisposable(request.execute(errors, translations, states));
   }
 
   @NonNull

@@ -3,10 +3,12 @@ package com.github.rcd27.stasyandex.presentation.translation;
 import android.content.*;
 import android.support.annotation.*;
 
+import com.github.rcd27.airbag.*;
 import com.github.rcd27.stasyandex.model.data.translation.*;
 import com.github.rcd27.stasyandex.presentation.*;
 
 import io.reactivex.*;
+import retrofit2.*;
 import retrofit2.http.*;
 
 public interface TranslationContract {
@@ -30,6 +32,8 @@ public interface TranslationContract {
     void openHistory();
 
     void clearEditText();
+
+    void showState(ApiRequest.RequestState state);
   }
 
   interface Presenter {
@@ -56,7 +60,7 @@ public interface TranslationContract {
     Single<ProbableLanguage> getProbableLanguage(@Query("text") String text);
 
     @GET("api/v1.5/tr.json/translate")
-    Single<Translation> getTranslation(@Query("text") String textToTranslate,
-                                       @Query("lang") String translationDirection);
+    Single<Response<Translation>> getTranslation(@Query("text") String textToTranslate,
+                                                 @Query("lang") String translationDirection);
   }
 }

@@ -7,10 +7,11 @@ import android.support.annotation.*;
 import android.view.*;
 import android.widget.*;
 
+import com.github.rcd27.airbag.*;
 import com.github.rcd27.stasyandex.*;
 import com.github.rcd27.stasyandex.R;
-import com.github.rcd27.stasyandex.model.data.translation.*;
 import com.github.rcd27.stasyandex.di.translation.*;
+import com.github.rcd27.stasyandex.model.data.translation.*;
 import com.github.rcd27.stasyandex.presentation.*;
 import com.github.rcd27.stasyandex.presentation.history.*;
 
@@ -147,6 +148,11 @@ public class TranslationFragment extends BaseFragment implements TranslationCont
   @Override
   public void clearEditText() {
     editText.setText("");
+  }
+
+  @Override
+  public void showState(ApiRequest.RequestState state) {
+    // TODO: implement
   }
 
   @Override

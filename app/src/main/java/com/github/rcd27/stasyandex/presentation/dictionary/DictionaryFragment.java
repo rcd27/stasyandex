@@ -7,6 +7,7 @@ import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
 
+import com.github.rcd27.airbag.*;
 import com.github.rcd27.stasyandex.R;
 import com.github.rcd27.stasyandex.*;
 import com.github.rcd27.stasyandex.di.dictionary.*;
@@ -78,6 +79,11 @@ public class DictionaryFragment extends BaseFragment implements DictionaryContra
     dictionaryOriginWord.setText("");
     dictionaryOriginWordPos.setText("");
     dictionaryAdapter.setDictionaryItemList(Collections.emptyList());
+  }
+
+  @Override
+  public void showState(ApiRequest.RequestState state) {
+    // TODO: implement
   }
 
   @Override

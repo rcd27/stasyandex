@@ -2,13 +2,12 @@ package com.github.rcd27.stasyandex.model.business.translation;
 
 import android.content.*;
 
+import com.github.rcd27.airbag.*;
 import com.github.rcd27.stasyandex.common.*;
 import com.github.rcd27.stasyandex.model.data.history.*;
 import com.github.rcd27.stasyandex.model.data.translation.*;
 import com.github.rcd27.stasyandex.presentation.translation.*;
 import com.google.gson.*;
-
-import io.reactivex.*;
 
 public class TranslationInteractor {
 
@@ -20,8 +19,8 @@ public class TranslationInteractor {
     this.context = context;
   }
 
-  public Single<Translation> getTranslation(String text, String direction) {
-    return api.getTranslation(text, direction);
+  public ApiRequest<Translation> getTranslation(String text, String direction) {
+    return new ApiRequest<>(api.getTranslation(text, direction));
   }
 
   public void saveCurrentTranslationToHistory(Translation current, String sourceText) {

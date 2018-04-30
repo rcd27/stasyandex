@@ -3,7 +3,9 @@ package com.github.rcd27.stasyandex.presentation.dictionary;
 
 import android.support.annotation.*;
 
+import com.github.rcd27.airbag.*;
 import com.github.rcd27.stasyandex.model.business.dictionary.*;
+import com.github.rcd27.stasyandex.model.data.dictionary.*;
 import com.github.rcd27.stasyandex.presentation.*;
 
 import io.reactivex.android.schedulers.*;
@@ -20,21 +22,29 @@ public class DictionaryPresenter extends BasePresenter implements DictionaryCont
   }
 
   public void getDictionaryResponseFor(@NonNull String direction, @NonNull String text) {
-    addDisposable(getDictionary(direction, text));
-  }
 
-  @NonNull
-  private Disposable getDictionary(String direction, String text) {
-    return interactor.getDicResultFor(direction, text, "ru")
+    ApiRequest<DictionaryResponse> dictionaryRequest = interactor.getDicResultFor(direction, text, "ru");
+
+    Disposable errors = dictionaryRequest.errors
         .observeOn(AndroidSchedulers.mainThread())
-        .doOnError(throwable -> view.showEmpty())
-        .subscribe(dicResult -> {
-          if (!dicResult.definitionListIsEmptyOrNull()) {
-            view.showDefinition(dicResult.getDefinition());
-            view.showDictionaryItems(dicResult.getElementsList());
-          } else {
-            view.showEmpty();
-          }
+        .subscribe(e -> {
+          view.showError(e.getMessage());
+          view.showEmpty();
         });
+
+    Disposable dictionary = dictionaryRequest.response
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(dictionaryResponse -> {
+          view.showDefinition(dictionaryResponse.getDefinition());
+          view.showDictionaryItems(dictionaryResponse.getElementsList());
+        }, throwable -> {
+          // FIXME: this can still be broken in Observer's block
+        });
+
+    Disposable state = dictionaryRequest.state
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(view::showState);
+
+    addDisposable(dictionaryRequest.execute(errors, dictionary, state));
   }
 }

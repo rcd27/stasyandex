@@ -6,7 +6,7 @@ android {
 
     defaultConfig { // базовая конфигурация для всех productFlavors
         applicationId "com.github.rcd27.stasyandex"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode versionCode = 1
         versionName versionName = '1.0'
@@ -62,4 +62,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation "junit:junit:4.12"
+
+    compile project(path: ':airbag')
 }

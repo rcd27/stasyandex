@@ -6,11 +6,11 @@ import com.google.gson.annotations.*;
 
 import java.util.*;
 
-public class DicResult {
+public class DictionaryResponse {
   /*Массив словарных статей*/
   @SerializedName("def") public final List<Definition> definitionList;
 
-  public DicResult(List<Definition> definitionList) {
+  public DictionaryResponse(List<Definition> definitionList) {
     this.definitionList = definitionList;
   }
 
