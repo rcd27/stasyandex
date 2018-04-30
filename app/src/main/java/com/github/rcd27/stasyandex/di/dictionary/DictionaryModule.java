@@ -1,5 +1,6 @@
 package com.github.rcd27.stasyandex.di.dictionary;
 
+import com.github.rcd27.stasyandex.model.business.dictionary.*;
 import com.github.rcd27.stasyandex.presentation.dictionary.*;
 
 import dagger.*;
@@ -14,7 +15,12 @@ public class DictionaryModule {
   }
 
   @Provides
-  DictionaryContract.Presenter dictionaryPresenter(DictionaryContract.Api api) {
-    return new DictionaryPresenter(view, api);
+  DictionaryContract.Presenter dictionaryPresenter(DictionaryInteractor interactor) {
+    return new DictionaryPresenter(view, interactor);
+  }
+
+  @Provides
+  DictionaryInteractor provideInteractor(DictionaryContract.Api api) {
+    return new DictionaryInteractor(api);
   }
 }

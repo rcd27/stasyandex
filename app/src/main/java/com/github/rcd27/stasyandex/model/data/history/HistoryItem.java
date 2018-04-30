@@ -1,4 +1,4 @@
-package com.github.rcd27.stasyandex.data.history;
+package com.github.rcd27.stasyandex.model.data.history;
 
 
 import com.google.gson.annotations.*;

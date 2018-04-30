@@ -1,4 +1,4 @@
-package com.github.rcd27.stasyandex.data.translation;
+package com.github.rcd27.stasyandex.model.data.translation;
 
 import com.github.rcd27.stasyandex.common.*;
 import com.google.gson.annotations.*;
@@ -11,14 +11,9 @@ import java.util.*;
 translationResult оформлен листом, но в нём замечен пока только один элемент.
  */
 public class Translation {
-  @SerializedName("code")
-  private int code;
-
-  @SerializedName("lang")
-  private String direction;
-
-  @SerializedName("text")
-  private List<String> translationResult = new ArrayList<>();
+  @SerializedName("code")  private int code;
+  @SerializedName("lang")  private String direction;
+  @SerializedName("text")  private List<String> translationResult = new ArrayList<>();
 
   public int getCode() {
     return code;
