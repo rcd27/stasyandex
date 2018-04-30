@@ -30,7 +30,7 @@
                 android:value="com.github.rcd27.stasyandex.MainActivity" />
         </activity>
         <activity
-            android:name="com.github.rcd27.stasyandex.history.HistoryActivity"
+            android:name=".presentation.history.HistoryActivity"
             android:parentActivityName="com.github.rcd27.stasyandex.MainActivity"
             android:screenOrientation="portrait">
             <meta-data

@@ -1,7 +1,6 @@
-package com.github.rcd27.stasyandex.translation;
+package com.github.rcd27.stasyandex.presentation.translation;
 
 
-import android.annotation.*;
 import android.content.*;
 import android.support.annotation.*;
 import android.text.*;
@@ -9,13 +8,13 @@ import android.text.*;
 import com.github.rcd27.stasyandex.common.*;
 import com.github.rcd27.stasyandex.data.history.*;
 import com.github.rcd27.stasyandex.data.translation.*;
+import com.github.rcd27.stasyandex.presentation.*;
 import com.google.gson.*;
 
 import java.util.*;
 
 import io.reactivex.android.schedulers.*;
 import io.reactivex.disposables.*;
-import io.reactivex.schedulers.*;
 import timber.log.*;
 
 public class TranslationPresenter extends BasePresenter implements TranslationContract.Presenter {
@@ -49,13 +48,12 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
   }
 
   // TODO: прикрутить задержку, чтобы экшон не происходил по каждому нажатию
-  @SuppressLint("RxSubscribeOnError")
+  // это просто сделать с помощью RxBindings в самой вьюхе, поэтому сейчас не заморачиваться.
   @NonNull
   private Disposable translate(@NonNull String text) {
+    // TODO: this should become `apiService.get...`
     return api.getTranslation(text, getDirection())
-        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .doOnError(throwable -> Timber.tag(tag).w("Retrofit/rxJava error!"))
         .subscribe(response -> {
           if (null != response && !response.isEmpty()) {
             view.showTranslation(response);
@@ -71,14 +69,12 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
   @Override
   public String getDirection() {
     //FIXME: не должно это из view доставаться
+    // TODO: interactor.getDirection()
     String languageFrom = view.getLanguageFrom();
     String languageFromAbbr = TextUtil.findKeyByValue(languagesMap, languageFrom);
 
     String languageTo = view.getLanguageTo();
     String languageToAbbr = TextUtil.findKeyByValue(languagesMap, languageTo);
-
-    Timber.tag(tag).i("Direction is %s",
-        languageFromAbbr.concat("-").concat(languageToAbbr));
 
     return languageFromAbbr.concat("-").concat(languageToAbbr);
   }
@@ -120,6 +116,7 @@ public class TranslationPresenter extends BasePresenter implements TranslationCo
     view.openHistory();
   }
 
+  // TODO: move to interactor
   private void saveToHistory(Translation current) {
     String to = TextUtil.commaRawFromList(current.getTranslationResult());
     String from = view.getTextFromEditText();

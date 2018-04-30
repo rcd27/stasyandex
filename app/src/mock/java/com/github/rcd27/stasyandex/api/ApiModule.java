@@ -2,8 +2,8 @@ package com.github.rcd27.stasyandex.api;
 
 import com.github.rcd27.stasyandex.data.dictionary.*;
 import com.github.rcd27.stasyandex.data.translation.*;
-import com.github.rcd27.stasyandex.dictionary.*;
-import com.github.rcd27.stasyandex.translation.*;
+import com.github.rcd27.stasyandex.presentation.dictionary.*;
+import com.github.rcd27.stasyandex.presentation.translation.*;
 
 import java.util.*;
 

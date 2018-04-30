@@ -1,4 +1,4 @@
-package com.github.rcd27.stasyandex.common;
+package com.github.rcd27.stasyandex.presentation;
 
 
 import io.reactivex.disposables.*;

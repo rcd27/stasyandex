@@ -1,11 +1,11 @@
 package com.github.rcd27.stasyandex.di.translation;
 
-import com.github.rcd27.stasyandex.translation.TranslationFragment;
+import com.github.rcd27.stasyandex.presentation.translation.*;
 
-import dagger.Subcomponent;
+import dagger.*;
 
 @Subcomponent(modules = {TranslationModule.class})
 public interface TranslationComponent {
 
-    void inject(TranslationFragment translationFragment);
+  void inject(TranslationFragment translationFragment);
 }

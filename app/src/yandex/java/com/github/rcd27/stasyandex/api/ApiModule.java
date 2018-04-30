@@ -3,8 +3,8 @@ package com.github.rcd27.stasyandex.api;
 import android.support.annotation.*;
 
 import com.github.rcd27.stasyandex.common.*;
-import com.github.rcd27.stasyandex.dictionary.*;
-import com.github.rcd27.stasyandex.translation.*;
+import com.github.rcd27.stasyandex.presentation.dictionary.*;
+import com.github.rcd27.stasyandex.presentation.translation.*;
 
 import java.io.*;
 

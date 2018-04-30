@@ -1,8 +1,8 @@
-package com.github.rcd27.stasyandex.dictionary;
+package com.github.rcd27.stasyandex.presentation.dictionary;
 
-import com.github.rcd27.stasyandex.common.*;
 import com.github.rcd27.stasyandex.data.dictionary.*;
-import com.github.rcd27.stasyandex.dictionary.visual.*;
+import com.github.rcd27.stasyandex.presentation.*;
+import com.github.rcd27.stasyandex.presentation.dictionary.visual.*;
 
 import java.util.*;
 
