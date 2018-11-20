@@ -15,3 +15,6 @@ RxJava, Retrofit, Butterknife, Dagger2
 <img src="https://github.com/rcd27/stasyandex/blob/master/photo_2017-05-12_10-06-11.jpg" width="250">
 <img src="https://github.com/rcd27/stasyandex/blob/master/photo_2017-05-12_10-06-24.jpg" width="250">
 </ul>
+
+// --- WARNING ---
+// FIXME: YANDEX.TRANSLATE API HAS BEEN CHANGED
